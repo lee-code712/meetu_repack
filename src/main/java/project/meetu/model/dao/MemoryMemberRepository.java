@@ -42,7 +42,6 @@ public class MemoryMemberRepository implements MemberRepository {
 
 	@Override
 	public List<Member> findAll() {
-		System.out.println();
 		return memberMapper.getList();
 	}
 	
