@@ -6,9 +6,9 @@
 	<settings>
     	<setting name="cacheEnabled" value="false"/>
   	</settings>
-	<typeAliases>
-		<typeAlias type="project.meetu.model.dto.Member" alias="Member" />
-	</typeAliases>
+	<!--  <typeAliases>
+		<typeAlias type="project.meetu.model.dto.ServiceUser" alias="Member" />
+	</typeAliases>-->
 	<!--  <environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -21,6 +21,6 @@
 		</environment>
 	</environments>-->
 	<mappers>
-		<mapper resource="mybatis-mapper/MemberMapper.xml" />
+		<mapper resource="mybatis-mapper/UserMapper.xml" />
 	</mappers>
 </configuration>

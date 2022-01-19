@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.meetu.model.dao.mapper.UserMapper">
+
+	<!-- 특정 회원정보 조회(회원의 구성원 정보 포함) -->
+	<resultMap id="userResultMap" type="ServiceUser">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" javaType="string" />
+		<result column="password" jdbcType="VARCHAR" property="password" javaType="string" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" javaType="string" />
+		<association property="memberInfo" column="member_no" javaType="Member">
+			<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+			<result column="role" jdbcType="INTEGER" property="role" javaType="int" />
+			<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
+			<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
+			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+		</association>
+	</resultMap>
+	
+    <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
+        SELECT user_id, password, phone, member_no,
+        	role, name, email, dept_no
+        FROM service_user JOIN member USING(member_no)
+        WHERE user_id = #{userId}
+    </select>
+    
+</mapper>

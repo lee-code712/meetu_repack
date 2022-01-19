@@ -1,14 +1,23 @@
 package project.meetu.model.dto;
 
 public class Member {
-	private long id;
+	private String memberNo;
+	private int role;
 	private String name;
+	private String email;
+	private String deptNo;
 	
-	public long getId() {
-		return id;
+	public String getMemberNo() {
+		return memberNo;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
 	}
 	public String getName() {
 		return name;
@@ -16,4 +25,17 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDeptNo() {
+		return deptNo;
+	}
+	public void setDeptNo(String deptNo) {
+		this.deptNo = deptNo;
+	}
+	
 }
