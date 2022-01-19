@@ -11,12 +11,6 @@ insert into service_user (user_id, password, phone, member_no) values ('ex010100
 insert into course (course_no, title, dept_no) values ('국문K0001', '고전문학의 이해', '0101');
 insert into class (course_no, prof_no) values ('국문K0001', '01020002');
 insert into alert_type (type_no, title) values (0, '상담 예약');
-
-CREATE SEQUENCE consult_seq START WITH 10000 INCREMENT BY 1 MAXVALUE 19999 NOCYCLE CACHE 20;
-CREATE SEQUENCE notice_seq START WITH 1 INCREMENT BY 1 MAXVALUE 100 NOCYCLE CACHE 20;
-CREATE SEQUENCE message_seq START WITH 1000 INCREMENT BY 1 MAXVALUE 9999 NOCYCLE CACHE 20;
-CREATE SEQUENCE alert_seq START WITH 100000 INCREMENT BY 1 MAXVALUE 199999 NOCYCLE CACHE 20;
-
 insert into consultable_time (able_date, able_time, prof_id) values (1, '13:00~16:00', 'ex01020002');
 insert into consult (consult_id, start_date, end_date, reason, type, state, prof_id, stu_id, cancel_msg) values (consult_seq.NEXTVAL, TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), TO_DATE('2021-03-10 14:00:00','YY/MM/DD HH24:MI:SS'), '전담 교수 면담', 1, 3, 'ex01020002', 'ex01010001', '취소하는 이유');
 insert into consult_record (content, consult_id) values ('상담 내용', '10005');

@@ -1,11 +1,12 @@
 package project.meetu.model.service;
+/* 메소드명이 좀 더 비즈니스에 가까움 */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.dao.UserDAO;
-/* 메소드명이 좀 더 비즈니스에 가까움 */
+
 @Service
 public class UserManager {
 
