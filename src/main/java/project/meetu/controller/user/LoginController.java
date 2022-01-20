@@ -26,11 +26,11 @@ public class LoginController {
 	}
 
 	@GetMapping("/")
-	public String index() {
+	public String moveToLoginForm() {
 		return "user/loginForm";
 	}
 	
-	@PostMapping("user/login") // POST방식으로 데이터 전달 시 사용
+	@PostMapping("/user/login") // POST방식으로 데이터 전달 시 사용
 	public String login(@RequestParam("role") String role, ServiceUser user, 
 			HttpServletRequest req, RedirectAttributes rttr) {
 		user.setMemberInfo(new Member());
@@ -44,7 +44,7 @@ public class LoginController {
 			session.setAttribute("name", user.getMemberInfo().getName());
 			session.setAttribute("role", user.getMemberInfo().getRole());
 			
-			return "user/loginSuccess";
+			return "redirect:/home";
 			
 		} catch (LoginException e) {
 			rttr.addFlashAttribute("loginFailed", true); // redirect시 값 전달
