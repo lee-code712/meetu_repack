@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.meetu.model.dto.ServiceUser;
+import project.meetu.model.service.exception.LoginException;
 import project.meetu.model.dao.UserDAO;
 
 @Service
@@ -19,18 +20,21 @@ public class UserManager {
 	}
 	
 	/* 로그인 */
-	public ServiceUser login(ServiceUser user) {
+	public ServiceUser login(ServiceUser user) throws LoginException {
 		
 		ServiceUser findUser = userDao.findUser(user.getUserId());
 
-		if (findUser != null) {
-			if (user.getPassword().equals(findUser.getPassword())
-					&& user.getMemberInfo().getRole() == findUser.getMemberInfo().getRole()) {
-				return findUser;
-			}
-		}	
+		if (findUser == null) {
+			throw new LoginException("존재하지 않는 회원입니다.");
+		}
+		else if (user.getMemberInfo().getRole() != findUser.getMemberInfo().getRole()) {
+			throw new LoginException("존재하지 않는 회원입니다.");
+		}
+		else if (!user.getPassword().equals(findUser.getPassword())) {
+			throw new LoginException("비밀번호가 일치하지 않습니다.");
+		}
 		
-		return null;
+		return findUser;
 	}
 	
 }

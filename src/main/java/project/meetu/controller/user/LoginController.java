@@ -1,15 +1,19 @@
 package project.meetu.controller.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.meetu.model.dto.Member;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.UserManager;
+import project.meetu.model.service.exception.LoginException;
 
 @Controller
 public class LoginController {
@@ -26,17 +30,27 @@ public class LoginController {
 		return "user/loginForm";
 	}
 	
-	@PostMapping("user/login") // POST방식으로 데이터 전달 시 사용 - 보통 데이터 등록 시 사용하는 방식
-	public String login(@RequestParam("role") String role, ServiceUser user, Model model) {
+	@PostMapping("user/login") // POST방식으로 데이터 전달 시 사용
+	public String login(@RequestParam("role") String role, ServiceUser user, 
+			HttpServletRequest req, RedirectAttributes rttr) {
 		user.setMemberInfo(new Member());
 		user.getMemberInfo().setRole(Integer.parseInt(role));	
 		
-		user = userService.login(user);
-
-		if (user != null) {
-			model.addAttribute("user", user);
+		try {
+			user = userService.login(user);
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("id", user.getUserId());
+			session.setAttribute("name", user.getMemberInfo().getName());
+			session.setAttribute("role", user.getMemberInfo().getRole());
+			
 			return "user/loginSuccess";
+			
+		} catch (LoginException e) {
+			rttr.addFlashAttribute("loginFailed", true); // redirect시 값 전달
+			rttr.addFlashAttribute("exception", e.getMessage());
+			return "redirect:/";
 		}
-		return "redirect:/";
+	
 	}
 }
