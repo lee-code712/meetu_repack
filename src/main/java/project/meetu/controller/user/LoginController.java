@@ -33,6 +33,7 @@ public class LoginController {
 	@PostMapping("/user/login") // POST방식으로 데이터 전달 시 사용
 	public String login(@RequestParam("role") String role, ServiceUser user, 
 			HttpServletRequest req, RedirectAttributes rttr) {
+		
 		user.setMemberInfo(new Member());
 		user.getMemberInfo().setRole(Integer.parseInt(role));	
 		
@@ -47,6 +48,8 @@ public class LoginController {
 			return "redirect:/home";
 			
 		} catch (LoginException e) {
+			e.printStackTrace(); // exception console에서 확인
+			
 			rttr.addFlashAttribute("loginFailed", true); // redirect시 값 전달
 			rttr.addFlashAttribute("exception", e.getMessage());
 			return "redirect:/";

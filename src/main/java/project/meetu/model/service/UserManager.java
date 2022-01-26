@@ -28,7 +28,7 @@ public class UserManager {
 			throw new LoginException("존재하지 않는 회원입니다.");
 		}
 		else if (user.getMemberInfo().getRole() != findUser.getMemberInfo().getRole()) {
-			throw new LoginException("존재하지 않는 회원입니다.");
+			throw new LoginException("소속이 일치하지 않습니다.");
 		}
 		else if (!user.getPassword().equals(findUser.getPassword())) {
 			throw new LoginException("비밀번호가 일치하지 않습니다.");
