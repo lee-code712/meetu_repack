@@ -1,16 +1,13 @@
 package project.meetu.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-public class HomeController {
-
-	@GetMapping("/home")
-	public String moveToHome() {
-		// 상담일정 가져오는 코드 구현
-		// 새로운 알림 개수 가져오는 코드 구현
-		return "home";
-	}
-	
+@Controller public class HomeController { 
+	@RequestMapping(value = "/home", method=RequestMethod.GET) 
+	public String goHome(HttpServletRequest request) { 
+		return "content/home"; 
+	} 
 }
