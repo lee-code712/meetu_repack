@@ -26,7 +26,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/")
-	public String moveToLoginForm() {
+	public String goLoginForm() {
 		return "user/loginForm";
 	}
 	
