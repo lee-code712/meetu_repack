@@ -3,10 +3,12 @@ package project.meetu.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import project.meetu.model.dao.ConsultDAO;
 import project.meetu.model.dto.Consult;
 
+@Service
 public class ConsultManager {
 
 	private final ConsultDAO consultDao;

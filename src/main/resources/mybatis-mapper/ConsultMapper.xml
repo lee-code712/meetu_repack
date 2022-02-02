@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.meetu.model.dao.mapper.ConsultMapper">
 	
-	<select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
+	<!-- <select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
 		SELECT consult_id, start_date, end_date, reason, type, state, prof_id, stu_id, cancel_msg
 		
-	</select>
+	</select> -->
 	
 </mapper>
