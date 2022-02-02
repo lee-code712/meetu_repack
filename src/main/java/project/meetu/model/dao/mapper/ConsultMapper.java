@@ -9,6 +9,6 @@ import project.meetu.model.dto.Consult;
 @Mapper
 public interface ConsultMapper {
 
-	public List<Consult> selectConsults(String userId);
+	public List<Consult> selectConsultByUser(String userId);
 	
 }

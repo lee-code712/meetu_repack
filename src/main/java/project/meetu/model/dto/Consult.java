@@ -7,8 +7,8 @@ public class Consult {
 	private String reason;
 	private int type;
 	private int state;
-	private ServiceUser profInfo;
-	private ServiceUser stuInfo;
+	private ServiceUser profUser;
+	private ServiceUser stuUser;
 	private String cancelMsg;
 	
 	public int getId() {
@@ -48,16 +48,16 @@ public class Consult {
 		this.state = state;
 	}
 	public ServiceUser getProfInfo() {
-		return profInfo;
+		return profUser;
 	}
 	public void setProfInfo(ServiceUser profInfo) {
-		this.profInfo = profInfo;
+		this.profUser = profInfo;
 	}
 	public ServiceUser getStuInfo() {
-		return stuInfo;
+		return stuUser;
 	}
 	public void setStuInfo(ServiceUser stuInfo) {
-		this.stuInfo = stuInfo;
+		this.stuUser = stuInfo;
 	}
 	public String getCancelMsg() {
 		return cancelMsg;

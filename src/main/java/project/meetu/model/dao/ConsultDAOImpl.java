@@ -17,7 +17,7 @@ public class ConsultDAOImpl implements ConsultDAO {
 	// 회원의 전체 상담목록 조회
 	@Override
 	public List<Consult> findConsultList(String userId) {
-		return consultMapper.selectConsults(userId);
+		return consultMapper.selectConsultByUser(userId);
 	}
 	
 	
