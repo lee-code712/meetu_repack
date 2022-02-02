@@ -47,17 +47,17 @@ public class Consult {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public ServiceUser getProfInfo() {
+	public ServiceUser getProfUser() {
 		return profUser;
 	}
-	public void setProfInfo(ServiceUser profInfo) {
-		this.profUser = profInfo;
+	public void setProfUser(ServiceUser profUser) {
+		this.profUser = profUser;
 	}
-	public ServiceUser getStuInfo() {
+	public ServiceUser getStuUser() {
 		return stuUser;
 	}
-	public void setStuInfo(ServiceUser stuInfo) {
-		this.stuUser = stuInfo;
+	public void setStuUser(ServiceUser stuUser) {
+		this.stuUser = stuUser;
 	}
 	public String getCancelMsg() {
 		return cancelMsg;

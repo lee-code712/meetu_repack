@@ -47,6 +47,7 @@
 	    	}
     </script>
 </head>
+
 <body id="myPageBodyBg">
 	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block> 
 		<div layout:fragment="content" class="content">
@@ -103,22 +104,23 @@
                         <div id="board">
                             <table class="boardListWrap">
                                 <thead>
-                                <tr id="thBorder">
-                                    <th></th>
-                                    <c:choose>
-                                        <c:when test="${mem_dto.getRole() == 0}">
-                                            <th>교수명</th>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <th>학생명</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th>상담일시</th>
-                                    <th>장소</th>
-                                </tr>
+	                                <tr id="thBorder">
+	                                    <th></th>
+	                                    <th>교수명</th>
+	                                    <th>학생명</th>
+	                                    <th>상담일시</th>
+	                                    <th>장소</th>
+	                                </tr>
                                 </thead>
                                 <tbody>
-
+									<tr th:if="${consult.state == 0}" th:each="consult : ${consults}">
+										<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+										<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+										<td th:text="${consult.startDate}">상담일시(시작시간)</td>
+										<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+										<td th:if="${consult.type == 1}">온라인</td>
+									</tr>
                                 </tbody>
                             </table>
                         </div>
@@ -127,22 +129,23 @@
                         <div id="board">
                             <table class="boardListWrap">
                                 <thead>
-                                <tr id="thBorder">
-                                    <th></th>
-                                    <c:choose>
-                                        <c:when test="${mem_dto.getRole() == 0}">
-                                            <th>교수명</th>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <th>학생명</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th>상담일시</th>
-                                    <th>장소</th>
-                                </tr>
+	                                <tr id="thBorder">
+	                                    <th></th>
+	                                    <th>교수명</th>
+	                                    <th>학생명</th>
+	                                    <th>상담일시</th>
+	                                    <th>장소</th>
+	                                </tr>
                                 </thead>
                                 <tbody>
-
+									<tr th:if="${consult.state == 2 || consult.state == 4}" th:each="consult : ${consults}">
+										<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+										<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+										<td th:text="${consult.startDate}">상담일시(시작시간)</td>
+										<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+										<td th:if="${consult.type == 1}">온라인</td>
+									</tr>
                                 </tbody>
                             </table>
                         </div>
@@ -151,22 +154,23 @@
                         <div id="board">
                             <table class="boardListWrap">
                                 <thead>
-                                <tr id="thBorder">
-                                    <th></th>
-                                    <c:choose>
-                                        <c:when test="${mem_dto.getRole() == 0}">
-                                            <th>교수명</th>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <th>학생명</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th>상담일시</th>
-                                    <th>장소</th>
-                                </tr>
+	                                <tr id="thBorder">
+	                                    <th></th>
+	                                    <th>교수명</th>
+	                                    <th>학생명</th>
+	                                    <th>상담일시</th>
+	                                    <th>장소</th>
+	                                </tr>
                                 </thead>
                                 <tbody>
-
+									<tr th:if="${consult.state == 1}" th:each="consult : ${consults}">
+										<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+										<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+										<td th:text="${consult.startDate}">상담일시(시작시간)</td>
+										<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+										<td th:if="${consult.type == 1}">온라인</td>
+									</tr>
                                 </tbody>
                             </table>
                         </div>
@@ -175,22 +179,23 @@
                         <div id="board">
                             <table class="boardListWrap">
                                 <thead>
-                                <tr id="thBorder">
-                                    <th></th>
-                                    <c:choose>
-                                        <c:when test="${mem_dto.getRole() == 0}">
-                                            <th>교수명</th>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <th>학생명</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th>상담일시</th>
-                                    <th>장소</th>
-                                </tr>
+	                                <tr id="thBorder">
+	                                    <th></th>
+	                                    <th>교수명</th>
+	                                    <th>학생명</th>
+	                                    <th>상담일시</th>
+	                                    <th>장소</th>
+	                                </tr>
                                 </thead>
                                 <tbody>
-
+									<tr th:if="${consult.state == 3}" th:each="consult : ${consults}">
+										<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+										<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+										<td th:text="${#strings.substring(consult.startDate,0,16)}">상담일시(시작시간)</td>
+										<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+										<td th:if="${consult.type == 1}">온라인</td>
+									</tr>
                                 </tbody>
                             </table>
                         </div>
