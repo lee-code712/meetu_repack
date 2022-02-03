@@ -33,6 +33,12 @@ header {
     font-size: 14px;
 }
 
+#calendar {
+	margin: 60px auto;
+	width: 1194px;
+	height: 800px;
+}
+
 .tab label {
     padding: 14px 20px;
     cursor: pointer;
