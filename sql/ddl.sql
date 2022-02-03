@@ -119,6 +119,7 @@ FOREIGN KEY (user_id) REFERENCES SERVICE_USER (user_id),
 FOREIGN KEY (type_no) REFERENCES ALERT_TYPE (type_no)
 );
 
+-- state를 status로 컬럼명 변경(22.2.3 이유리)
 CREATE TABLE CONSULT
 (
 	consult_id           VARCHAR2(8) NOT NULL ,
@@ -126,7 +127,7 @@ CREATE TABLE CONSULT
 	end_date             DATE NULL ,
 	reason               VARCHAR2(50) NOT NULL ,
 	type                 NUMBER(38,0) NOT NULL ,
-	state                NUMBER(38,0) NULL ,
+	status                NUMBER(38,0) NULL ,
 	prof_id              VARCHAR2(18) NOT NULL ,
 	stu_id               VARCHAR2(18) NOT NULL ,
 	cancel_msg           VARCHAR2(400) NULL ,
