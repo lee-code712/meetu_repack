@@ -26,6 +26,21 @@ public class ConsultManager {
 		return consultDao.findConsultList(userId);
 	}
 	
+	/* 회원의 스케줄목록 조회 */
+	public List<Consult> getUserSchedules(String userId) {
+		List<Consult> consultList = consultDao.findConsultList(userId);
+		
+		if (consultList != null) {
+			for (Consult consult : consultList) {
+				if (consult.getState() != 1 && consult.getState() != 3) {
+					consultList.remove(consult);
+				}
+			}
+		}
+		
+		return consultList;
+	}
+	
 	/* 전체 단대 조회 */
 	public List<College> getColleges() {
 		return consultDao.findCollegeList();

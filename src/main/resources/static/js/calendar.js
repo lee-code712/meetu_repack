@@ -18,4 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
     locale: 'ko' // 한국어 설정
   });
   calendar.render();
+  
+  // console.log(schedules);
+  for (key in schedules) {
+	  var id = schedules[key].id;
+	  calendar.addEvent({
+  		title: id,
+  		start: schedules[key].startDate,
+  		end: schedules[key].endDate,
+  		allDay: true
+  	})
+  }
+  
 });
