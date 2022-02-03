@@ -1,0 +1,439 @@
+@charset "UTF-8";
+
+#noticeImg {
+    width: 14px;
+    height: 14px;
+}
+
+#noticeImg:hover {
+    cursor: pointer;
+}
+
+#noticeIcon:hover,
+#reserveIcon:hover,
+#messageIcon:hover {
+    cursor: pointer;
+}
+
+#noticeIcon,
+#reserveIcon,
+#messageIcon {
+    color: black;
+}
+
+#recommendWrap {
+	margin: 80px auto;
+    width: 1194px;
+}
+
+#recommendTit {
+    margin-bottom: 60px;
+    font-size: 24px;
+}
+
+#recommendInfoBox {
+    margin-bottom: 40px;
+    padding: 20px 0px;
+    width: 1194px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#recProfNDWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding: 0px 20px;
+    margin-bottom: 20px;
+}
+
+#recProfName {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#recProfDept {
+    margin-left: 20px;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #535353;
+    border: 1px solid #535353;
+    border-radius: 5px;
+}
+
+#recReservationBtn {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    justify-content: center;
+    color: white;
+    background: #1ABC9C;
+    font-size: 14px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#recProfMajor,
+#recProfSubject,
+#recProfEmail,
+#recProfLocation {
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    height: 40px;
+    font-size: 14px;
+    color: #535353;
+}
+
+#recProfMajor span,
+#recProfSubject span,
+#recProfEmail span,
+#recProfLocation span {
+    margin-left: 20px;
+}
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+#title,
+#title a:link,
+#title a:visited,
+#title a:hover {
+    color: #1abc9c;
+
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+#headerInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 1194px;
+    height: 100%;
+}
+
+#headerInnerL {
+    display: flex;
+    align-items: center;
+}
+
+#title {
+    font-family: 'Yellowtail', cursive;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#gnb {
+    margin-left: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    font-size: 14px;
+}
+
+#headerInnerR {
+    display: flex;
+    align-items: center;
+}
+
+#dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    padding: 14px;
+}
+
+#dropdown-button:hover {
+    cursor: pointer;
+}
+
+#dropdown-button div {
+    justify-content: flex-end;
+}
+
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin-top: 14px;
+    min-width: 130px;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+#dropdown-content a {
+    color: black;
+    padding: 8px;
+    text-decoration: none;
+    display: block;
+}
+
+#dropdown-content a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#dropdown:hover #dropdown-content {
+    display: block;
+}
+
+#headerInnerR img {
+    margin-left: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+#reservationWrap {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 1194px;
+    height: 840px;
+}
+
+#deptWrap {
+    margin-top: 40px;
+    width: 348px;
+}
+
+#selectDept {
+    display: flex;
+    width: 318px;
+    height: 40px;
+    margin-top: 80px;
+    font-size: 24px;
+}
+
+.college {
+    line-height: 40px;
+    font-size: 14px;
+    width: 308px;
+    cursor: pointer;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    padding-left: 10px;
+    background: white;
+}
+
+.college:hover {
+    background: #1abc9c;
+    color: white;
+}
+
+.college:first-child {
+    border-top: 1px solid #EAEAEA;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.college:last-child {
+    border-bottom: 1px solid #EAEAEA;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.deptList {
+    width: 304px;
+    background: #F5F5F5;
+    padding-left: 10px;
+    margin-left: -10px;
+    border-left: 4px solid #F5F5F5;
+}
+
+.dept {
+    color: black;
+}
+
+.profListWrap {
+    display: table-cell;
+}
+
+.profList {
+    width: 816px;
+    margin: 0 auto;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+}
+
+.profList th,
+.profList td {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.profList td {
+    text-align: center;
+}
+
+#profInfo a {
+    color: #2575AF;
+}
+
+#selectProf a {
+    color: #CE2E2E;
+}
+
+#profInfo a:hover {
+    cursor: pointer;
+}
+
+#selectProf a:hover {
+    cursor: pointer;
+}
+
+#messageInner {
+    display: block;
+    width: 816px;
+    height: 840px;
+}
+
+#reservationBodyBg {
+    background: #FAFAFA;
+}
+
+#profListWrap {
+    width: 816px;
+    height: 700px;
+    font-size: 18px;
+    color: #3E454D;
+}
+
+#messageInnerWrap {
+    height: 648px;
+}
+
+.profList th {
+    font-size: 14px;
+    text-align: center;
+    background: white;
+}
+
+.profList td {
+    font-size: 14px;
+    text-align: center;
+    background: white;
+}
+
+#infoBox {
+    position: relative;
+    display: inline-block;
+}
+
+#infoBtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+    background: none;
+}
+
+#infoBtn:hover {
+	cursor: pointer;
+}
+
+#infoBox-content {
+    padding: 20px 80px;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border: 1px solid white;
+    background: white;
+    border-radius: 5px;
+}
+
+#infoBox-content p {
+    color: #3E454D;
+    text-decoration: none;
+    display: block;
+    padding-bottom: 20px;
+}
+
+#infoBox:hover #infoBox-content {
+    display: block;
+}
+
+#infoTitle {
+    color: #1abc9c;
+}
+
+#banner {
+    display: table;
+    margin: 0 auto;
+    width: 100%;
+    height: 120px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#banner div {
+    display: table-cell;
+    width: 1920px;
+    height: 100%;
+    background: white;
+    text-align: center;
+    font-size: 24px;
+    color: #333330;
+    font-family: 'Noto Sans KR', sans-serif;
+    vertical-align: middle;
+}
+
+#checkBtn:hover {
+    display: block;
+    padding: 4px 8px;
+    margin: 0 auto;
+    border: 1px solid #1abc9c;
+    color: #1abc9c;
+    background: white;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#checkBtn {
+    display: block;
+    padding: 4px 8px;
+    margin: 0 auto;
+    background: #1abc9c;
+    border: 1px solid #1abc9c;
+    color: white;
+    border-radius: 30px;
+}
+
+#reservationBodyBg {
+    background: #FAFAFA;
+}
+
+#blankDiv {
+    width: 60px;
+}

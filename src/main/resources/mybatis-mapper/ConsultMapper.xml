@@ -32,6 +32,17 @@
 		</association>
 	</resultMap>
 	
+	<resultMap id="collegeResultMap" type="College">
+		<id column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
+		<result column="college_name" jdbcType="VARCHAR" property="collegeName" javaType="string" />
+	</resultMap>
+	
+	<resultMap id="departmentResultMap" type="Department">
+		<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+		<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+		<result column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
+	</resultMap>
+	
 	<select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
 		SELECT consult_id, start_date, end_date, reason, type, state, c.prof_id, c.stu_id, cancel_msg,
     		pm.member_no AS prof_no, pm.name AS prof_name,
@@ -46,4 +57,13 @@
 		WHERE c.prof_id = #{userId} OR c.stu_id = #{userId}
 	</select>
 	
+	<select id="selectCollege" resultMap="collegeResultMap">
+        SELECT college_no, college_name
+        FROM college
+    </select>
+    
+    <select id="selectDepartment" resultMap="departmentResultMap">
+        SELECT dept_no, dept_name, college_no
+        FROM department
+    </select>
 </mapper>
