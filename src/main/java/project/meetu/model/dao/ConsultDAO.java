@@ -5,6 +5,7 @@ import java.util.List;
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 
 public interface ConsultDAO {
 
@@ -16,4 +17,7 @@ public interface ConsultDAO {
 	
 	// 전체 학과 조회
 	List<Department> findDepartmentList();
+
+	// 학과별 교수 조회
+	List<Professor> findDeptProfessorList(String deptNo);
 }

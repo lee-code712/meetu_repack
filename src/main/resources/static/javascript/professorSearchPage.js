@@ -18,7 +18,9 @@ function searchProfessorByDept(deptNo) {
 	        deptNo: deptNo
     	},
 		dataType: "text",
-		success: updatePage,
+		success: function(data){
+			console.log(data); 
+		},
 		error: function(jqXHR, textStatus, errorThrown) {
 			var message = jqXHR.getResponseHeader("Status");
 			if ((message == null) || (message.length <= 0)) {
@@ -30,17 +32,18 @@ function searchProfessorByDept(deptNo) {
 	});
 }
 
-function updatePage(responseText) {
-	var profs = JSON.parse(responseText);
+function updatePage(mav) {
+	
+	var profs = '${professors}';
 	
 	if (jQuery.isEmptyObject(profs)) {
 		alert("검색 결과가 없습니다.");
 	}
 	
 	Array.from(profs).forEach(function(prof, idx) {
-		var p_user_id = prof.p_user_id;
+		var p_user_id = prof.memberNo;
 		var name = prof.name;
-		var dept = prof.dept;
+		var dept = prof.deptNo;
 		var major = prof.major;
 		var email = prof.email;
 		var office = prof.office;

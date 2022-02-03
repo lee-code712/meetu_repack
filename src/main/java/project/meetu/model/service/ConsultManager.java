@@ -9,6 +9,7 @@ import project.meetu.model.dao.ConsultDAO;
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 
 @Service
 public class ConsultManager {
@@ -33,5 +34,10 @@ public class ConsultManager {
 	/* 전체 학과 조회 */
 	public List<Department> getDepartments() {
 		return consultDao.findDepartmentList();
+	}
+	
+	/* 학과별 교수 목록 조회 */
+	public List<Professor> getDeptProfessors(String deptNo) {
+		return consultDao.findDeptProfessorList(deptNo);
 	}
 }

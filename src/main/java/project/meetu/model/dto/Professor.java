@@ -1,9 +1,14 @@
 package project.meetu.model.dto;
 
+import java.util.List;
+
 public class Professor {
 	private String memberNo;
 	private String major;
 	private String officeNo;
+	private List<Course> courses;
+	private Member member;
+	private boolean isUser;
 	
 	public String getMemberNo() {
 		return memberNo;
@@ -23,5 +28,22 @@ public class Professor {
 	public void setOfficeNo(String officeNo) {
 		this.officeNo = officeNo;
 	}
-	
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
+	public boolean isUser() {
+		return isUser;
+	}
+	public void setUser(boolean isUser) {
+		this.isUser = isUser;
+	}
 }

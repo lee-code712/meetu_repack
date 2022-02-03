@@ -9,6 +9,7 @@ import project.meetu.model.dao.mapper.ConsultMapper;
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 
 @Component
 public class ConsultDAOImpl implements ConsultDAO {
@@ -32,6 +33,12 @@ public class ConsultDAOImpl implements ConsultDAO {
 	@Override
 	public List<Department> findDepartmentList() {
 		return consultMapper.selectDepartment();
+	}
+
+	// 학과별 교수 조회
+	@Override
+	public List<Professor> findDeptProfessorList(String deptNo) {
+		return consultMapper.selectProfessorByDept(deptNo);
 	}
 	
 	

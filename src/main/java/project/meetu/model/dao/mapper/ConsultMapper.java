@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 
 @Mapper
 public interface ConsultMapper {
@@ -16,5 +17,7 @@ public interface ConsultMapper {
 	public List<College> selectCollege();
 	
 	public List<Department> selectDepartment();
+
+	public List<Professor> selectProfessorByDept(String deptNo);
 	
 }

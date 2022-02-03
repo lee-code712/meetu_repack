@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.meetu.model.dto.College;
@@ -50,19 +51,18 @@ public class ProfessorSearchPageController {
 	}
 	
 	@PostMapping(value = "/consult/professorSearch")
+	@ResponseBody
 	public ModelAndView ProfessorSearch(ModelAndView mav, HttpServletRequest req) {
 		
-		HttpSession session = req.getSession();
-		String userId = (String) session.getAttribute("id");
+		ModelAndView mView = new ModelAndView("jsonView"); 
+		
 		String deptNo = (String) req.getParameter("deptNo");
+
+		List<Professor> professorList = consultService.getDeptProfessors(deptNo);
+		if (professorList != null) {
+			mView.addObject("professors", professorList);
+		}
 		
-		/*
-		 * List<Professor> professorList = consultService.getProfessorsByDept(deptNo);
-		 * if (professorList != null) { mav.addObject("professors", professorList); }
-		 */
-		
-		mav.setViewName("consult/professorSearchPage");
-		
-		return mav;
+		return mView;
 	}
 }
