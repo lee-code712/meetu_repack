@@ -10,7 +10,7 @@
 		<result column="end_date" jdbcType="DATE" property="endDate" javaType="string" />
 		<result column="reason" jdbcType="VARCHAR" property="reason" javaType="string" />
 		<result column="type" jdbcType="INTEGER" property="type" javaType="int" />
-		<result column="state" jdbcType="INTEGER" property="state" javaType="int" />
+		<result column="status" jdbcType="INTEGER" property="state" javaType="int" />
 		<result column="cancel_msg" jdbcType="VARCHAR" property="cancelMsg" javaType="string" />
 		<association property="profUser" column="prof_id" javaType="ServiceUser">
 			<id column="prof_id" jdbcType="VARCHAR" property="userId" javaType="string" />
@@ -56,7 +56,7 @@
 	</resultMap>
 	
 	<select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
-		SELECT consult_id, start_date, end_date, reason, type, state, c.prof_id, c.stu_id, cancel_msg,
+		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
     		pm.member_no AS prof_no, pm.name AS prof_name,
     		p.office_no,
    		 	sm.member_no AS stu_no, sm.name AS stu_name 

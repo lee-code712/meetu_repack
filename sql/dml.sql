@@ -14,7 +14,7 @@ insert into alert_type (type_no, title) values (0, '상담 예약');
 insert into consultable_time (able_date, able_time, prof_id) values (1, '13:00~16:00', 'ex01020002');
 -- state를 status로 컬럼명 변경(22.2.3 이유리)
 insert into consult (consult_id, start_date, end_date, reason, type, status, prof_id, stu_id, cancel_msg) values (consult_seq.NEXTVAL, TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), TO_DATE('2021-03-10 14:00:00','YY/MM/DD HH24:MI:SS'), '전담 교수 면담', 1, 3, 'ex01020002', 'ex01010001', '취소하는 이유');
-insert into consult_record (content, consult_id) values ('상담 내용', '10005');
+insert into consult_record (content, consult_id) values ('상담 내용', '10000');
 insert into alert (alert_id, alert_date, alert_msg, is_read, user_id, type_no) values ('0000', TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), '알림을 확인해주세요.', 1, 'ex01010001', 0);
-insert into consult_backup (backup_id, start_date, end_date, reason, type, content, consult_id, stu_no, prof_no) values ('01010001', TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), TO_DATE('2021-03-10 14:00:00','YY/MM/DD HH24:MI:SS'), '이유', 1, '상담 내용', '10005', '01010001', '01020002');
+insert into consult_backup (backup_id, start_date, end_date, reason, type, content, consult_id, stu_no, prof_no) values ('01010001', TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), TO_DATE('2021-03-10 14:00:00','YY/MM/DD HH24:MI:SS'), '이유', 1, '상담 내용', '10000', '01010001', '01020002');
 insert into message (msg_id, sent_date, content, is_read, send_id, recv_id) values (message_seq.NEXTVAL, TO_DATE('2021-03-10 13:00:00','YY/MM/DD HH24:MI:SS'), '상담 내용', 0, 'ex01020002', 'ex01010001');
