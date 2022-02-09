@@ -14,7 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.service.ConsultManager;
 
-@Controller public class HomeController { 
+@Controller 
+public class HomeController { 
 	
 	private final ConsultManager consultService;
 	

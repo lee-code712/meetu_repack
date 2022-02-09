@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.meetu.model.dao.ConsultDAO;
-import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
-import project.meetu.model.dto.Department;
-import project.meetu.model.dto.Professor;
 
 @Service
 public class ConsultManager {
@@ -39,5 +36,10 @@ public class ConsultManager {
 		}
 		
 		return consultList;
+	}
+	
+	/* 상담id에 대한 상세정보 조회 */
+	public Consult getReservationInfo(String consultId) {
+		return consultDao.findReservation(consultId);
 	}
 }

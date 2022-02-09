@@ -4,7 +4,7 @@
 <mapper namespace="project.meetu.model.dao.mapper.ConsultMapper">
 	
 	<!-- 특정 회원의 전체 상담목록 조회 -->
-	<resultMap id="consultsResultMap" type="Consult">
+	<resultMap id="consultResultMap" type="Consult">
 		<id column="consult_id" jdbcType="INTEGER" property="id" javaType="int" />
 		<result column="start_date" jdbcType="DATE" property="startDate" javaType="string" />
 		<result column="end_date" jdbcType="DATE" property="endDate" javaType="string" />
@@ -21,6 +21,10 @@
 					<id column="prof_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 					<result column="office_no" jdbcType="VARCHAR" property="officeNo" javaType="string" />
 				</association>
+				<association property="deptInfo" column="prof_dept_no" javaType="Department">
+					<id column="prof_dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+					<result column="prof_dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+				</association>
 			</association>
 		</association>
 		<association property="stuUser" column="stu_id" javaType="ServiceUser">
@@ -28,21 +32,57 @@
 			<association property="memberInfo" column="stu_no" javaType="Member">
 				<id column="stu_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 				<result column="stu_name" jdbcType="VARCHAR" property="name" javaType="string" />
+				<association property="stuInfo" column="stu_no" javaType="Student">
+					<id column="stu_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+					<result column="year" jdbcType="INTEGER" property="year" javaType="int" />
+				</association>
+				<association property="deptInfo" column="stu_dept_no" javaType="Department">
+					<id column="stu_dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+					<result column="stu_dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+				</association>
 			</association>
 		</association>
 	</resultMap>
 	
-	<select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
+	<select id="selectConsultByUser" parameterType="String" resultMap="consultResultMap">
 		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
-    		pm.member_no AS prof_no, pm.name AS prof_name,
+    		pm.member_no AS prof_no, pm.name AS prof_name, pm.dept_no AS prof_dept_no,
     		p.office_no,
-   		 	sm.member_no AS stu_no, sm.name AS stu_name 
+    		pd.dept_name AS prof_dept_name,
+   		 	sm.member_no AS stu_no, sm.name AS stu_name, sm.dept_no AS stu_dept_no,
+   		 	s.year,
+   		 	sd.dept_name AS stu_dept_name
 		FROM consult c 
     		JOIN service_user pu ON c.prof_id = pu.user_id
     		JOIN member pm ON pu.member_no = pm.member_no
-    		JOIN professor p ON pu.member_no = p.member_no 
+    		JOIN professor p ON pu.member_no = p.member_no
+    		JOIN department pd ON pm.dept_no = pd.dept_no 
 			JOIN service_user su ON c.stu_id = su.user_id  
 			JOIN member sm ON su.member_no = sm.member_no
+			JOIN student s ON su.member_no = s.member_no 
+			JOIN department sd ON sm.dept_no = sd.dept_no
 		WHERE c.prof_id = #{userId} OR c.stu_id = #{userId}
 	</select>
+	
+	<!-- 상담id에 대한 상세정보 조회 -->
+	<select id="selectConsultByConsultId" parameterType="String" resultMap="consultResultMap">
+		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
+    		pm.member_no AS prof_no, pm.name AS prof_name, pm.dept_no AS prof_dept_no,
+    		p.office_no,
+    		pd.dept_name AS prof_dept_name,
+   		 	sm.member_no AS stu_no, sm.name AS stu_name, sm.dept_no AS stu_dept_no,
+   		 	s.year,
+   		 	sd.dept_name AS stu_dept_name
+		FROM consult c 
+    		JOIN service_user pu ON c.prof_id = pu.user_id
+    		JOIN member pm ON pu.member_no = pm.member_no
+    		JOIN professor p ON pu.member_no = p.member_no
+    		JOIN department pd ON pm.dept_no = pd.dept_no 
+			JOIN service_user su ON c.stu_id = su.user_id  
+			JOIN member sm ON su.member_no = sm.member_no
+			JOIN student s ON su.member_no = s.member_no 
+			JOIN department sd ON sm.dept_no = sd.dept_no
+		WHERE consult_id = #{consultId}
+	</select>
+	
 </mapper>
