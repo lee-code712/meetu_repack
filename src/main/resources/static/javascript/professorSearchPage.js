@@ -30,6 +30,13 @@ function searchProfessorByDept(deptNo) {
 	});
 }
 
+function searchProfessorByKeyword() {
+	var searchText = $("#searchText").val();
+	$("#searchResult").children().remove();
+
+	location.href = "professorSearch?keyword=" + searchText;
+}
+
 function updatePage(professors) {
 	if (jQuery.isEmptyObject(professors)) {
 		alert("검색 결과가 없습니다.");
@@ -176,6 +183,5 @@ function updatePage(professors) {
 }
 
 function selectProf() {
-	var prof_id = event.currentTarget.closest("tr").id;
-	location.href = "professorSearch?prof_id=" + prof_id;
+	
 }

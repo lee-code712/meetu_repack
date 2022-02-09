@@ -71,4 +71,22 @@ public class UserManager {
 		return professorList;
 		
 	}
+	
+	/* 교수 검색 */
+	public List<Professor> getProfessorsByKeyword(String keyword) {
+		List<Professor> professorList = userDao.findProfessorListByKeyword(keyword);
+		
+		if (professorList != null) {
+			for(Professor p : professorList) {
+				ServiceUser findUser = userDao.findUserByMemberNo(p.getMemberNo());
+				if (findUser != null) {
+					p.setIsUser(true);
+				}
+				else {
+					p.setIsUser(false);
+				}
+			}
+		}
+		return professorList;
+	}
 }

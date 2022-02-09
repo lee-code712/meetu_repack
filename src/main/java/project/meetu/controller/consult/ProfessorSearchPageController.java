@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,14 @@ public class ProfessorSearchPageController {
 		List<Department> departmentList = userService.getDepartments();
 		if (departmentList != null) {
 			model.addAttribute("departments", departmentList);
+		}
+		
+		String keyword = (String) req.getParameter("keyword");
+		if (keyword != null) {
+			List<Professor> professorList = userService.getProfessorsByKeyword(keyword);
+			if (professorList != null) {
+				model.addAttribute("professors", professorList);
+			}
 		}
 		
 		return "consult/professorSearchPage";

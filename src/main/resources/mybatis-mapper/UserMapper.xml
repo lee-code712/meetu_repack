@@ -85,4 +85,17 @@
         FROM service_user JOIN member USING(member_no)
         WHERE member_no = #{memberNo}
     </select>
+    
+    <select id="selectProfessorByKeyword" parameterType="String" resultMap="deptProfessorsResultMap">
+    	SELECT p.member_no AS prof_no, p.major, p.office_no, 
+    		m.member_no, m.email, m.dept_no, m.name,
+    		d.dept_name,
+    		co.course_no, co.title
+    	FROM professor p
+    		JOIN member m ON p.member_no = m.member_no
+    		JOIN department d ON m.dept_no = d.dept_no
+    		JOIN class cl ON cl.prof_no = p.member_no
+    		JOIN course co ON co.course_no = cl.course_no
+    	where m.name LIKE #{keyword} OR replace(p.major, ' ', '') LIKE #{keyword} OR m.dept_no IN (SELECT dept_no FROM department WHERE dept_name LIKE #{keyword})
+    </select>
 </mapper>

@@ -24,4 +24,7 @@ public interface UserDAO {
 
 	// 학과별 교수 조회
 	List<Professor> findDeptProfessorList(String deptNo);
+	
+	// 교수 검색
+	List<Professor> findProfessorListByKeyword(String keyword);
 }

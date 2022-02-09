@@ -614,6 +614,9 @@
 	        }
 	    });
     </script>
+    <script>
+    	console.log([[${professors}]]);
+    </script>
 </head>
 
 <body id="reservationBodyBg">
@@ -657,8 +660,38 @@
                     </thead>
 
                     <tbody id="searchResult">
-						<tr th:each="prof : ${professors}" th:id="${prof.memberNo}">
-						
+						<tr th:each="prof, i : ${professors}" th:id="${prof.memberNo}">
+							<td th:text="${i.index + 1}"></td>
+							<td th:text="${prof.member.name}"></td>
+							<td th:text="${prof.member.deptInfo.deptName}"></td>
+							<td>
+								<div id="infoBox">
+									<img id="infoBtn" src="/images/info.svg">
+									<div id="infoBox-content">
+										<p>
+											<span id="infoTitle">전공</span>
+										</p>
+										<p th:text="${prof.major}"></p>
+										<p>
+											<span id="infoTitle">담당과목</span>
+										</p>
+										<p th:each="course : ${prof.courses}">
+											<br th:text="${course.title}"></br>
+										</p>
+										<p>
+											<span id="infoTitle">이메일</span>
+										</p>
+										<p th:text="${prof.member.email}"></p>
+										<p>
+											<span id="infoTitle">연구실 위치</span>
+										</p>
+										<p th:text="${prof.officeNo}"></p>
+									</div>
+								</div>
+							</td>
+							<td th:if="${prof.user == true}">
+								<button id="checkBtn">선택하기</button>
+							</td>
 						</tr>
                     </tbody>
                 </table>

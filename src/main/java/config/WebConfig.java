@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
 		return new BeanNameViewResolver();
 	}
 	@Bean
-	MappingJackson2JsonView jsonView() {
+	public MappingJackson2JsonView jsonView() {
 		return new MappingJackson2JsonView();
 	}
 }
