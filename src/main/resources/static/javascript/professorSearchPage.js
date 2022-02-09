@@ -44,7 +44,7 @@ function updatePage(professors) {
 		var dept = professors[key].member.deptInfo.deptName;
 		var major = professors[key].major;
 		var office = professors[key].officeNo;
-		var course = professors[key].courses;
+		var courses = professors[key].courses;
 		var is_member = professors[key].user;
 
 		var newTrElement = document.createElement("tr");
@@ -103,8 +103,12 @@ function updatePage(professors) {
 
 		// 담당과목명
 		var newCoursePElement = document.createElement("p");
-		newCoursePElement.innerHTML = course;
-
+		newCoursePElement.innerHTML = "";
+		for (k in courses) {
+			title = courses[k].title;
+			newCoursePElement.innerHTML += title + "<br/>";
+		}
+		
 		// 이메일 infoTitle
 		var newEmailTitlePElement = document.createElement("p");
 

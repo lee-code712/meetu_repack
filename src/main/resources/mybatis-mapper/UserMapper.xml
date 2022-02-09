@@ -16,7 +16,6 @@
 			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 		</association>
 	</resultMap>
-	
 		
 	<resultMap id="collegeResultMap" type="College">
 		<id column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
@@ -43,6 +42,10 @@
 				<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
 			</association>
 		</association>
+		<collection property="courses" ofType="Course">
+			<id column="course_no" jdbcType="VARCHAR" property="courseNo" javaType="string" />
+			<result column="title" jdbcType="VARCHAR" property="title" javaType="string" />
+		</collection>
 	</resultMap>
 	
     <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
@@ -66,10 +69,13 @@
     <select id="selectProfessorByDept" parameterType="String" resultMap="deptProfessorsResultMap">
 		SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
-    		d.dept_name
+    		d.dept_name,
+    		co.course_no, co.title
 		FROM professor p
     		JOIN member m ON p.member_no = m.member_no
     		JOIN department d ON m.dept_no = d.dept_no
+    		JOIN class cl ON cl.prof_no = p.member_no
+    		JOIN course co ON co.course_no = cl.course_no
 		WHERE m.dept_no = #{deptNo}
 	</select>
     
