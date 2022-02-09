@@ -87,7 +87,7 @@ function updatePage(professors) {
 
 		// infoBox div의 자식 p
 		// 전공 infoTitle
-		var newMajorTitlePElement = document.createElement("p");
+		var newMajorTitlePElement = document.createElement("div");
 
 		var newMajorTitleSpanElement = document.createElement("span");
 		$(newMajorTitleSpanElement).attr("id", "infoTitle");
@@ -96,11 +96,11 @@ function updatePage(professors) {
 		$(newMajorTitlePElement).append(newMajorTitleSpanElement);
 
 		// 전공명
-		var newMajorPElement = document.createElement("p");
+		var newMajorPElement = document.createElement("div");
 		newMajorPElement.innerHTML = major;
 
 		// 담당과목 infoTitle
-		var newCourseTitlePElement = document.createElement("p");
+		var newCourseTitlePElement = document.createElement("div");
 
 		var newCourseTitleSpanElement = document.createElement("span");
 		$(newCourseTitleSpanElement).attr("id", "infoTitle");
@@ -109,15 +109,16 @@ function updatePage(professors) {
 		$(newCourseTitlePElement).append(newCourseTitleSpanElement);
 
 		// 담당과목명
-		var newCoursePElement = document.createElement("p");
-		newCoursePElement.innerHTML = "";
+		var newCoursePElement = document.createElement("div");
 		for (k in courses) {
 			title = courses[k].title;
-			newCoursePElement.innerHTML += title + "<br/>";
+			var newCourseDivElement = document.createElement("div");
+			newCourseDivElement.innerHTML += title;
+			newCoursePElement.append(newCourseDivElement);
 		}
 		
 		// 이메일 infoTitle
-		var newEmailTitlePElement = document.createElement("p");
+		var newEmailTitlePElement = document.createElement("div");
 
 		var newEmailTitleSpanElement = document.createElement("span");
 		$(newEmailTitleSpanElement).attr("id", "infoTitle");
@@ -126,11 +127,11 @@ function updatePage(professors) {
 		$(newEmailTitlePElement).append(newEmailTitleSpanElement);
 
 		// 이메일
-		var newEmailPElement = document.createElement("p");
+		var newEmailPElement = document.createElement("div");
 		newEmailPElement.innerHTML = email;
 
 		// 연구실 infoTitle
-		var newOfficeTitlePElement = document.createElement("p");
+		var newOfficeTitlePElement = document.createElement("div");
 
 		var newOfficeTitleSpanElement = document.createElement("span");
 		$(newOfficeTitleSpanElement).attr("id", "infoTitle");
@@ -139,16 +140,19 @@ function updatePage(professors) {
 		$(newOfficeTitlePElement).append(newOfficeTitleSpanElement);
 
 		// 연구실 위치
-		var newOfficePElement = document.createElement("p");
+		var newOfficePElement = document.createElement("div");
 		newOfficePElement.innerHTML = office;
 
 		// infoBox-content div에 p들 추가
 		$(newInfoBoxDivElement).append(newMajorTitlePElement);
 		$(newInfoBoxDivElement).append(newMajorPElement);
+		$(newInfoBoxDivElement).append(document.createElement("p"));
 		$(newInfoBoxDivElement).append(newCourseTitlePElement);
 		$(newInfoBoxDivElement).append(newCoursePElement);
+		$(newInfoBoxDivElement).append(document.createElement("p"));
 		$(newInfoBoxDivElement).append(newEmailTitlePElement);
 		$(newInfoBoxDivElement).append(newEmailPElement);
+		$(newInfoBoxDivElement).append(document.createElement("p"));
 		$(newInfoBoxDivElement).append(newOfficeTitlePElement);
 		$(newInfoBoxDivElement).append(newOfficePElement);
 

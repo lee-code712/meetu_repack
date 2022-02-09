@@ -74,6 +74,7 @@ public class UserManager {
 	
 	/* 교수 검색 */
 	public List<Professor> getProfessorsByKeyword(String keyword) {
+		keyword = "%" + keyword + "%";
 		List<Professor> professorList = userDao.findProfessorListByKeyword(keyword);
 		
 		if (professorList != null) {

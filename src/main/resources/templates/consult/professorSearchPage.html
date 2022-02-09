@@ -614,9 +614,6 @@
 	        }
 	    });
     </script>
-    <script>
-    	console.log([[${professors}]]);
-    </script>
 </head>
 
 <body id="reservationBodyBg">
@@ -668,24 +665,27 @@
 								<div id="infoBox">
 									<img id="infoBtn" src="/images/info.svg">
 									<div id="infoBox-content">
-										<p>
+										<div>
 											<span id="infoTitle">전공</span>
-										</p>
-										<p th:text="${prof.major}"></p>
-										<p>
+										</div>
+										<div th:text="${prof.major}"></div>
+										<p/>
+										<div>
 											<span id="infoTitle">담당과목</span>
-										</p>
-										<p th:each="course : ${prof.courses}">
-											<br th:text="${course.title}"></br>
-										</p>
-										<p>
+										</div>
+										<div>
+											<div th:each="course : ${prof.courses}" th:text="${course.title}"></div>
+										</div>
+										<p/>
+										<div>
 											<span id="infoTitle">이메일</span>
-										</p>
-										<p th:text="${prof.member.email}"></p>
-										<p>
+										</div>
+										<div th:text="${prof.member.email}"></div>
+										<p/>
+										<div>
 											<span id="infoTitle">연구실 위치</span>
-										</p>
-										<p th:text="${prof.officeNo}"></p>
+										</div>
+										<div th:text="${prof.officeNo}"></div>
 									</div>
 								</div>
 							</td>
