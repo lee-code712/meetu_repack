@@ -1,8 +1,13 @@
 package project.meetu.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import project.meetu.model.dto.College;
+import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.dao.mapper.UserMapper;
 
@@ -18,4 +23,21 @@ public class UserDAOImpl implements UserDAO {
 		return userMapper.selectServiceUser(userId);
 	}
 	
+	// 전체 단대 조회
+	@Override
+	public List<College> findCollegeList() {
+		return userMapper.selectCollege();
+	}
+
+	// 전체 학과 조회
+	@Override
+	public List<Department> findDepartmentList() {
+		return userMapper.selectDepartment();
+	}
+
+	// 학과별 교수 조회
+	@Override
+	public List<Professor> findDeptProfessorList(String deptNo) {
+		return userMapper.selectProfessorByDept(deptNo);
+	}	
 }

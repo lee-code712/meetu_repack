@@ -32,29 +32,6 @@
 		</association>
 	</resultMap>
 	
-	<resultMap id="collegeResultMap" type="College">
-		<id column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
-		<result column="college_name" jdbcType="VARCHAR" property="collegeName" javaType="string" />
-	</resultMap>
-	
-	<resultMap id="departmentResultMap" type="Department">
-		<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
-		<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
-		<result column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
-	</resultMap>
-	
-	<resultMap id="deptProfessorsResultMap" type="Professor">
-		<id column="prof_no" jdbcType="VARCHAR" property="profNo" javaType="string" />
-		<result column="major" jdbcType="VARCHAR" property="major" javaType="string" />
-		<result column="office_no" jdbcType="VARCHAR" property="officeNo" javaType="string" />
-		<association property="memberInfo" column="member_no" javaType="Member">
-			<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
-			<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
-			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
-			<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
-		</association>
-	</resultMap>
-	
 	<select id="selectConsultByUser" parameterType="String" resultMap="consultsResultMap">
 		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
     		pm.member_no AS prof_no, pm.name AS prof_name,
@@ -67,23 +44,5 @@
 			JOIN service_user su ON c.stu_id = su.user_id  
 			JOIN member sm ON su.member_no = sm.member_no
 		WHERE c.prof_id = #{userId} OR c.stu_id = #{userId}
-	</select>
-	
-	<select id="selectCollege" resultMap="collegeResultMap">
-        SELECT college_no, college_name
-        FROM college
-    </select>
-    
-    <select id="selectDepartment" resultMap="departmentResultMap">
-        SELECT dept_no, dept_name, college_no
-        FROM department
-    </select>
-    
-    <select id="selectProfessorByDept" parameterType="String" resultMap="deptProfessorsResultMap">
-		SELECT p.member_no AS prof_no, p.major, p.office_no, 
-    		m.member_no, m.email, m.dept_no, m.name
-		FROM professor p
-    		JOIN member m ON p.member_no = m.member_no
-		WHERE m.dept_no = #{deptNo}
 	</select>
 </mapper>

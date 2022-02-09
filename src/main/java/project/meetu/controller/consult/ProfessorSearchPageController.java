@@ -20,15 +20,16 @@ import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.service.ConsultManager;
+import project.meetu.model.service.UserManager;
 
 @Controller
 public class ProfessorSearchPageController {
 
-	private final ConsultManager consultService;
+	private final UserManager userService;
 	
 	@Autowired
-	public ProfessorSearchPageController(ConsultManager consultService) {
-		this.consultService = consultService;
+	public ProfessorSearchPageController(UserManager userService) {
+		this.userService = userService;
 	}
 	
 	@GetMapping(value = "/consult/professorSearch")
@@ -37,12 +38,12 @@ public class ProfessorSearchPageController {
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("id");
 		
-		List<College> collegeList = consultService.getColleges();
+		List<College> collegeList = userService.getColleges();
 		if (collegeList != null) {
 			model.addAttribute("colleges", collegeList);
 		}
 		
-		List<Department> departmentList = consultService.getDepartments();
+		List<Department> departmentList = userService.getDepartments();
 		if (departmentList != null) {
 			model.addAttribute("departments", departmentList);
 		}
@@ -52,17 +53,12 @@ public class ProfessorSearchPageController {
 	
 	@PostMapping(value = "/consult/professorSearch")
 	@ResponseBody
-	public ModelAndView ProfessorSearch(ModelAndView mav, HttpServletRequest req) {
-		
-		ModelAndView mView = new ModelAndView("jsonView"); 
+	public List<Professor> ProfessorSearch(HttpServletRequest req) {
 		
 		String deptNo = (String) req.getParameter("deptNo");
-
-		List<Professor> professorList = consultService.getDeptProfessors(deptNo);
-		if (professorList != null) {
-			mView.addObject("professors", professorList);
-		}
 		
-		return mView;
+		List<Professor> professorList = userService.getDeptProfessors(deptNo);
+		
+		return professorList;
 	}
 }

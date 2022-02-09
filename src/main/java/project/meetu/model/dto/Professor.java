@@ -7,7 +7,7 @@ public class Professor {
 	private String major;
 	private String officeNo;
 	private List<Course> courses;
-	private Member member;
+	private Member memberInfo;
 	private boolean isUser;
 	
 	public String getMemberNo() {
@@ -35,10 +35,10 @@ public class Professor {
 		this.courses = courses;
 	}
 	public Member getMember() {
-		return member;
+		return memberInfo;
 	}
-	public void setMember(Member member) {
-		this.member = member;
+	public void setMember(Member memberInfo) {
+		this.memberInfo = memberInfo;
 	}
 	public boolean isUser() {
 		return isUser;

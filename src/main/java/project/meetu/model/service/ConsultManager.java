@@ -40,19 +40,4 @@ public class ConsultManager {
 		
 		return consultList;
 	}
-	
-	/* 전체 단대 조회 */
-	public List<College> getColleges() {
-		return consultDao.findCollegeList();
-	}
-	
-	/* 전체 학과 조회 */
-	public List<Department> getDepartments() {
-		return consultDao.findDepartmentList();
-	}
-	
-	/* 학과별 교수 목록 조회 */
-	public List<Professor> getDeptProfessors(String deptNo) {
-		return consultDao.findDeptProfessorList(deptNo);
-	}
 }

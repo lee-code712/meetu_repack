@@ -1,9 +1,14 @@
 package project.meetu.model.service;
 /* 메소드명이 좀 더 비즈니스에 가까움 */
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project.meetu.model.dto.College;
+import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.exception.LoginException;
 import project.meetu.model.dao.UserDAO;
@@ -37,4 +42,18 @@ public class UserManager {
 		return findUser;
 	}
 	
+	/* 전체 단대 조회 */
+	public List<College> getColleges() {
+		return userDao.findCollegeList();
+	}
+	
+	/* 전체 학과 조회 */
+	public List<Department> getDepartments() {
+		return userDao.findDepartmentList();
+	}
+	
+	/* 학과별 교수 목록 조회 */
+	public List<Professor> getDeptProfessors(String deptNo) {
+		return userDao.findDeptProfessorList(deptNo);
+	}
 }

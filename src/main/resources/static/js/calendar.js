@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   calendar.render();
   
-  // console.log(schedules);
+  console.log(schedules);
   for (key in schedules) {
 	  var id = schedules[key].id;
 	  calendar.addEvent({

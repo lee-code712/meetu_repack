@@ -22,24 +22,4 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public List<Consult> findConsultList(String userId) {
 		return consultMapper.selectConsultByUser(userId);
 	}
-
-	// 전체 단대 조회
-	@Override
-	public List<College> findCollegeList() {
-		return consultMapper.selectCollege();
-	}
-
-	// 전체 학과 조회
-	@Override
-	public List<Department> findDepartmentList() {
-		return consultMapper.selectDepartment();
-	}
-
-	// 학과별 교수 조회
-	@Override
-	public List<Professor> findDeptProfessorList(String deptNo) {
-		return consultMapper.selectProfessorByDept(deptNo);
-	}
-	
-	
 }

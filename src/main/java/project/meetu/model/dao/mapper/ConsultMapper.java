@@ -14,10 +14,6 @@ public interface ConsultMapper {
 
 	public List<Consult> selectConsultByUser(String userId);
 	
-	public List<College> selectCollege();
 	
-	public List<Department> selectDepartment();
-
-	public List<Professor> selectProfessorByDept(String deptNo);
 	
 }

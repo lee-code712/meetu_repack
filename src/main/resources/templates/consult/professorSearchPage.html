@@ -618,6 +618,7 @@
 
 <body id="reservationBodyBg">
 <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block> 
+<div layout:fragment="content" class="content">
 
 <div id="reservationWrap">
     <div>
@@ -626,7 +627,7 @@
 			<li th:each="college : ${colleges}" class="college">
 				<div th:text="${college.collegeName}"></div>
 				<ul class="deptList">
-					<li th:each="dept : ${departments}" th:text="${dept.deptName}" class="dept" th:onclick="javascript:searchProfessorByDept('${dept.deptNo}')"></li>
+					<li th:each="dept : ${departments}" th:text="${dept.deptName}" class="dept" th:attr="onclick=|searchProfessorByDept('${dept.deptNo}')|"></li>
 				</ul>
 			</li>
         </ul>
@@ -664,6 +665,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- 
 <div id="recommendWrap">
