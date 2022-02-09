@@ -13,6 +13,9 @@ public interface UserDAO {
 	// 회원 조회
 	ServiceUser findUser(String userId);
 	
+	// memberNo에 해당하는 회원 조회
+	ServiceUser findUserByMemberNo(String memberNo);
+	
 	// 전체 단대 조회
 	List<College> findCollegeList();
 		

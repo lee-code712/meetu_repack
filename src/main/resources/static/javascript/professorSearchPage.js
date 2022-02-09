@@ -174,3 +174,8 @@ function updatePage(professors) {
 		$("#searchResult").append(newTrElement);
 	};
 }
+
+function selectProf() {
+	var prof_id = event.currentTarget.closest("tr").id;
+	location.href = "professorSearch?prof_id=" + prof_id;
+}

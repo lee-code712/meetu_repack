@@ -79,4 +79,10 @@
 		WHERE m.dept_no = #{deptNo}
 	</select>
     
+    <select id="selectServiceUserByMemberNo" parameterType="String" resultMap="userResultMap">
+        SELECT user_id, password, phone, member_no,
+        	role, name, email, dept_no
+        FROM service_user JOIN member USING(member_no)
+        WHERE member_no = #{memberNo}
+    </select>
 </mapper>

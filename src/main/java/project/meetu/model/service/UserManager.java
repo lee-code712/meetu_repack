@@ -3,6 +3,7 @@ package project.meetu.model.service;
 
 import java.util.List;
 
+import org.apache.catalina.filters.CsrfPreventionFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,20 @@ public class UserManager {
 	
 	/* 학과별 교수 목록 조회 */
 	public List<Professor> getDeptProfessors(String deptNo) {
-		return userDao.findDeptProfessorList(deptNo);
+		List<Professor> professorList = userDao.findDeptProfessorList(deptNo);
+	
+		if (professorList != null) {
+			for(Professor p : professorList) {
+				ServiceUser findUser = userDao.findUserByMemberNo(p.getMemberNo());
+				if (findUser != null) {
+					p.setIsUser(true);
+				}
+				else {
+					p.setIsUser(false);
+				}
+			}
+		}
+		return professorList;
+		
 	}
 }

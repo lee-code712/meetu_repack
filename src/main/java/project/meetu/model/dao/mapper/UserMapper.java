@@ -19,4 +19,6 @@ public interface UserMapper {
 	public List<Department> selectDepartment();
 
 	public List<Professor> selectProfessorByDept(String deptNo);
+	
+	public ServiceUser selectServiceUserByMemberNo(String memberNo);
 }

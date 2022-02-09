@@ -43,7 +43,7 @@ public class Professor {
 	public boolean isUser() {
 		return isUser;
 	}
-	public void setUser(boolean isUser) {
+	public void setIsUser(boolean isUser) {
 		this.isUser = isUser;
 	}
 	
