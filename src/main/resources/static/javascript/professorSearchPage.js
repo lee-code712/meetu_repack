@@ -41,7 +41,7 @@ function updatePage(professors) {
 		var p_user_id = professors[key].memberNo;
 		var name = professors[key].member.name;
 		var email = professors[key].member.email;
-		var dept = professors[key].member.deptNo;
+		var dept = professors[key].member.deptInfo.deptName;
 		var major = professors[key].major;
 		var office = professors[key].officeNo;
 		var course = professors[key].courses;

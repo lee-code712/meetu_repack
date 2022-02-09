@@ -8,6 +8,7 @@ public class Member {
 	private String deptNo;
 	private Professor profInfo;
 	private Student stuInfo;
+	private Department deptInfo;
 	
 	public String getMemberNo() {
 		return memberNo;
@@ -51,5 +52,10 @@ public class Member {
 	public void setStuInfo(Student stuInfo) {
 		this.stuInfo = stuInfo;
 	}
-	
+	public Department getDeptInfo() {
+		return deptInfo;
+	}
+	public void setDeptInfo(Department deptInfo) {
+		this.deptInfo = deptInfo;
+	}
 }

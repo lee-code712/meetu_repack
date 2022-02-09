@@ -38,6 +38,10 @@
 			<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
 			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 			<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
+			<association property="deptInfo" column="dept_no" javaType="Department">
+				<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+				<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+			</association>
 		</association>
 	</resultMap>
 	
@@ -61,9 +65,11 @@
     
     <select id="selectProfessorByDept" parameterType="String" resultMap="deptProfessorsResultMap">
 		SELECT p.member_no AS prof_no, p.major, p.office_no, 
-    		m.member_no, m.email, m.dept_no, m.name
+    		m.member_no, m.email, m.dept_no, m.name,
+    		d.dept_name
 		FROM professor p
     		JOIN member m ON p.member_no = m.member_no
+    		JOIN department d ON m.dept_no = d.dept_no
 		WHERE m.dept_no = #{deptNo}
 	</select>
     

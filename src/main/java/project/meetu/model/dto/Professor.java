@@ -46,4 +46,6 @@ public class Professor {
 	public void setUser(boolean isUser) {
 		this.isUser = isUser;
 	}
+	
+	
 }
