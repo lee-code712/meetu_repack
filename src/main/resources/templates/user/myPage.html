@@ -44,13 +44,20 @@
     
     <script>
 	    function toggleText() {
-	    	  var text = document.getElementById("accountWrap");
+	    	  const text = document.getElementById("accountWrap");
 	    	  if (text.style.display === "none") {
 	    	    text.style.display = "block";
 	    	  } else {
 	    	    text.style.display = "none";
 	    	  }
 	    	}
+	    
+	    function viewReservation() {
+	    	const consultId = event.currentTarget.closest("tr").id;
+	    	const url = "/consult/viewReservation?consultId=" + consultId;
+	    	
+	    	window.open(url, "childform", "width=600; height=500; left=300; top=130; resizable=no;");
+	    }
     </script>
 </head>
 
@@ -118,8 +125,9 @@
 		                                </tr>
 	                                </thead>
 	                                <tbody>
-										<tr th:if="${consult.state == 0}" th:each="consult : ${consults}">
-											<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<tr th:id="${consult.id}" th:if="${consult.state == 0}" 
+											th:each="consult : ${consults}">
+											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
 											<td th:text="${consult.startDate}">상담일시(시작시간)</td>
@@ -147,8 +155,9 @@
 		                                </tr>
 	                                </thead>
 	                                <tbody>
-										<tr th:if="${consult.state == 2 || consult.state == 4}" th:each="consult : ${consults}">
-											<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<tr th:id="${consult.id}" th:if="${consult.state == 2 || consult.state == 4}" 
+											th:each="consult : ${consults}">
+											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
 											<td th:text="${consult.startDate}">상담일시(시작시간)</td>
@@ -174,8 +183,9 @@
 		                                </tr>
 	                                </thead>
 	                                <tbody>
-										<tr th:if="${consult.state == 1}" th:each="consult : ${consults}">
-											<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<tr th:id="${consult.id}" th:if="${consult.state == 1}" 
+											th:each="consult : ${consults}">
+											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
 											<td th:text="${consult.startDate}">상담일시(시작시간)</td>
@@ -203,8 +213,9 @@
 		                                </tr>
 	                                </thead>
 	                                <tbody>
-										<tr th:if="${consult.state == 3}" th:each="consult : ${consults}">
-											<td><img src="/images/moreImage.svg" id="moreImg"/></td>
+										<tr th:id="${consult.id}" th:if="${consult.state == 3}" 
+											th:each="consult : ${consults}">
+											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
 											<td th:text="${#strings.substring(consult.startDate,0,16)}">상담일시(시작시간)</td>
