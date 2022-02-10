@@ -28,5 +28,13 @@ public class ReservationController {
 		return "consult/reservationView";
 		
 	}
+	
+	@GetMapping("/consult/updateStatus")
+	public String updateStatus(@RequestParam("consultId") String consultId, 
+			@RequestParam("status") String status) {
+		System.out.println(consultId + " " + status);
+		
+		return "redirect:/user/my";
+	}
 
 }
