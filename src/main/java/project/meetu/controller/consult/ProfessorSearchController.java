@@ -24,12 +24,12 @@ import project.meetu.model.service.ConsultManager;
 import project.meetu.model.service.UserManager;
 
 @Controller
-public class ProfessorSearchPageController {
+public class ProfessorSearchController {
 
 	private final UserManager userService;
 	
 	@Autowired
-	public ProfessorSearchPageController(UserManager userService) {
+	public ProfessorSearchController(UserManager userService) {
 		this.userService = userService;
 	}
 	
