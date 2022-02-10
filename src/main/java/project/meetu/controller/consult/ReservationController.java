@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.meetu.model.dto.Consult;
 import project.meetu.model.service.ConsultManager;
@@ -29,12 +30,16 @@ public class ReservationController {
 		
 	}
 	
-	@GetMapping("/consult/updateStatus")
-	public String updateStatus(@RequestParam("consultId") String consultId, 
-			@RequestParam("status") String status) {
-		System.out.println(consultId + " " + status);
+	@GetMapping("/consult/changeStatus")
+	public String changeStatus(Consult reservation, RedirectAttributes rttr) {
+		
+		boolean success = consultService.changeReservationStatus(reservation);
+		if (!success) {
+			rttr.addFlashAttribute("changeFailed", true);
+		}
 		
 		return "redirect:/user/my";
+		
 	}
 
 }

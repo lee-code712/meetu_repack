@@ -29,7 +29,7 @@ public class ConsultManager {
 		
 		if (consultList != null) {
 			for (Consult consult : consultList) {
-				if (consult.getState() != 1 && consult.getState() != 3) {
+				if (consult.getStatus() != 1 && consult.getStatus() != 3) {
 					consultList.remove(consult);
 				}
 			}
@@ -41,5 +41,10 @@ public class ConsultManager {
 	/* 상담id에 대한 상세정보 조회 */
 	public Consult getReservationInfo(String consultId) {
 		return consultDao.findReservation(consultId);
+	}
+	
+	/* 예약 상태 변경 */
+	public boolean changeReservationStatus(Consult reservation) {
+		return consultDao.changeStatus(reservation);
 	}
 }

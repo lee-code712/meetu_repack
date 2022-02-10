@@ -121,7 +121,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.state == 0}"
+											<tr th:id="${consult.id}" th:if="${consult.status == 0}"
 												th:each="consult : ${consults}">
 												<td><img src="/images/moreImage.svg" id="moreImg"
 													onClick="viewReservation()" /></td>
@@ -156,7 +156,7 @@
 										</thead>
 										<tbody>
 											<tr th:id="${consult.id}"
-												th:if="${consult.state == 2 || consult.state == 4}"
+												th:if="${consult.status == 2 || consult.status == 4}"
 												th:each="consult : ${consults}">
 												<td><img src="/images/moreImage.svg" id="moreImg"
 													onClick="viewReservation()" /></td>
@@ -167,8 +167,8 @@
 												<td th:if="${consult.type == 0}"
 													th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
 												<td th:if="${consult.type == 1}">온라인</td>
-												<td th:if="${consult.state == 2}"><button id="rejectMsgBtn">반려사유</button></td>
-												<td th:if="${consult.state == 4}"><button id="rejectMsgBtn">취소사유</button></td>
+												<td th:if="${consult.status == 2}"><button id="rejectMsgBtn">반려사유</button></td>
+												<td th:if="${consult.status == 4}"><button id="rejectMsgBtn">취소사유</button></td>
 											</tr>
 										</tbody>
 									</table>
@@ -187,7 +187,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.state == 1}"
+											<tr th:id="${consult.id}" th:if="${consult.status == 1}"
 												th:each="consult : ${consults}">
 												<td><img src="/images/moreImage.svg" id="moreImg"
 													onClick="viewReservation()" /></td>
@@ -220,7 +220,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.state == 3}"
+											<tr th:id="${consult.id}" th:if="${consult.status == 3}"
 												th:each="consult : ${consults}">
 												<td><img src="/images/moreImage.svg" id="moreImg"
 													onClick="viewReservation()" /></td>

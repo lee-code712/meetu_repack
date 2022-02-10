@@ -11,4 +11,7 @@ public interface ConsultDAO {
 	
 	// 상담id에 대한 상세정보 조회
 	Consult findReservation(String consultId);
+	
+	// 예약 상태 변경
+	boolean changeStatus(Consult reservation);
 }

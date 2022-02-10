@@ -11,5 +11,6 @@ public interface ConsultMapper {
 
 	public List<Consult> selectConsultByUser(String userId);
 	public Consult selectConsultByConsultId(String consultId);
+	public int updateStatus(Consult reservation);
 	
 }

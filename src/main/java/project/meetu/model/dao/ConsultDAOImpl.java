@@ -25,5 +25,13 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public Consult findReservation(String consultId) {
 		return consultMapper.selectConsultByConsultId(consultId);
 	}
+
+	// 예약 상태 변경
+	@Override
+	public boolean changeStatus(Consult reservation) {
+		int ck = consultMapper.updateStatus(reservation);
+		if (ck > 0) return true;
+		return false;
+	}
 	
 }

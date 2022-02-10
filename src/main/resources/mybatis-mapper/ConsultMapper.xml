@@ -3,14 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.meetu.model.dao.mapper.ConsultMapper">
 	
-	<!-- 특정 회원의 전체 상담목록 조회 -->
 	<resultMap id="consultResultMap" type="Consult">
 		<id column="consult_id" jdbcType="INTEGER" property="id" javaType="int" />
 		<result column="start_date" jdbcType="DATE" property="startDate" javaType="string" />
 		<result column="end_date" jdbcType="DATE" property="endDate" javaType="string" />
 		<result column="reason" jdbcType="VARCHAR" property="reason" javaType="string" />
 		<result column="type" jdbcType="INTEGER" property="type" javaType="int" />
-		<result column="status" jdbcType="INTEGER" property="state" javaType="int" />
+		<result column="status" jdbcType="INTEGER" property="status" javaType="int" />
 		<result column="cancel_msg" jdbcType="VARCHAR" property="cancelMsg" javaType="string" />
 		<association property="profUser" column="prof_id" javaType="ServiceUser">
 			<id column="prof_id" jdbcType="VARCHAR" property="userId" javaType="string" />
@@ -44,6 +43,7 @@
 		</association>
 	</resultMap>
 	
+	<!-- 특정 회원의 전체 상담목록 조회 -->
 	<select id="selectConsultByUser" parameterType="String" resultMap="consultResultMap">
 		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
     		pm.member_no AS prof_no, pm.name AS prof_name, pm.dept_no AS prof_dept_no,
@@ -84,5 +84,17 @@
 			JOIN department sd ON sm.dept_no = sd.dept_no
 		WHERE consult_id = #{consultId}
 	</select>
+	
+	<!-- 예약 상태 변경 -->
+	<update id="updateStatus" parameterType="Consult">
+		UPDATE consult
+		<if test="cancelMsg == null">
+				SET status = #{status}
+		</if>
+		<if test="cancelMsg != null">
+				SET status = #{status}, cancel_msg = #{cancelMsg}
+		</if>
+		WHERE consult_id = #{id}
+	</update>
 	
 </mapper>

@@ -6,7 +6,7 @@ public class Consult {
 	private String endDate;
 	private String reason;
 	private int type;
-	private int state;
+	private int status;
 	private ServiceUser profUser;
 	private ServiceUser stuUser;
 	private String cancelMsg;
@@ -41,11 +41,11 @@ public class Consult {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public int getState() {
-		return state;
+	public int getStatus() {
+		return status;
 	}
-	public void setState(int state) {
-		this.state = state;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public ServiceUser getProfUser() {
 		return profUser;
