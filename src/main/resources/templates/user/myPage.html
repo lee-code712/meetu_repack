@@ -50,7 +50,7 @@
 	    	  } else {
 	    	    text.style.display = "none";
 	    	  }
-	    	}
+	    }
 	    
 	    function viewReservation() {
 	    	const consultId = event.currentTarget.closest("tr").id;
@@ -130,13 +130,14 @@
 											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-											<td th:text="${#strings.substring(consult.startDate,0,16)}">상담일시(시작시간)</td>
+											<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
 											<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
 											<td th:if="${consult.type == 1}">온라인</td>
-											<td th:if="${session.role == 0}"><button id="cancelBtn">취소하기</button></td>
-											<td th:if="${session.role == 0}"><button id="editBtn">수정하기</button></td>
-											<td th:if="${session.role == 1}"><button id="approvalBtn">승인하기</button></td>
-											<td th:if="${session.role == 1}"><button id="rejectBtn">반려하기</button></td>
+											<td th:if="${session.role == 0}"><button id="approvalBtn">승인하기</button></td>
+											<td th:if="${session.role == 0}"><button id="rejectBtn">반려하기</button></td>
+											<td th:if="${session.role == 1}"><button id="cancelBtn">취소하기</button></td>
+											<td th:if="${session.role == 1}"><button id="editBtn">수정하기</button></td>
 										</tr>
 	                                </tbody>
 	                            </table>
@@ -160,7 +161,8 @@
 											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-											<td th:text="${#strings.substring(consult.startDate,0,16)}">상담일시(시작시간)</td>
+											<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
 											<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
 											<td th:if="${consult.type == 1}">온라인</td>
 											<td th:if="${consult.state == 2}"><button id="rejectMsgBtn">반려사유</button></td>
@@ -188,13 +190,14 @@
 											<td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()"/></td>
 											<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
 											<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-											<td th:text="${#strings.substring(consult.startDate,0,16)}">상담일시(시작시간)</td>
+											<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
 											<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
 											<td th:if="${consult.type == 1}">온라인</td>
-											<td th:if="${session.role == 0}"><button id="msgBtn">쪽지함</button></td>
-											<td th:if="${session.role == 1}"><button id="cancelBtn">취소하기</button></td>
-											<td th:if="${session.role == 1}"><button id="editBtn">수정하기</button></td>
-											<td th:if="${session.role == 1}"><button id="consultedBtn">완료하기</button></td>
+											<td th:if="${session.role == 0}"><button id="cancelBtn">취소하기</button></td>
+											<td th:if="${session.role == 0}"><button id="editBtn">수정하기</button></td>
+											<td th:if="${session.role == 0}"><button id="consultedBtn">완료하기</button></td>
+											<td th:if="${session.role == 1}"><button id="msgBtn">쪽지함</button></td>
 										</tr>
 	                                </tbody>
 	                            </table>
@@ -222,7 +225,7 @@
 												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
 											<td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
 											<td th:if="${consult.type == 1}">온라인</td>
-											<td th:if="${session.role == 1}"><button id="consultationRecordBtn">상담일지</button></td>
+											<td th:if="${session.role == 0}"><button id="consultationRecordBtn">상담일지</button></td>
 										</tr>
 	                                </tbody>
 	                            </table>

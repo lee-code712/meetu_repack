@@ -30,7 +30,9 @@
                 </tr>
                 <tr id="infoWrap">
                     <td id="infoTitle">상담유형</td>
-                    <td id="infoText" th:text="${reservation.type}"></td>
+                    <td id="infoText" th:if="${reservation.type == 0}" 
+                    	th:text="${reservation.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+                    <td id="infoText" th:if="${reservation.type == 1}">온라인</td>
                 </tr>
             </table>
         <div id="closeBtnWrap">
