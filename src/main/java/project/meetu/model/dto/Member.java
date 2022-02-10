@@ -5,7 +5,6 @@ public class Member {
 	private int role;
 	private String name;
 	private String email;
-	private String deptNo;
 	private Professor profInfo;
 	private Student stuInfo;
 	private Department deptInfo;
@@ -33,12 +32,6 @@ public class Member {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getDeptNo() {
-		return deptNo;
-	}
-	public void setDeptNo(String deptNo) {
-		this.deptNo = deptNo;
 	}
 	public Professor getProfInfo() {
 		return profInfo;
