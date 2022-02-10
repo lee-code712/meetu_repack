@@ -18,16 +18,24 @@ document.addEventListener('DOMContentLoaded', function () {
     locale: 'ko' // 한국어 설정
   });
   calendar.render();
-  
-  console.log(schedules);
+
+  // console.log(schedules);
   for (key in schedules) {
-	  var id = schedules[key].id;
-	  calendar.addEvent({
-  		title: id,
-  		start: schedules[key].startDate,
-  		end: schedules[key].endDate,
-  		allDay: true
-  	})
+	var name = ""
+	
+	if (role == 0) { // 교수: 0 일 때
+		name = schedules[key].stuUser.memberInfo.name;	
+	}
+	else if (role == 1) { // 학생: 1
+		name = schedules[key].profUser.memberInfo.name;
+	}
+
+    calendar.addEvent({
+      title: name + "님과 상담",
+      start: schedules[key].startDate,
+      end: schedules[key].endDate,
+      allDay: true
+    })
   }
-  
+
 });
