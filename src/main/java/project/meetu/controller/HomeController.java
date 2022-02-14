@@ -32,7 +32,7 @@ public class HomeController {
 		
 		List<Consult> consultList = consultService.getUserSchedules(userId);
 		if (consultList != null) {
-			mav.setViewName("content/home");
+			mav.setViewName("home");
 			mav.addObject("schedules", consultList);
 		}
 		

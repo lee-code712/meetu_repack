@@ -59,6 +59,7 @@ public class LoginController {
 	
 	@GetMapping("/user/logout")
 	public String logout (HttpServletRequest req) {
+		
 		HttpSession session = req.getSession();
 		session.removeAttribute("id");
 		session.removeAttribute("name");

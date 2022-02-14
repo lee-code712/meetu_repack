@@ -13,7 +13,10 @@
 			<result column="role" jdbcType="INTEGER" property="role" javaType="int" />
 			<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
 			<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
-			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+			<association property="deptInfo" column="dept_no" javaType="Department">
+				<id column="prof_dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+				<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+			</association>
 		</association>
 	</resultMap>
 		
@@ -35,7 +38,6 @@
 		<association property="memberInfo" column="member_no" javaType="Member">
 			<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 			<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
-			<result column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 			<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
 			<association property="deptInfo" column="dept_no" javaType="Department">
 				<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
@@ -50,8 +52,10 @@
 	
     <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
         SELECT user_id, password, phone, member_no,
-        	role, name, email, dept_no
-        FROM service_user JOIN member USING(member_no)
+        	role, name, email, dept_no, dept_name
+        FROM service_user 
+        	JOIN member USING(member_no)
+        	JOIN department USING(dept_no)
         WHERE user_id = #{userId}
     </select>
     
