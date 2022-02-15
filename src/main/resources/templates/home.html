@@ -9,12 +9,13 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+
   <script th:inline="javascript">
-  	var schedules = [[${schedules}]];
-  	var role = [[${session.role}]];
+    var schedules = [[${ schedules }]];
+    var role = [[${ session.role }]];
   </script>
 </th:block>
 
@@ -24,9 +25,9 @@
     <div id="banner">
       <img src="/images/banner.svg" />
     </div>
-    
+
     <div id='calendar'></div>
-    
+
     <script type="text/javascript" th:src="@{/javascript/calendar.js}"></script>
   </div>
   <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>

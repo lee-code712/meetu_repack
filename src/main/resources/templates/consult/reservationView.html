@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
-	<title>상세정보</title>
-	<link rel="stylesheet" href="/css/reservationView.css" />
+  <meta charset="UTF-8">
+  <title>상세정보</title>
+  <link rel="stylesheet" href="/css/reservationView.css" />
 </head>
 
 <body id="reservationInfoBg">
-	<div id="rejectMsgWrap">
-		<div id="rejectMsgInnerWrap">
-			<div id="reservationTit">예약정보</div>
-			<table id="InfoTable">
-				<tr id="infoWrap">
-					<td id="infoTitle">교수정보</td>
-					<td id="infoText" th:text="${reservation.profUser.memberInfo.name}"></td>
-				</tr>
-				<tr id="infoWrap">
-					<td id="infoTitle">학생정보</td>
-					<td id="infoText" th:text="${reservation.stuUser.memberInfo.name}"></td>
-				</tr>
-				<tr id="infoWrap">
-					<td id="infoTitle">상담일시</td>
-					<td id="infoText"
-						th:text="${#strings.substring(reservation.startDate,0,16)} + ' ~ ' 
+  <div id="rejectMsgWrap">
+    <div id="rejectMsgInnerWrap">
+      <div id="reservationTit">예약정보</div>
+      <table id="InfoTable">
+        <tr id="infoWrap">
+          <td id="infoTitle">교수정보</td>
+          <td id="infoText" th:text="${reservation.profUser.memberInfo.name}"></td>
+        </tr>
+        <tr id="infoWrap">
+          <td id="infoTitle">학생정보</td>
+          <td id="infoText" th:text="${reservation.stuUser.memberInfo.name}"></td>
+        </tr>
+        <tr id="infoWrap">
+          <td id="infoTitle">상담일시</td>
+          <td id="infoText" th:text="${#strings.substring(reservation.startDate,0,16)} + ' ~ ' 
                     	+ ${#strings.substring(reservation.endDate,11,16)}"></td>
-				</tr>
-				<tr id="infoWrap">
-					<td id="infoTitle">상담신청사유</td>
-					<td id="infoText" th:text="${reservation.reason}"></td>
-				</tr>
-				<tr id="infoWrap">
-					<td id="infoTitle">상담유형</td>
-					<td id="infoText" th:if="${reservation.type == 0}"
-						th:text="${reservation.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-					<td id="infoText" th:if="${reservation.type == 1}">온라인</td>
-				</tr>
-			</table>
-			<div id="closeBtnWrap">
-				<button onclick="window.close()" id="reservationInfoCloseBtn">확인</button>
-			</div>
-		</div>
-	</div>
+        </tr>
+        <tr id="infoWrap">
+          <td id="infoTitle">상담신청사유</td>
+          <td id="infoText" th:text="${reservation.reason}"></td>
+        </tr>
+        <tr id="infoWrap">
+          <td id="infoTitle">상담유형</td>
+          <td id="infoText" th:if="${reservation.type == 0}"
+            th:text="${reservation.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
+          <td id="infoText" th:if="${reservation.type == 1}">온라인</td>
+        </tr>
+      </table>
+      <div id="closeBtnWrap">
+        <button onclick="window.close()" id="reservationInfoCloseBtn">확인</button>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

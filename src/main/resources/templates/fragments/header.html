@@ -1,36 +1,36 @@
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:th="http://www.thymeleaf.org"> 
-	
-	<div class="header"> 
-		<div id="headerInner">
-	        <div id="logo" onclick="location.href='/home'">meetu</div>
-	        <ul class="tabs">
-	            <li class="tab">
-	              <input type="radio" id="tab-1" name="tab-group-1">
-	              <label for="tab-1" id="tabName">공지사항</label>
-	            </li>
-	
-	            <li class="tab">
-	              <input type="radio" id="tab-2" name="tab-group-1">
-	              <label for="tab-2" id="tabName" onclick="location.href='/consult/professorSearch'">상담예약</label>
-	            </li>
-	
-	            <li class="tab">
-	              <input type="radio" id="tab-3" name="tab-group-1">
-	              <label for="tab-3" id="tabName">쪽지함</label>
-	            </li>
-	        </ul>
-	        <div id="right_gnb">
-	            <div id="dropdown">
-	                <div id="dropdown-button"><span th:text="${session.name}"></span>님 😊</div>
-	                <div id="dropdown-content">
-	                    <a href="/user/my">마이페이지</a>
-	                    <a href="/user/logout">로그아웃</a>
-	                </div>
-	            </div>
-	
-	            <img src="/images/bell.svg" id="bellImg" />
-	        </div>
-	    </div>
-	</div> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div class="header">
+  <div id="headerInner">
+    <div id="logo" onclick="location.href='/home'">meetu</div>
+    <ul class="tabs">
+      <li class="tab">
+        <input type="radio" id="tab-1" name="tab-group-1">
+        <label for="tab-1" id="tabName">공지사항</label>
+      </li>
+
+      <li class="tab">
+        <input type="radio" id="tab-2" name="tab-group-1">
+        <label for="tab-2" id="tabName" onclick="location.href='/consult/professorSearch'">상담예약</label>
+      </li>
+
+      <li class="tab">
+        <input type="radio" id="tab-3" name="tab-group-1">
+        <label for="tab-3" id="tabName">쪽지함</label>
+      </li>
+    </ul>
+    <div id="right_gnb">
+      <div id="dropdown">
+        <div id="dropdown-button"><span th:text="${session.name}"></span>님 😊</div>
+        <div id="dropdown-content">
+          <a href="/user/my">마이페이지</a>
+          <a href="/user/logout">로그아웃</a>
+        </div>
+      </div>
+
+      <img src="/images/bell.svg" id="bellImg" />
+    </div>
+  </div>
+</div>
+
 </html>

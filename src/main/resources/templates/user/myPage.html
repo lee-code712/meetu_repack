@@ -1,247 +1,224 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default_layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/default_layout}">
+
 <head>
-	<meta charset="UTF-8">
-	<title>mypage</title>
-	  <link th:href="@{/css/header_bootstrap.css}" rel="stylesheet" />
-	<link rel="stylesheet" href="/css/myPage.css" />
-	
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="/javascript/myPage.js"></script>
-	
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-		crossorigin="anonymous">
-	
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-		rel="stylesheet">
-	
-	<link
-		href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
-		rel="stylesheet">
-	
-	<style>
-	.nav-pills>.nav-item>.active {
-		background: #1abc9c;
-	}
-	</style>
+  <meta charset="UTF-8">
+  <title>mypage</title>
+  <link th:href="@{/css/header_bootstrap.css}" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/myPage.css" />
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/javascript/myPage.js"></script>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+
+  <style>
+    .nav-pills>.nav-item>.active {
+      background: #1abc9c;
+    }
+  </style>
 </head>
 
 <body id="myPageBodyBg">
-	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-	<div layout:fragment="content" class="content">
-		<div id="navWrap">
-			<table id="navInnerWrap">
-				<tr>
-					<td>
-						<div id="cardWrap">
-							<div id="navLTit">마이페이지</div>
-							<div id="navListWrap">
-								<div id="navListSub"></div>
-								<div id="userImgWrap">
-									<img src="/images/user.svg" id="userImg" />
-								</div>
-								<div id="navListName" th:text="${session.name}"></div>
-								<div id="navList">
-									<button id="profInfoBtn"
-										onclick="location.href='/user/my/info'">내 정보</button>
-								</div>
-								<div id="logoutBtnWrap">
-									<button id="logoutBtn" onclick="location.href='logout.do'">로그아웃</button>
-								</div>
-								<div id="toggle" onclick="toggleText()">
-									<img src="/images/toggle.svg" id="toggleImg" />
-								</div>
-							</div>
-							<div id="accountWrap">
-								<div id="accountTit">계정</div>
-								<div id="resetPwdDiv" onclick="location.href='changePwdForm.do'">비밀번호 변경</div>
-								<div id="secessionDiv"
-									onclick="location.href='secessionForm.do'">회원탈퇴</div>
-							</div>
-						</div>
-					</td>
+  <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+  <div layout:fragment="content" class="content">
+    <div id="navWrap">
+      <table id="navInnerWrap">
+        <tr>
+          <td>
+            <div id="cardWrap">
+              <div id="navLTit">마이페이지</div>
+              <div id="navListWrap">
+                <div id="navListSub"></div>
+                <div id="userImgWrap">
+                  <img src="/images/user.svg" id="userImg" />
+                </div>
+                <div id="navListName" th:text="${session.name}"></div>
+                <div id="navList">
+                  <button id="profInfoBtn" onclick="location.href='/user/my/info'">내 정보</button>
+                </div>
+                <div id="logoutBtnWrap">
+                  <button id="logoutBtn" onclick="location.href='logout.do'">로그아웃</button>
+                </div>
+                <div id="toggle" onclick="toggleText()">
+                  <img src="/images/toggle.svg" id="toggleImg" />
+                </div>
+              </div>
+              <div id="accountWrap">
+                <div id="accountTit">계정</div>
+                <div id="resetPwdDiv" onclick="location.href='changePwdForm.do'">비밀번호 변경</div>
+                <div id="secessionDiv" onclick="location.href='secessionForm.do'">회원탈퇴</div>
+              </div>
+            </div>
+          </td>
 
-					<td>
-						<div style="width: 60px"></div>
-					</td>
+          <td>
+            <div style="width: 60px"></div>
+          </td>
 
-					<td id="navSub">
-						<div id="searchWrap">
-							<input type="text" placeholder="검색" id="searchText" /> 
-							<img src="/images/search.svg" id="searchBtn" onclick="search()" />
-						</div>
-						<ul class="nav nav-pills" id="navBox">
-							<li class="nav-item"><a class="nav-link active"
-								data-toggle="tab" href="#qwe" id="bookedList">예약현황</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#asd" id="canceledList">예약취소</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#zxc" id="approvedList">예약확정</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#aaa" id="completedList">상담완료</a></li>
-						</ul>
-						<div class="tab-content" style="background: white">
-							<div class="tab-pane fade show active" id="qwe">
-								<div id="board">
-									<table class="boardListWrap">
-										<thead>
-											<tr id="thBorder">
-												<th></th>
-												<th>교수명</th>
-												<th>학생명</th>
-												<th>상담일시</th>
-												<th>장소</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.status == 0}"
-												th:each="consult : ${consults}">
-												<td><img src="/images/moreImage.svg" id="moreImg"
-													onClick="viewReservation()" /></td>
-												<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
-												<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-												<td
-													th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+          <td id="navSub">
+            <div id="searchWrap">
+              <input type="text" placeholder="검색" id="searchText" />
+              <img src="/images/search.svg" id="searchBtn" onclick="search()" />
+            </div>
+            <ul class="nav nav-pills" id="navBox">
+              <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#qwe" id="bookedList">예약현황</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#asd" id="canceledList">예약취소</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#zxc" id="approvedList">예약확정</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#aaa" id="completedList">상담완료</a></li>
+            </ul>
+            <div class="tab-content" style="background: white">
+              <div class="tab-pane fade show active" id="qwe">
+                <div id="board">
+                  <table class="boardListWrap">
+                    <thead>
+                      <tr id="thBorder">
+                        <th></th>
+                        <th>교수명</th>
+                        <th>학생명</th>
+                        <th>상담일시</th>
+                        <th>장소</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:id="${consult.id}" th:if="${consult.status == 0}" th:each="consult : ${consults}">
+                        <td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()" /></td>
+                        <td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+                        <td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+                        <td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
 												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
-												<td th:if="${consult.type == 0}"
-													th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-												<td th:if="${consult.type == 1}">온라인</td>
-												<td th:if="${session.role == 0}"><button id="approvalBtn" onClick="check()">승인하기</button></td>
-												<td th:if="${session.role == 0}"><button id="rejectBtn" onClick="check()">반려하기</button></td>
-												<td th:if="${session.role == 1}"><button id="cancelBtn" onClick="check()">취소하기</button></td>
-												<td th:if="${session.role == 1}"><button id="editBtn" onClick="check()">수정하기</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="asd">
-								<div id="board">
-									<table class="boardListWrap">
-										<thead>
-											<tr id="thBorder">
-												<th></th>
-												<th>교수명</th>
-												<th>학생명</th>
-												<th>상담일시</th>
-												<th>장소</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:id="${consult.id}"
-												th:if="${consult.status == 2 || consult.status == 4}"
-												th:each="consult : ${consults}">
-												<td><img src="/images/moreImage.svg" id="moreImg"
-													onClick="viewReservation()" /></td>
-												<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
-												<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-												<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+                        <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
+                        </td>
+                        <td th:if="${consult.type == 1}">온라인</td>
+                        <td th:if="${session.role == 0}"><button id="approvalBtn" onClick="check()">승인하기</button></td>
+                        <td th:if="${session.role == 0}"><button id="rejectBtn" onClick="check()">반려하기</button></td>
+                        <td th:if="${session.role == 1}"><button id="cancelBtn" onClick="check()">취소하기</button></td>
+                        <td th:if="${session.role == 1}"><button id="editBtn" onClick="check()">수정하기</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="asd">
+                <div id="board">
+                  <table class="boardListWrap">
+                    <thead>
+                      <tr id="thBorder">
+                        <th></th>
+                        <th>교수명</th>
+                        <th>학생명</th>
+                        <th>상담일시</th>
+                        <th>장소</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:id="${consult.id}" th:if="${consult.status == 2 || consult.status == 4}"
+                        th:each="consult : ${consults}">
+                        <td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()" /></td>
+                        <td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+                        <td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+                        <td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
 												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
-												<td th:if="${consult.type == 0}"
-													th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-												<td th:if="${consult.type == 1}">온라인</td>
-												<td th:if="${consult.status == 2}"><button id="rejectMsgBtn">반려사유</button></td>
-												<td th:if="${consult.status == 4}"><button id="rejectMsgBtn">취소사유</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="zxc">
-								<div id="board">
-									<table class="boardListWrap">
-										<thead>
-											<tr id="thBorder">
-												<th></th>
-												<th>교수명</th>
-												<th>학생명</th>
-												<th>상담일시</th>
-												<th>장소</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.status == 1}"
-												th:each="consult : ${consults}">
-												<td><img src="/images/moreImage.svg" id="moreImg"
-													onClick="viewReservation()" /></td>
-												<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
-												<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-												<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+                        <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
+                        </td>
+                        <td th:if="${consult.type == 1}">온라인</td>
+                        <td th:if="${consult.status == 2}"><button id="rejectMsgBtn">반려사유</button></td>
+                        <td th:if="${consult.status == 4}"><button id="rejectMsgBtn">취소사유</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="zxc">
+                <div id="board">
+                  <table class="boardListWrap">
+                    <thead>
+                      <tr id="thBorder">
+                        <th></th>
+                        <th>교수명</th>
+                        <th>학생명</th>
+                        <th>상담일시</th>
+                        <th>장소</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:id="${consult.id}" th:if="${consult.status == 1}" th:each="consult : ${consults}">
+                        <td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()" /></td>
+                        <td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+                        <td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+                        <td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
 												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
-												<td th:if="${consult.type == 0}"
-													th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-												<td th:if="${consult.type == 1}">온라인</td>
-												<td th:if="${session.role == 0}"><button id="cancelBtn" onClick="check()">취소하기</button></td>
-												<td th:if="${session.role == 0}"><button id="editBtn" onClick="check()">수정하기</button></td>
-												<td th:if="${session.role == 0}"><button id="consultedBtn" onClick="check()">완료하기</button></td>
-												<td th:if="${session.role == 1}"><button id="msgBtn">쪽지함</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="aaa">
-								<div id="board">
-									<table class="boardListWrap">
-										<thead>
-											<tr id="thBorder">
-												<th></th>
-												<th>교수명</th>
-												<th>학생명</th>
-												<th>상담일시</th>
-												<th>장소</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:id="${consult.id}" th:if="${consult.status == 3}"
-												th:each="consult : ${consults}">
-												<td><img src="/images/moreImage.svg" id="moreImg"
-													onClick="viewReservation()" /></td>
-												<td th:text="${consult.profUser.memberInfo.name}">교수명</td>
-												<td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
-												<td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+                        <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
+                        </td>
+                        <td th:if="${consult.type == 1}">온라인</td>
+                        <td th:if="${session.role == 0}"><button id="cancelBtn" onClick="check()">취소하기</button></td>
+                        <td th:if="${session.role == 0}"><button id="editBtn" onClick="check()">수정하기</button></td>
+                        <td th:if="${session.role == 0}"><button id="consultedBtn" onClick="check()">완료하기</button></td>
+                        <td th:if="${session.role == 1}"><button id="msgBtn">쪽지함</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="aaa">
+                <div id="board">
+                  <table class="boardListWrap">
+                    <thead>
+                      <tr id="thBorder">
+                        <th></th>
+                        <th>교수명</th>
+                        <th>학생명</th>
+                        <th>상담일시</th>
+                        <th>장소</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:id="${consult.id}" th:if="${consult.status == 3}" th:each="consult : ${consults}">
+                        <td><img src="/images/moreImage.svg" id="moreImg" onClick="viewReservation()" /></td>
+                        <td th:text="${consult.profUser.memberInfo.name}">교수명</td>
+                        <td th:text="${consult.stuUser.memberInfo.name}">학생명</td>
+                        <td th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
 												+ ${#strings.substring(consult.endDate,11,16)}">상담일시</td>
-												<td th:if="${consult.type == 0}"
-													th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-												<td th:if="${consult.type == 1}">온라인</td>
-												<td th:if="${session.role == 0}"><button id="consultationRecordBtn">상담일지</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
+                        <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
+                        </td>
+                        <td th:if="${consult.type == 1}">온라인</td>
+                        <td th:if="${session.role == 0}"><button id="consultationRecordBtn">상담일지</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
 </body>
+
 </html>

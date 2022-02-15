@@ -1,439 +1,595 @@
-@charset "UTF-8";
+.nav-pills > .nav-item > .active {
+  background: #1abc9c;
+}
+
+#sender {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  height: 40px;
+  width: 816px;
+}
+
+#search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 8px;
+  width: 260px;
+  height: 34px;
+  border-bottom: 1px solid #eaeaea;
+  border-radius: 50px;
+  background: #ffffff;
+}
+
+#searchText {
+  font-size: 12px;
+  width: 120px;
+  padding-left: 4px;
+  border: 0px;
+  outline: none;
+  float: left;
+  border-radius: 30px;
+}
+
+#searchBtn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  float: right;
+}
+
+#tab2 {
+  margin-left: 20px;
+}
+
+#noticeCount {
+  position: relative;
+  right: 12px;
+  top: -3px;
+  font-size: 12px;
+  color: white;
+}
 
 #noticeImg {
-    width: 14px;
-    height: 14px;
+  width: 20px;
+  height: 20px;
+}
+
+#noticeOnImg {
+  cursor: pointer;
+  width: 24px;
+  height: 20px;
+}
+
+#noticeImg {
+  width: 14px;
+  height: 14px;
 }
 
 #noticeImg:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #noticeIcon:hover,
 #reserveIcon:hover,
 #messageIcon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #noticeIcon,
 #reserveIcon,
 #messageIcon {
-    color: black;
+  color: black;
 }
 
 #recommendWrap {
-	margin: 80px auto;
-    width: 1194px;
+  margin: 0px auto;
+  width: 1194px;
 }
 
 #recommendTit {
-    margin-bottom: 60px;
-    font-size: 24px;
+  margin-bottom: 60px;
+  font-size: 24px;
+  z-index: 0;
 }
 
 #recommendInfoBox {
-    margin-bottom: 40px;
-    padding: 20px 0px;
-    width: 1194px;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  margin-bottom: 40px;
+  padding: 20px 0px;
+  width: 1194px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 #recProfNDWrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    padding: 0px 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0px 20px;
+  margin-bottom: 20px;
 }
 
 #recProfName {
-    display: flex;
-    font-size: 18px;
-    font-weight: bold;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#recTag {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-left: 20px;
+  color: #a3bcfa;
+  font-size: 12px;
 }
 
 #recProfDept {
-    margin-left: 20px;
-    padding: 2px 6px;
-    font-size: 14px;
-    font-weight: normal;
-    color: #535353;
-    border: 1px solid #535353;
-    border-radius: 5px;
+  margin-left: 20px;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #535353;
+  border: 1px solid #535353;
+  border-radius: 5px;
 }
 
 #recReservationBtn {
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    justify-content: center;
-    color: white;
-    background: #1ABC9C;
-    font-size: 14px;
-    border-radius: 30px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  justify-content: center;
+  color: white;
+  background: #1abc9c;
+  font-size: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#infoBtn:hover {
+  cursor: pointer;
 }
 
 #recProfMajor,
 #recProfSubject,
 #recProfEmail,
 #recProfLocation {
-    display: flex;
-    align-items: center;
-    padding: 0px 20px;
-    height: 40px;
-    font-size: 14px;
-    color: #535353;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  height: 40px;
+  font-size: 14px;
+  color: #535353;
 }
 
 #recProfMajor span,
 #recProfSubject span,
 #recProfEmail span,
 #recProfLocation span {
-    margin-left: 20px;
+  margin-left: 20px;
 }
+
 a:link {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 a:visited {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 a:hover {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 #title,
 #title a:link,
 #title a:visited,
 #title a:hover {
-    color: #1abc9c;
-
-}
-
-#header {
-    width: 100%;
-    height: 80px;
-    background: white;
-    border-bottom: 1px solid #EAEAEA;
-}
-
-#headerInner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    width: 1194px;
-    height: 100%;
-}
-
-#headerInnerL {
-    display: flex;
-    align-items: center;
-}
-
-#title {
-    font-family: 'Yellowtail', cursive;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#gnb {
-    margin-left: 140px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
-    font-size: 14px;
-}
-
-#headerInnerR {
-    display: flex;
-    align-items: center;
-}
-
-#dropdown {
-    position: relative;
-    display: inline-block;
-    font-size: 14px;
-    padding: 14px;
-}
-
-#dropdown-button:hover {
-    cursor: pointer;
-}
-
-#dropdown-button div {
-    justify-content: flex-end;
-}
-
-#dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    margin-top: 14px;
-    min-width: 130px;
-    padding: 4px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
-}
-
-#dropdown-content a {
-    color: black;
-    padding: 8px;
-    text-decoration: none;
-    display: block;
-}
-
-#dropdown-content a:hover {
-    background-color: #FAFAFA;
-    border-radius: 5px;
-}
-
-#dropdown:hover #dropdown-content {
-    display: block;
-}
-
-#headerInnerR img {
-    margin-left: 60px;
+  color: #1abc9c;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
 #reservationWrap {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 1194px;
-    height: 840px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1194px;
+  height: 540px;
 }
 
 #deptWrap {
-    margin-top: 40px;
-    width: 348px;
+  margin-top: 40px;
+  width: 348px;
+  z-index: 1;
 }
 
 #selectDept {
-    display: flex;
-    width: 318px;
-    height: 40px;
-    margin-top: 80px;
-    font-size: 24px;
+  display: flex;
+  width: 318px;
+  height: 40px;
+  margin-top: 80px;
+  font-size: 24px;
 }
 
 .college {
-    line-height: 40px;
-    font-size: 14px;
-    width: 308px;
-    cursor: pointer;
-    border-left: 1px solid #EAEAEA;
-    border-right: 1px solid #EAEAEA;
-    padding-left: 10px;
-    background: white;
+  line-height: 40px;
+  font-size: 14px;
+  width: 308px;
+  cursor: pointer;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+  padding-left: 10px;
+  background: white;
 }
 
 .college:hover {
-    background: #1abc9c;
-    color: white;
+  background: #1abc9c;
+  color: white;
 }
 
 .college:first-child {
-    border-top: 1px solid #EAEAEA;
-    border-radius: 5px 5px 0px 0px;
+  border-top: 1px solid #eaeaea;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .college:last-child {
-    border-bottom: 1px solid #EAEAEA;
-    border-radius: 0px 0px 5px 5px;
+  border-bottom: 1px solid #eaeaea;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .deptList {
-    width: 304px;
-    background: #F5F5F5;
-    padding-left: 10px;
-    margin-left: -10px;
-    border-left: 4px solid #F5F5F5;
+  width: 304px;
+  background: #f5f5f5;
+  padding-left: 10px;
+  margin-left: -10px;
+  border-left: 4px solid #f5f5f5;
 }
 
 .dept {
-    color: black;
+  color: black;
 }
 
 .profListWrap {
-    display: table-cell;
+  display: table-cell;
 }
 
 .profList {
-    width: 816px;
-    margin: 0 auto;
-    border: 1px solid #EAEAEA;
-    border-radius: 5px;
+  width: 816px;
+  margin: 0 auto;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
 }
 
 .profList th,
 .profList td {
-    padding: 10px;
-    font-size: 14px;
+  padding: 10px;
+  font-size: 14px;
 }
 
 .profList td {
-    text-align: center;
+  text-align: center;
 }
 
 #profInfo a {
-    color: #2575AF;
+  color: #2575af;
 }
 
 #selectProf a {
-    color: #CE2E2E;
+  color: #ce2e2e;
 }
 
 #profInfo a:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #selectProf a:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #messageInner {
-    display: block;
-    width: 816px;
-    height: 840px;
+  display: block;
+  width: 816px;
+  height: 840px;
 }
 
 #reservationBodyBg {
-    background: #FAFAFA;
+  background: #fafafa;
 }
 
 #profListWrap {
-    width: 816px;
-    height: 700px;
-    font-size: 18px;
-    color: #3E454D;
+  width: 816px;
+  height: 700px;
+  font-size: 18px;
+  color: #3e454d;
 }
 
 #messageInnerWrap {
-    height: 648px;
+  height: 648px;
 }
 
 .profList th {
-    font-size: 14px;
-    text-align: center;
-    background: white;
+  font-size: 14px;
+  text-align: center;
+  background: white;
 }
 
 .profList td {
-    font-size: 14px;
-    text-align: center;
-    background: white;
+  font-size: 14px;
+  text-align: center;
+  background: white;
 }
 
 #infoBox {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 #infoBtn {
-    color: white;
-    font-size: 16px;
-    border: none;
-    background: none;
-}
-
-#infoBtn:hover {
-	cursor: pointer;
+  color: white;
+  font-size: 16px;
+  border: none;
+  background: none;
 }
 
 #infoBox-content {
-    padding: 20px 80px;
-    display: none;
-    position: absolute;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    border: 1px solid white;
-    background: white;
-    border-radius: 5px;
+  padding: 20px 10px;
+  width: 274px;
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border: 1px solid white;
+  background: white;
+  border-radius: 5px;
 }
 
 #infoBox-content p {
-    color: #3E454D;
-    text-decoration: none;
-    display: block;
-    padding-bottom: 20px;
+  color: #3e454d;
+  text-decoration: none;
+  display: block;
+  padding-bottom: 20px;
 }
 
 #infoBox:hover #infoBox-content {
-    display: block;
+  display: block;
 }
 
 #infoTitle {
-    color: #1abc9c;
+  color: #1abc9c;
 }
 
 #banner {
-    display: table;
-    margin: 0 auto;
-    width: 100%;
-    height: 120px;
-    background-color: white;
-    border-radius: 5px;
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+  height: 120px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 #banner div {
-    display: table-cell;
-    width: 1920px;
-    height: 100%;
-    background: white;
-    text-align: center;
-    font-size: 24px;
-    color: #333330;
-    font-family: 'Noto Sans KR', sans-serif;
-    vertical-align: middle;
+  display: table-cell;
+  width: 1920px;
+  height: 100%;
+  background: white;
+  text-align: center;
+  font-size: 24px;
+  color: #333330;
+  font-family: 'Noto Sans KR', sans-serif;
+  vertical-align: middle;
 }
 
 #checkBtn:hover {
-    display: block;
-    padding: 4px 8px;
-    margin: 0 auto;
-    border: 1px solid #1abc9c;
-    color: #1abc9c;
-    background: white;
-    border-radius: 30px;
-    cursor: pointer;
+  display: block;
+  padding: 4px 8px;
+  margin: 0 auto;
+  border: 1px solid #1abc9c;
+  color: #1abc9c;
+  background: white;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 #checkBtn {
-    display: block;
-    padding: 4px 8px;
-    margin: 0 auto;
-    background: #1abc9c;
-    border: 1px solid #1abc9c;
-    color: white;
-    border-radius: 30px;
+  display: block;
+  padding: 4px 8px;
+  margin: 0 auto;
+  background: #1abc9c;
+  border: 1px solid #1abc9c;
+  color: white;
+  border-radius: 30px;
 }
 
 #reservationBodyBg {
-    background: #FAFAFA;
+  background: #fafafa;
 }
 
 #blankDiv {
-    width: 60px;
+  width: 60px;
+}
+
+#searchBtn:hover {
+  cursor: pointer;
+}
+
+#recReservationBtn:hover {
+  border: 1px solid #1abc9c;
+  background: white;
+  color: #1abc9c;
+}
+
+#footer {
+  display: flex;
+  margin-top: 80px;
+  margin: 0 auto;
+  width: 100%;
+  height: 200px;
+  background: #ededed;
+  justify-content: center;
+  align-items: center;
+  color: #535353;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  z-index: 8;
+  background: white;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+#headerInner {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1194px;
+  height: 100%;
+  background: white;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+#calendar {
+  margin: 60px auto;
+  width: 1194px;
+  height: 800px;
+}
+
+.tab label {
+  padding: 14px 20px;
+  cursor: pointer;
+}
+
+.tab [type='radio'] {
+  display: none;
+}
+
+.tab [type='radio']:checked ~ label {
+  background-color: #f5f8fa;
+  border-radius: 5px;
+  color: #7e8299;
+}
+
+.tab [type='radio']:hover ~ label {
+  background-color: #f5f8fa;
+  border-radius: 5px;
+  color: #7e8299;
+}
+
+#myPageBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  color: #a1a5b7;
+  cursor: pointer;
+}
+
+#angleImg {
+  padding-left: 10px;
+}
+
+#logo {
+  width: 166px;
+  font-size: 28px;
+  font-family: 'Yellowtail', cursive;
+  cursor: pointer;
+  color: #04c8c8;
+}
+
+#right_gnb {
+  display: flex;
+  align-items: center;
+  width: 166px;
+}
+
+#bellImg {
+  margin-left: 40px;
+}
+
+#banner {
+  text-align: center;
+  z-index: 0;
+}
+
+#dropdown {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  padding: 14px;
+}
+
+#dropdown-button:hover {
+  cursor: pointer;
+}
+
+#dropdown-button div {
+  justify-content: flex-end;
+}
+
+#dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  margin-top: 14px;
+  min-width: 130px;
+  padding: 4px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+#dropdown-content a {
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  display: block;
+}
+
+#dropdown-content a:hover {
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+#dropdown:hover #dropdown-content {
+  display: block;
+}
+
+.deptList {
+  display: none;
 }
