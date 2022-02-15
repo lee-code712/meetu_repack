@@ -24,7 +24,7 @@
 	var consultableTimes = [[${ consultableTimes }]];
 	var reservations = [[${ reservations }]];
 	$(function() {
-		$("#fromDate").datepicker({
+		$("#choiceDate").datepicker({
 			dateFormat: 'yy-mm-dd' //달력 날짜 형태
 				,yearRange: year + ":" + (year + 1)
 				,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -39,6 +39,7 @@
 	            ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 	            ,maxDate: "+30D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
 	            ,beforeShowDay: disableAllTheseDays
+	            ,onSelect: calendarChoiceDate
 		});                    
 	  
 		//초기값을 오늘 날짜로 설정해줘야 합니다.
@@ -99,7 +100,7 @@
 				<div id="navRContentWrap">
 					<div id="pickPeriodWrap">
 		                <div id="pickPeriodInner">
-		                    <input type="text" name="fromDate" id="fromDate" placeholder="상담 날짜" onfocus="this.blur()" />
+		                    <input type="text" name="choiceDate" id="choiceDate" placeholder="상담 날짜" onfocus="this.blur()" />
 		                </div>
 	            	</div>
 				</div>

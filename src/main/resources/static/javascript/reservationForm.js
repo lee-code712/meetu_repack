@@ -56,10 +56,95 @@ function drawMap(responseText) {
 }
 
 /**
+ * @brief   날짜 클릭 시
+ * @details 사용자가 선택한 날짜에 체크표시를 남기고, 선택 가능한 시작시간을 출력한다.
+ */
+function calendarChoiceDate() {
+	var choiceDate = $("#choiceDate").val();
+    var contentDay = choiceDate.split('-')[2];
+
+    // startTimeBox 초기화
+	var classes = document.getElementsByClassName("startTimeBox");
+	Array.from(classes).forEach(function(c, i) {
+		$(c).css("background", "#E5E5E5");
+		$(c).css("border", "1px solid #C4C4C4");
+		$(c).css("cursor", "");
+		$(c).children("a").css("color", "black");
+		$(c).attr("isDisabled", "true");
+		$(c).off("click");
+	});
+	
+	// startTimeBox onclick 이벤트 제어
+	Array.from(consultableTimes).forEach(function(consultableTime, i) {
+		var ableDate = consultableTime.ableDate;
+		var ableTime = consultableTime.ableTime;
+		
+		let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+		var dateObj = new Date(doMonth.getFullYear(), doMonth.getMonth(), Number(contentDay));
+		
+		// 상담 가능 일자에 대하여
+		if(ableDate != null) {
+			if (dateObj.getDay() == ableDate) {			
+				var able_timeArr = ableTime.split("~"); // 상담 가능 시간 배열
+				var j = 0;
+				
+				while (classes.length > j) {
+					if($(classes[j]).attr("id") == able_timeArr[0])
+						break;
+					j++;
+				}
+				
+				while (classes.length > j) {
+					if($(classes[j]).attr("id") == able_timeArr[1])
+						break;
+					$(classes[j]).css("background", "#FFFFFF");
+					$(classes[j]).attr("isDisabled", "false");
+					j++;
+				}
+			}
+		}
+		// 상담 불가능 일자(이미 예약이 있는 경우)에 대하여
+		else {
+			var disable_dateArr = disable_day.split("-"); // 예약이 차 있는 날짜 배열
+			
+			if (dateObj.getDay() == disable_date && (doMonth.getMonth() + 1) == disable_dateArr[0] && Number(contentDay) == disable_dateArr[1]) { 			
+				// 불가능 시작 시간
+				var disable_timeArr = disable_time.split("~"); // 예약이 차 있는 시간 배열
+				var j = 0;
+				
+				while (classes.length > j) {
+					if($(classes[j]).attr("id") == disable_timeArr[0])
+						break;
+					j++;
+				}
+				
+				while (classes.length > j) {
+					if($(classes[j]).attr("id") == disable_timeArr[1])
+						break;
+					$(classes[j]).attr("isDisabled", "true");
+					classes[j].style.backgroundColor = "#E5E5E5";
+					j++;
+				}
+			}
+		}
+	});
+	
+	// 각 시작시간 항목의 isDisabled속성이 false인 경우 클릭 이벤트 생성
+	Array.from(classes).forEach(function(element, i) {
+		if($(element).attr("isDisabled") == "false") {
+			$(element).click(startTimeBoxClick);
+			$(element).css("cursor", "pointer");
+		}
+	});
+}
+
+/**
  * @brief   시작시간 클릭 시
  * @details 사용자가 선택한 시작시간에 체크표시를 남기고, 선택 가능한 상담시간대를 출력한다.
  */
 function startTimeBoxClick() {
+	var today = new Date();
+	
 	// timeBox 초기화
 	$(".timeBox").css("background", "#FFFFFF");
 	$(".timeBox").css("border", "1px solid #C4C4C4");
@@ -106,19 +191,19 @@ function startTimeBoxClick() {
 		$(timeClasses[1]).attr("isDisabled", "true"); // 2시간 block (1시간만 상담 가능)
 	}
 	
-	if (schedules != null && ($(startTimeBox).attr("id") == "16:00" || $(startTimeBox).attr("id") == "17:00")) { // 17시 이후 교수 불가능한 시간대 계산
-		Array.from(schedules).forEach(function(schedule, i) {
-			var able_date = schedule.able_date;
-			var able_time = schedule.able_time;
+	if (consultableTimes != null && ($(startTimeBox).attr("id") == "16:00" || $(startTimeBox).attr("id") == "17:00")) { // 17시 이후 교수 불가능한 시간대 계산
+		Array.from(consultableTimes).forEach(function(consultableTime, i) {
+			var ableDate = consultableTime.ableDate;
+			var ableTime = consultableTime.ableTime;
 			
 			let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-			var contentDay = $("input#choiceDay").val();
+			var contentDay = $("input#choiceDate").val();
 			var dateObj = new Date(doMonth.getFullYear(), doMonth.getMonth(), Number(contentDay));
 			
 			// 상담 가능 일자에 대하여
-			if(able_date != null) {
-				if (dateObj.getDay() == able_date) {			
-					var able_timeArr = able_time.split("~"); // 상담 가능 시간 배열
+			if(ableDate != null) {
+				if (dateObj.getDay() == ableDate) {			
+					var able_timeArr = ableTime.split("~"); // 상담 가능 시간 배열
 					
 					if($(startTimeBox).attr("id") == "16:00" && able_timeArr[1] == "17:00") {
 						$(timeClasses[1]).attr("isDisabled", "true"); // 2시간 block (1시간만 상담 가능)
@@ -227,14 +312,14 @@ function reservationBtnClick() {
  * @brief   버튼들을 클릭했는지 확인
  */
 function ck_startTimeBox() {
-	if(!$("#choiceDay").attr("value")) {
+	if(!$("#choiceDate").val()) {
 		alert("상담 날짜를 먼저 선택해 주세요.");
 		return false;
 	}
 }
 
 function ck_timeBox() {
-	if(!$("#choiceDay").attr("value")) {
+	if(!$("#choiceDate").val()) {
 		alert("상담 날짜를 먼저 선택해 주세요.");
 		return false;
 	}
@@ -248,7 +333,7 @@ function ck_timeBox() {
 function ck_reservation_form() {
 	var form = document.join_form;
         
-	if(!$("#choiceDay").attr("value")) {
+	if(!$("#choiceDate").val()) {
 		alert("상담 날짜를 선택해 주세요.");
 		return false;
 	}
