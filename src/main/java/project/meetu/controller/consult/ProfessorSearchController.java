@@ -60,14 +60,26 @@ public class ProfessorSearchController {
 		return "consult/professorSearchPage";
 	}
 	
-	@PostMapping(value = "/consult/professorSearch")
-	@ResponseBody
-	public List<Professor> ProfessorSearch(HttpServletRequest req) {
-		
+	@GetMapping(value = "/consult/professorSearchByDeptNo")
+	public ModelAndView ProfessorSearch(HttpServletRequest req, ModelAndView mav) {
 		String deptNo = (String) req.getParameter("deptNo");
 		
 		List<Professor> professorList = userService.getDeptProfessors(deptNo);
+		if (professorList != null) {
+			mav.addObject("professors", professorList);
+		}
 		
-		return professorList;
+		List<College> collegeList = userService.getColleges();
+		if (collegeList != null) {
+			mav.addObject("colleges", collegeList);
+		}
+		
+		List<Department> departmentList = userService.getDepartments();
+		if (departmentList != null) {
+			mav.addObject("departments", departmentList);
+		}
+		
+		mav.setViewName("consult/professorSearchPage");
+		return mav;
 	}
 }
