@@ -114,7 +114,6 @@ function calendarChoiceDate() {
 		let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 		
 		var disable_dateArr = startDate.split(" ")[0].split("-"); // 예약이 차 있는 날짜 배열
-		console.log(startTime);
 		
 		if ((doMonth.getMonth() + 1) == Number(disable_dateArr[1]) && Number(contentDay) == Number(disable_dateArr[2])) { 			
 			// 불가능 시작 시간
@@ -183,7 +182,7 @@ function startTimeBoxClick() {
 	$(newInputElement).attr("name", "startTime");
 	$(newInputElement).attr("id", "startTime");
 	
-	var content = startTimeBox.childNodes[0].innerHTML;
+	var content = $(startTimeBox).children().first().text();
 	
 	$(newInputElement).attr("value", content);
 	
@@ -263,7 +262,7 @@ function timeBoxClick() {
 	$(newInputElement).attr("name", "consultTime");
 	$(newInputElement).attr("id", "consultTime");
 	
-	var content = timeBox.innerHTML;
+	var content = $(timeBox).children().first().text();
 	$(newInputElement).attr("value", content);
 	
 	$("#timeTitle").append(newInputElement);
@@ -299,7 +298,7 @@ function typeBtnClick() {
 	$(newInputElement).attr("name", "type");
 	$(newInputElement).attr("id", "type");
 	
-	var content = typeBtn.innerHTML;
+	var content = $(typeBtn).children().first().text();
 	$(newInputElement).attr("value", content);
 	
 	$(".typeBtnWrap").append(newInputElement);

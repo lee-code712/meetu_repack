@@ -5,6 +5,12 @@ $(document).ready(function(){ // html이 로드되면 실행됨
 	if (hasConsultableTime == 0) {
 		alert('상담이 가능한 시간대가 없습니다.');
 	}
+	if (date_check == false) {
+		alert('동일한 시간대에 예약 내역이 존재합니다.');
+	}
+	if (is_added == false) {
+		alert('예약에 실패했습니다.');
+	}
 });
 
 // college 클릭 시 slideUp/Down 이벤트 추가
