@@ -53,9 +53,9 @@ public class UserManager {
 		return userDao.findDepartmentList();
 	}
 	
-	/* 전체 과목 조회 */
-	public List<Course> getCourses() {
-		return userDao.findCourseList();
+	/* 자신의 학과에 해당하는 과목 목록 조회 */
+	public List<Course> getCoursesByDept(String userId) {
+		return userDao.findCourseListByDept(userId);
 	}
 
 	/* 학과별 교수 목록 조회 */

@@ -54,7 +54,7 @@ public class MyPageController {
 			model.addAttribute("member", memberInfo);
 		}
 		
-		List<Course> courses = userService.getCourses();
+		List<Course> courses = userService.getCoursesByDept(userId);
 		if(courses != null) {
 			model.addAttribute("courses", courses);
 		}

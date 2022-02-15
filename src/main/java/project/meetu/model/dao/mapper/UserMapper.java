@@ -27,7 +27,7 @@ public interface UserMapper {
 	
 	public List<Department> selectDepartment();
 	
-	public List<Course> selectAllCourse();
+	public List<Course> selectCourseByDeptNo(String userId);
 
 	public List<Professor> selectProfessorByDept(String deptNo);
 	

@@ -150,10 +150,14 @@
     FROM department
   </select>
   
-  <!-- 전체 과목 조회 -->
-  <select id="selectAllCourse" resultType="Course">
+  <!-- 학과에 따른 과목 조회 -->
+  <select id="selectCourseByDeptNo" parameterType="String" resultType="Course">
   	SELECT course_no, title, dept_no
   	FROM course
+  	WHERE dept_no = (SELECT dept_no
+  		FROM service_user
+  			JOIN member USING(member_no)
+  		WHERE user_id = #{userId})
   </select>
     
   <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
