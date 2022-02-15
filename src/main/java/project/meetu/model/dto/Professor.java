@@ -7,7 +7,8 @@ public class Professor {
 	private String major;
 	private String officeNo;
 	private List<Course> courses;
-	private Member memberInfo;
+	private List<ConsultableTime> consultableTimes;
+	private Member memberInfo; // memberInfo에서도 profInfo를 넣는데 필요한가?
 	private boolean isUser;
 	
 	public String getMemberNo() {
@@ -33,6 +34,12 @@ public class Professor {
 	}
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+	public List<ConsultableTime> getConsultableTimes() {
+		return consultableTimes;
+	}
+	public void setConsultableTimes(List<ConsultableTime> consultableTimes) {
+		this.consultableTimes = consultableTimes;
 	}
 	public Member getMember() {
 		return memberInfo;

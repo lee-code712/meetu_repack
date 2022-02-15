@@ -1,27 +1,28 @@
 package project.meetu.model.dto;
 
 public class ConsultableTime {
-	private int able_date;
-	private String able_time;
-	private String prof_id;
+	private int ableDate;
+	private String ableTime;
+	private String profId;
 	
-	public int getAble_date() {
-		return able_date;
+	public int getAbleDate() {
+		return ableDate;
 	}
-	public void setAble_date(int able_date) {
-		this.able_date = able_date;
+	public void setAbleDate(int ableDate) {
+		this.ableDate = ableDate;
 	}
-	public String getAble_time() {
-		return able_time;
+	public String getAbleTime() {
+		return ableTime;
 	}
-	public void setAble_time(String able_time) {
-		this.able_time = able_time;
+	public void setAbleTime(String ableTime) {
+		this.ableTime = ableTime;
 	}
-	public String getProf_id() {
-		return prof_id;
+	public String getProfId() {
+		return profId;
 	}
-	public void setProf_id(String prof_id) {
-		this.prof_id = prof_id;
+	public void setProfId(String profId) {
+		this.profId = profId;
 	}
+	
 	
 }

@@ -3,7 +3,7 @@ package project.meetu.model.dto;
 public class Department {
 	private String deptNo;
 	private String deptName;
-	private String collegeNo;
+	private String collegeNo; // College로 바꾸면 더 간편해지지 않을까..?
 	
 	public String getDeptNo() {
 		return deptNo;
