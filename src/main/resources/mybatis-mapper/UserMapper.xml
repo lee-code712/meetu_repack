@@ -3,7 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.meetu.model.dao.mapper.UserMapper">
 
-	<!-- 특정 회원정보 조회(회원의 구성원 정보 포함) -->
 	<resultMap id="userResultMap" type="ServiceUser">
 		<id column="user_id" jdbcType="VARCHAR" property="userId" javaType="string" />
 		<result column="password" jdbcType="VARCHAR" property="password" javaType="string" />
@@ -17,6 +16,46 @@
 				<id column="prof_dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 				<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
 			</association>
+		</association>
+	</resultMap>
+	
+	<resultMap id="studentMemberResultMap" type="Member">
+		<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+		<result column="role" jdbcType="INTEGER" property="role" javaType="int" />
+		<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
+		<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
+		<association property="stuInfo" column="stu_no" javaType="Student">
+			<id column="stu_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+			<result column="year" jdbcType="INTEGER" property="year" javaType="int" />
+		</association>
+		<association property="deptInfo" column="dept_no" javaType="Department">
+			<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+			<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+		</association>
+	</resultMap>
+	
+	<resultMap id="professorMemberResultMap" type="Member">
+		<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+		<result column="role" jdbcType="INTEGER" property="role" javaType="int" />
+		<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
+		<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
+		<association property="profInfo" column="prof_no" javaType="Professor">
+			<id column="prof_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+			<result column="major" jdbcType="VARCHAR" property="major" javaType="string" />
+			<result column="office_no" jdbcType="VARCHAR" property="officeNo" javaType="string" />
+			<collection property="courses" ofType="Course">
+				<id column="course_no" jdbcType="VARCHAR" property="courseNo" javaType="string" />
+				<result column="title" jdbcType="VARCHAR" property="title" javaType="string" />
+			</collection>
+			<collection property="consultableTimes" ofType="ConsultableTime">
+				<id column="able_date" jdbcType="INTEGER" property="ableDate" javaType="int" />
+				<result column="able_time" jdbcType="VARCHAR" property="ableTime" javaType="string" />
+				<result column="prof_id" jdbcType="VARCHAR" property="profId" javaType="string" />
+			</collection>
+		</association>
+		<association property="deptInfo" column="dept_no" javaType="Department">
+			<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
+			<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
 		</association>
 	</resultMap>
 		
@@ -50,27 +89,27 @@
 		</collection>
 	</resultMap>
 	
-    <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
-        SELECT user_id, password, phone, member_no,
-        	role, name, email, dept_no, dept_name
-        FROM service_user 
-        	JOIN member USING(member_no)
-        	JOIN department USING(dept_no)
-        WHERE user_id = #{userId}
-    </select>
+	<!-- 특정 회원정보 조회(회원의 구성원 정보 포함) -->
+  <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
+      SELECT user_id, password, phone, member_no,
+       role, name, email, dept_no, dept_name
+      FROM service_user 
+       JOIN member USING(member_no)
+       JOIN department USING(dept_no)
+      WHERE user_id = #{userId}
+  </select>
     
+  <select id="selectCollege" resultMap="collegeResultMap">
+      SELECT college_no, college_name
+      FROM college
+  </select>
     
-    <select id="selectCollege" resultMap="collegeResultMap">
-        SELECT college_no, college_name
-        FROM college
-    </select>
+  <select id="selectDepartment" resultMap="departmentResultMap">
+      SELECT dept_no, dept_name, college_no
+      FROM department
+  </select>
     
-    <select id="selectDepartment" resultMap="departmentResultMap">
-        SELECT dept_no, dept_name, college_no
-        FROM department
-    </select>
-    
-    <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
+  <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
 		SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
     		d.dept_name,
