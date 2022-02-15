@@ -25,12 +25,13 @@
 		<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
 		<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
 		<association property="stuInfo" column="stu_no" javaType="Student">
-			<id column="stu_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+			<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 			<result column="year" jdbcType="INTEGER" property="year" javaType="int" />
 		</association>
 		<association property="deptInfo" column="dept_no" javaType="Department">
 			<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 			<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+			<result column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
 		</association>
 	</resultMap>
 	
@@ -40,7 +41,7 @@
 		<result column="name" jdbcType="VARCHAR" property="name" javaType="string" />
 		<result column="email" jdbcType="VARCHAR" property="email" javaType="string" />
 		<association property="profInfo" column="prof_no" javaType="Professor">
-			<id column="prof_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
+			<id column="member_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 			<result column="major" jdbcType="VARCHAR" property="major" javaType="string" />
 			<result column="office_no" jdbcType="VARCHAR" property="officeNo" javaType="string" />
 			<collection property="courses" ofType="Course">
@@ -56,6 +57,7 @@
 		<association property="deptInfo" column="dept_no" javaType="Department">
 			<id column="dept_no" jdbcType="VARCHAR" property="deptNo" javaType="string" />
 			<result column="dept_name" jdbcType="VARCHAR" property="deptName" javaType="string" />
+			<result column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
 		</association>
 	</resultMap>
 		
@@ -89,7 +91,7 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 특정 회원정보 조회(회원의 구성원 정보 포함) -->
+	<!-- 특정 회원정보 조회 -->
   <select id="selectServiceUser" parameterType="String" resultMap="userResultMap">
       SELECT user_id, password, phone, member_no,
        role, name, email, dept_no, dept_name
@@ -97,6 +99,35 @@
        JOIN member USING(member_no)
        JOIN department USING(dept_no)
       WHERE user_id = #{userId}
+  </select>
+  
+  <!-- 학생 구성원 정보 조회 -->
+  <select id="selectStudentMember" parameterType="String" resultMap="studentMemberResultMap">
+      SELECT member_no, role, name, email, dept_no,
+      	year,
+      	dept_name, college_no
+      FROM member
+       JOIN service_user USING(member_no)
+       JOIN student USING(member_no)
+       JOIN department USING(dept_no)
+      WHERE user_id = #{userId}
+  </select>
+  
+  <!-- 교수 구성원 정보 조회 -->
+  <select id="selectProfessorMember" parameterType="String" resultMap="professorMemberResultMap">
+      SELECT m.member_no, m.role, m.name, m.email, m.dept_no,
+       p.major, p.office_no,
+       d.dept_name, d.college_no,
+       ct.able_date, ct.able_time, ct.prof_id,
+       co.course_no, co.title
+      FROM member m
+       FULL OUTER JOIN service_user su ON m.member_no = su.member_no
+       FULL OUTER JOIN professor p ON m.member_no = p.member_no
+       FULL OUTER JOIN department d ON m.dept_no = d.dept_no
+       FULL OUTER JOIN consultable_time ct ON su.user_id = ct.prof_id
+       FULL OUTER JOIN class cl ON m.member_no = cl.prof_no
+       FULL OUTER JOIN course co ON cl.course_no = co.course_no
+      WHERE su.user_id = #{userId}
   </select>
     
   <select id="selectCollege" resultMap="collegeResultMap">
