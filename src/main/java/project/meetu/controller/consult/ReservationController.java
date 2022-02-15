@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.ConsultManager;
@@ -70,8 +72,20 @@ public class ReservationController {
 		
 		// 같은 교수에게 예약 레코드가 있는지 여부 구함	
 		boolean isReservated = consultService.checkReservated(userId, profId);
-		if(isReservated) { 
-			return "consult/professorSearchPage?isReservated=1"; // 예약 레코드가 있는 경우 교수 선택 페이지로 리턴
+		if (isReservated) { 
+			model.addAttribute("isReservated", 1);
+			
+			List<College> collegeList = userService.getColleges();
+			if (collegeList != null) {
+				model.addAttribute("colleges", collegeList);
+			}
+			
+			List<Department> departmentList = userService.getDepartments();
+			if (departmentList != null) {
+				model.addAttribute("departments", departmentList);
+			}
+			
+			return "consult/professorSearchPage"; // 예약 레코드가 있는 경우 교수 선택 페이지로 리턴
 		}
 		
 		return "consult/reservationForm";
