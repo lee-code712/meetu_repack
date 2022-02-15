@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="/myPage/js/profInfo.js"></script>
+  <script src="/javascript/userInfoView.js"></script>
 </head>
 
 <body>
@@ -41,10 +41,7 @@
             <div id="profDeptMfText" th:text="${member.deptInfo.deptName}"></div>
           </div>
           <div id="profLocationMfWrap" th:if="${session.role == 0}">
-            <div id="profLocationContentWrap">
-              <div id="profLocationMfTit">연구실 위치</div>
-              <button id="modifyBtn" onClick="profLocationMfBtn()">수정</button>
-            </div>
+            <div id="profLocationMfTit">연구실 위치</div>
             <div id="profLocationMfText" th:text="${member.profInfo.officeNo}"></div>
           </div>
           <div id="profEmailMfWrap">
@@ -68,7 +65,7 @@
             </div>
             <div id="profSubjectMfText">
                 <div th:id="${course.courseNo}" th:each="course : ${member.profInfo.courses}">
-                   [[${course.title}]] &nbsp;<a id="rejectBtn" onClick="classRemoveBtn()">x</a>
+                   [[${course.title}]] &nbsp;<a id="rejectBtn" onClick="|classRemoveBtn(${course.title})|">x</a>
                 </div>
             </div>
           </div>

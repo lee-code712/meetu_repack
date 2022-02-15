@@ -141,13 +141,13 @@
   </select>
     
   <select id="selectCollege" resultMap="collegeResultMap">
-      SELECT college_no, college_name
-      FROM college
+    SELECT college_no, college_name
+    FROM college
   </select>
     
   <select id="selectDepartment" resultMap="departmentResultMap">
-      SELECT dept_no, dept_name, college_no
-      FROM department
+    SELECT dept_no, dept_name, college_no
+    FROM department
   </select>
     
   <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
@@ -163,15 +163,15 @@
 		WHERE m.dept_no = #{deptNo}
 	</select>
     
-    <select id="selectServiceUserByMemberNo" parameterType="String" resultMap="userResultMap">
-        SELECT user_id, password, phone, member_no,
-        	role, name, email, dept_no
-        FROM service_user JOIN member USING(member_no)
-        WHERE member_no = #{memberNo}
-    </select>
+  <select id="selectServiceUserByMemberNo" parameterType="String" resultMap="userResultMap">
+      SELECT user_id, password, phone, member_no,
+      	role, name, email, dept_no
+      FROM service_user JOIN member USING(member_no)
+      WHERE member_no = #{memberNo}
+  </select>
     
-    <select id="selectProfessorByKeyword" parameterType="String" resultMap="professorResultMap">
-    	SELECT p.member_no AS prof_no, p.major, p.office_no, 
+  <select id="selectProfessorByKeyword" parameterType="String" resultMap="professorResultMap">
+      SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
     		d.dept_name,
     		co.course_no, co.title
@@ -180,11 +180,11 @@
     		JOIN department d ON m.dept_no = d.dept_no
     		JOIN class cl ON cl.prof_no = p.member_no
     		JOIN course co ON co.course_no = cl.course_no
-    	where m.name LIKE #{keyword} OR replace(p.major, ' ', '') LIKE #{keyword} OR m.dept_no IN (SELECT dept_no FROM department WHERE dept_name LIKE #{keyword})
+    	WHERE m.name LIKE #{keyword} OR replace(p.major, ' ', '') LIKE #{keyword} OR m.dept_no IN (SELECT dept_no FROM department WHERE dept_name LIKE #{keyword})
     </select>
     
-    <select id="selectProfessorByMemberNo" parameterType="String" resultMap="professorResultMap">
-        SELECT p.member_no AS prof_no, p.major, p.office_no, 
+  <select id="selectProfessorByMemberNo" parameterType="String" resultMap="professorResultMap">
+    SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
     		d.dept_name,
     		co.course_no, co.title
@@ -194,5 +194,47 @@
     		JOIN class cl ON cl.prof_no = p.member_no
     		JOIN course co ON co.course_no = cl.course_no
 		WHERE m.member_no = #{memberNo}
-    </select>
+  </select>
+  
+  <!-- 이메일 변경 -->
+  <update id="updateEmail" parameterType="String">
+  	UPDATE member
+		SET email = #{email}
+		WHERE member_no = (SELECT member_no 
+			FROM service_user JOIN member USING(user_id) 
+			WHERE user_id = #{id})
+  </update>
+  
+  <!-- 전공 변경 -->
+  <update id="updateMajor" parameterType="String">
+  	UPDATE professor
+		SET major = #{major}
+		WHERE member_no = (SELECT member_no 
+			FROM service_user JOIN member USING(user_id) 
+			WHERE user_id = #{id})
+  </update>
+  
+  <!-- 담당과목 추가 -->
+  <insert id="insertClass" parameterType="Course">
+		INSERT class 
+		VALUES (#{courseNo}, #{profNo})
+	</insert>
+	
+	<!-- 담당과목 삭제 -->
+	<delete id="deleteClass" parameterType="Course">
+		DELETE FROM class
+		WHERE course_no = #{courseNo} AND prof_no = #{profNo}
+	</delete>
+	
+	<!-- 상담가능시간 추가 -->
+	<insert id="insertConsultableTime" parameterType="ConsultableTime">
+		INSERT class 
+		VALUES (#{ableDate}, #{ableTime}, #{profId})
+	</insert>
+	
+	<!-- 상담가능시간 삭제 -->
+	<delete id="deleteConsultableTime" parameterType="ConsultableTime">
+		DELETE FROM consultable_time
+		WHERE able_date = #{ableDate} AND able_time = #{ableTime} AND prof_id = #{profId}
+	</delete>
 </mapper>

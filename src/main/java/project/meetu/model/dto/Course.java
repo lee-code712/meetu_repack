@@ -4,6 +4,7 @@ public class Course {
 	private String courseNo;
 	private String title;
 	private String deptNo;
+	private String profNo; // class table의 column을 통합
 	
 	public String getCourseNo() {
 		return courseNo;

@@ -56,4 +56,5 @@ public class MyPageController {
 		return "user/userInfoView";
 	
 	}
+	
 }
