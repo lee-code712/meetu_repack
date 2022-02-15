@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.ConsultableTime;
 
 @Mapper
 public interface ConsultMapper {
@@ -18,4 +19,5 @@ public interface ConsultMapper {
 	
 	public List<Consult> selectConsultByStuIdAndProfId(@Param("stuId") String stuId, @Param("profId") String profId);
 	
+	public List<ConsultableTime> selectConsultableTimeByUser(String profId);
 }

@@ -1,6 +1,9 @@
 $(document).ready(function(){ // html이 로드되면 실행됨 
-	if(isReservated) {
+	if (isReservated) {
 		alert('이미 상담 예약이 신청된 교수님입니다.');
+	}
+	if (hasConsultableTime == 0) {
+		alert('상담이 가능한 시간대가 없습니다.');
 	}
 });
 

@@ -3,6 +3,7 @@ package project.meetu.model.dao;
 import java.util.List;
 
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.ConsultableTime;
 
 public interface ConsultDAO {
 
@@ -17,4 +18,7 @@ public interface ConsultDAO {
 
 	// 특정 학생-교수 간 예약 레코드 존재 여부
 	boolean checkDuplicatedConsultion(String stuId, String profId);
+
+	// 특정 교수의 상담 가능 시간 반환
+	List<ConsultableTime> findConsultableTimeList(String profId);
 }

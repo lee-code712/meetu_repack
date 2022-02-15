@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import project.meetu.model.dao.ConsultDAO;
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.ConsultableTime;
 
 @Service
 public class ConsultManager {
@@ -51,5 +52,21 @@ public class ConsultManager {
 	/* 특정 학생-교수 간 예약 레코드 존재 여부 */
 	public boolean checkReservated(String stuId, String profId) {
 		return consultDao.checkDuplicatedConsultion(stuId, profId);
+	}
+
+	/* 특정 교수의 상담 가능 시간 반환 */
+	public List<ConsultableTime> getConsultableTimes(String profId) {
+		return consultDao.findConsultableTimeList(profId);
+	}
+
+	/* 특정 교수의 예약 대기, 예약 확정 상담 반환 */
+	public List<Consult> getUndoneReservation(String profId) {
+		List<Consult> consultList = consultDao.findConsultList(profId);
+		for (int i = 0; i < consultList.size(); i++) {
+			if (consultList.get(i).getStatus() != 0 && consultList.get(i).getStatus() != 1) {
+				consultList.remove(i);
+			}
+		}
+		return consultList;
 	}
 }
