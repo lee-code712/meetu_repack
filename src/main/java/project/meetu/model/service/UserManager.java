@@ -120,5 +120,17 @@ public class UserManager {
 		}
 	}
 	
+	/* item에 해당하는 컬럼 값 변경 */
+	public boolean changeinfoByItem(String item, String value, String userId) {
+		if (item.equals("email")) {
+			return userDao.changeEmail(value, userId);
+		}
+		else if (item.equals("major")) {
+			return userDao.changeMajor(value, userId);
+		}
+		else {
+			return false;
+		}
+	}
 	
 }

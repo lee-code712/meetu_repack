@@ -37,4 +37,10 @@ public interface UserDAO {
 	
 	// memberNo에 해당하는 교수 검색
 	Professor findProfessorByMemberNo(String memberNo);
+	
+	// 이메일 변경
+	boolean changeEmail(String value, String userId);
+	
+	// 전공 변경
+	boolean changeMajor(String value, String userId);
 }

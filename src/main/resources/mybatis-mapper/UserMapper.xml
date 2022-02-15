@@ -201,7 +201,7 @@
   	UPDATE member
 		SET email = #{email}
 		WHERE member_no = (SELECT member_no 
-			FROM service_user JOIN member USING(user_id) 
+			FROM service_user JOIN member USING(member_no) 
 			WHERE user_id = #{id})
   </update>
   
@@ -210,7 +210,7 @@
   	UPDATE professor
 		SET major = #{major}
 		WHERE member_no = (SELECT member_no 
-			FROM service_user JOIN member USING(user_id) 
+			FROM service_user JOIN member USING(member_no) 
 			WHERE user_id = #{id})
   </update>
   

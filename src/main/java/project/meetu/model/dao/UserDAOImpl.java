@@ -71,5 +71,21 @@ public class UserDAOImpl implements UserDAO {
 	public Professor findProfessorByMemberNo(String memberNo) {
 		return userMapper.selectProfessorByMemberNo(memberNo);
 	}
+
+	// 이메일 변경
+	@Override
+	public boolean changeEmail(String value, String userId) {
+		int ck = userMapper.updateEmail(value, userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 전공 변경
+	@Override
+	public boolean changeMajor(String value, String userId) {
+		int ck = userMapper.updateMajor(value, userId);
+		if (ck > 0) return true;
+		return false;
+	}
 	
 }

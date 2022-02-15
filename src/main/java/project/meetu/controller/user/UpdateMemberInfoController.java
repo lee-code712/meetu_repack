@@ -1,8 +1,12 @@
 package project.meetu.controller.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.meetu.model.service.UserManager;
 
@@ -17,10 +21,17 @@ public class UpdateMemberInfoController {
 	}
 	
 	@GetMapping("/user/my/changeInfo")
-	public String changeInfo(String item, String value) {
+	public String changeInfo(String item, String value, HttpServletRequest req, RedirectAttributes rttr) {
 		
+		HttpSession session = req.getSession();
+		String userId = (String) session.getAttribute("id");
 		
-		return "redirect:/user/my/Info";
+		boolean success = userService.changeinfoByItem(item, value, userId);
+		if (!success) {
+			rttr.addFlashAttribute("changeFailed", true);
+		}
+		
+		return "redirect:/user/my/info";
 		
 	}
 }
