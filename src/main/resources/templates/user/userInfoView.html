@@ -21,7 +21,7 @@
         <div id="navLTit"></div>
         <div id="navListWrap">
           <div id="userImgWrap"></div>
-          <div id="profMfName">${mem_dto.getName()}</div>
+          <div id="profMfName" th:text="${member.name}"></div>
           <div id="navList">${univ_dto.getUnivName()}</div>
           <div id="profDataMfBtnWrap">
             <button id="backBtn" onClick="location.href='/user/my'">닫기</button>
@@ -33,7 +33,7 @@
         <div id="navRTit">내 정보</div>
         <div id="navRContentWrap">
           <div id="profNameMfWrap">
-            <div id="profNameMfTit">교수명</div>
+            <div id="profNameMfTit">이름</div>
             <div id="profNameMfText">${param.name}</div>
           </div>
           <div id="profDeptMfWrap">

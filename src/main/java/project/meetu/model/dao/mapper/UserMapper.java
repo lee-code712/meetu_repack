@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 
@@ -13,6 +14,10 @@ import project.meetu.model.dto.ServiceUser;
 public interface UserMapper {
 
 	public ServiceUser selectServiceUser(String userId);
+	
+	public Member selectStudentMember(String userId);
+	
+	public Member selectProfessorMember(String userId);
 	
 	public List<College> selectCollege();
 	

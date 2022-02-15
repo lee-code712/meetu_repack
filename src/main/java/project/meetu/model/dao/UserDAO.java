@@ -5,6 +5,7 @@ import java.util.List;
 
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 
@@ -15,6 +16,12 @@ public interface UserDAO {
 	
 	// memberNo에 해당하는 회원 조회
 	ServiceUser findUserByMemberNo(String memberNo);
+	
+	// 학생 구성원 정보 조회
+	Member findStudentMember(String userId);
+	
+	// 교수 구성원 정보 조회
+	Member findProfessorMember(String userId);
 	
 	// 전체 단대 조회
 	List<College> findCollegeList();

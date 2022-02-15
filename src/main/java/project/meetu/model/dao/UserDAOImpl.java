@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.dao.mapper.UserMapper;
@@ -21,6 +22,18 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public ServiceUser findUser(String userId) {
 		return userMapper.selectServiceUser(userId);
+	}
+	
+	// 학생 구성원 정보 조회
+	@Override
+	public Member findStudentMember(String userId) {
+		return userMapper.selectStudentMember(userId);
+	}
+
+	// 교수 구성원 정보 조회
+	@Override
+	public Member findProfessorMember(String userId) {
+		return userMapper.selectProfessorMember(userId);
 	}
 	
 	// 전체 단대 조회
@@ -57,5 +70,6 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Professor findProfessorByMemberNo(String memberNo) {
 		return userMapper.selectProfessorByMemberNo(memberNo);
-	}	
+	}
+	
 }

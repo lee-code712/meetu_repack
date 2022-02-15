@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.exception.LoginException;
@@ -104,5 +105,18 @@ public class UserManager {
 	public ServiceUser getUserByMemberNo(String memberNo) {
 		ServiceUser serviceUser = userDao.findUserByMemberNo(memberNo);
 		return serviceUser;
+	}
+	
+	/* 현재 사용자의 구성원 정보 조회 */
+	public Member getMemberInfo(String userId, int role) {
+		if (role == 1) {
+			return userDao.findStudentMember(userId);
+		}
+		else if (role == 0) {
+			return userDao.findProfessorMember(userId);
+		}
+		else {
+			return null;
+		}
 	}
 }
