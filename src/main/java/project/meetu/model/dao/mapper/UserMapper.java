@@ -10,6 +10,7 @@ import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
+import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 
@@ -47,4 +48,6 @@ public interface UserMapper {
 	public int insertConsultableTime(ConsultableTime consultableTime);
 	
 	public int deleteConsultableTime(ConsultableTime consultableTime);
+
+	public Office selectOfficeByProfId(String memberNo);
 }

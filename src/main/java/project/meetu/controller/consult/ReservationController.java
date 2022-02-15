@@ -3,6 +3,7 @@ package project.meetu.controller.consult;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.accessibility.AccessibleStreamable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Department;
+import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.ConsultManager;
@@ -71,6 +73,12 @@ public class ReservationController {
 		String profId = profUser.getUserId();
 		if (profId != null) {
 			mav.addObject("profId", profId);
+		}
+		
+		// 연구실 정보
+		Office officeInfo = userService.getOfficeByProfId(profUser.getMemberInfo().getMemberNo());
+		if (officeInfo != null) {
+			mav.addObject("coordinates", officeInfo);
 		}
 
 		// 예약 페이지에서 보일 교수 정보

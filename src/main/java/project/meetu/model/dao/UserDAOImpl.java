@@ -9,6 +9,7 @@ import project.meetu.model.dto.College;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
+import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.dao.mapper.UserMapper;
@@ -109,6 +110,12 @@ public class UserDAOImpl implements UserDAO {
 		int ck = userMapper.deleteClass(courseNo, userId);
 		if (ck > 0) return true;
 		return false;
+	}
+
+	// 교수 연구실
+	@Override
+	public Office findOfficeByProfId(String memberNo) {
+		return userMapper.selectOfficeByProfId(memberNo);
 	}
 	
 }

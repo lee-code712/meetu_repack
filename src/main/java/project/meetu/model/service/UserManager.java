@@ -10,6 +10,7 @@ import project.meetu.model.dto.College;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
+import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.exception.LoginException;
@@ -150,5 +151,10 @@ public class UserManager {
 		else {
 			return false;
 		}
+	}
+	
+	/* 교수 연구실 정보 */
+	public Office getOfficeByProfId(String memberNo) {
+		return userDao.findOfficeByProfId(memberNo);
 	}
 }

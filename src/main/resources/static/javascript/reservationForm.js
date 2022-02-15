@@ -5,30 +5,11 @@ $(document).ready(function(){ // html이 로드되면 실행됨
 	$(".typeBtn").click(typeBtnClick);
 	$(".reservationBtn").click(reservationBtnClick);
 	
-	buildMap(); // 구글 맵 불러오기
+	drawMap(); // 구글 맵 불러오기
 });
 
-function buildMap() {
-	$.ajax({
-	 	type: "GET",
-		url: "/reservation/getMapInfo.jsp?office=" + office,
-		dataType: "text",
-		success: drawMap,
-		error: function(jqXHR, textStatus, errorThrown) {
-			var message = jqXHR.getResponseHeader("Status");
-			if ((message == null) || (message.length <= 0)) {
-				alert("Error! Request status is " + jqXHR.status);
-			} else {
-				alert(message);	
-			}
-		}
-	});
-}
-
-function drawMap(responseText) {
-	var coordinates = JSON.parse(responseText);
-
-	if (!jQuery.isEmptyObject(coordinates)) {
+function drawMap() {
+	if (coordinates != null) {
 		var lat;
 		var lng;
 		

@@ -249,4 +249,10 @@
 		DELETE FROM consultable_time
 		WHERE able_date = #{ableDate} AND able_time = #{ableTime} AND prof_id = #{profId}
 	</delete>
+
+	<select id="selectOfficeByProfId" parameterType="String" resultType="Office">
+    	SELECT o.office_no, longitude, latitude
+		FROM office o, professor p
+		WHERE member_no = #{memberNo} AND o.office_no = p.office_no
+  </select>
 </mapper>

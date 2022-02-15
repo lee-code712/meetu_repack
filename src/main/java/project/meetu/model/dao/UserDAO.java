@@ -7,6 +7,7 @@ import project.meetu.model.dto.College;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
+import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
 
@@ -53,4 +54,7 @@ public interface UserDAO {
 	
 	// 과목 삭제
 	boolean deleteClass(String courseNo, String userId);
+	
+	// 교수 연구실
+	Office findOfficeByProfId(String memberNo);
 }
