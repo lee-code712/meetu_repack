@@ -13,18 +13,13 @@ function drawMap() {
 		var lat;
 		var lng;
 		
-		Array.from(coordinates).forEach(function(c, idx) {
-			lat = c.latitude;
-			lng = c.longitude;
-		});
-		
-		console.log(lat, lng);
+		lat = coordinates.latitude;
+		lng = coordinates.longitude;
 		
 		var LatLng = new google.maps.LatLng(lat, lng);
 		var mapProp = {
 			center: LatLng, // 지도 중심
-			zoom: 17, // 확대 배율
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			zoom: 17 // 확대 배율
 		};
 	
 		var map = new google.maps.Map(document.getElementById("office_map"), mapProp);
@@ -33,6 +28,12 @@ function drawMap() {
 			position: LatLng,
 			map: map
 		});
+		
+		google.maps.event.addDomListener(window, "resize", function() { //리사이즈에 따른 마커 위치
+	        var center = map.getCenter();
+	        google.maps.event.trigger(map, "resize");
+	        map.setCenter(center); 
+    	});
 	}
 }
 
