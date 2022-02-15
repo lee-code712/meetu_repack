@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
@@ -54,41 +58,71 @@ public class ReservationController {
 		
 	}
 	
-	@GetMapping("/consult/reservationForm")
-	public String goReservationForm(HttpServletRequest req, Model model) {
+	@RequestMapping(value = "/consult/reservationForm", method=RequestMethod.GET) 
+	public ModelAndView goReservationForm(HttpServletRequest req, ModelAndView mav) {
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("id");
 		String profNo = (String) req.getParameter("profNo");
 		
-		// 교수의 회원 ID 구함
+		// 교수의 회원 ID
 		ServiceUser profUser = userService.getUserByMemberNo(profNo);
 		String profId = profUser.getUserId();
 		
-		// 예약 페이지에서 보일 교수 정보 반환
+		// 예약 페이지에서 보일 교수 정보
 		Professor professorInfo = userService.getProfessorByMemberNo(profNo);
 		if (professorInfo != null) {
-			model.addAttribute("professorInfo", professorInfo);
+			mav.addObject("professorInfo", professorInfo);
 		}
 		
-		// 같은 교수에게 예약 레코드가 있는지 여부 구함	
+		// 같은 교수에게 예약 레코드가 있는지 여부
 		boolean isReservated = consultService.checkReservated(userId, profId);
 		if (isReservated) { 
-			model.addAttribute("isReservated", 1);
+			mav.addObject("isReservated", 1);
 			
 			List<College> collegeList = userService.getColleges();
 			if (collegeList != null) {
-				model.addAttribute("colleges", collegeList);
+				mav.addObject("colleges", collegeList);
 			}
 			
 			List<Department> departmentList = userService.getDepartments();
 			if (departmentList != null) {
-				model.addAttribute("departments", departmentList);
+				mav.addObject("departments", departmentList);
 			}
 			
-			return "consult/professorSearchPage"; // 예약 레코드가 있는 경우 교수 선택 페이지로 리턴
+			mav.setViewName("consult/professorSearchPage");
+			return mav; // 상담 가능 시간대가 없는 경우 교수 선택 페이지로 리턴
 		}
 		
-		return "consult/reservationForm";
+		// 해당 교수의 상담 가능 시간
+		List<ConsultableTime> consultableTimeList = consultService.getConsultableTimes(profId);
+		if (consultableTimeList != null) {
+			mav.addObject("consultableTimes", consultableTimeList);
+		}
+		else {
+			mav.addObject("hasConsultableTime", 0);
+			
+			List<College> collegeList = userService.getColleges();
+			if (collegeList != null) {
+				mav.addObject("colleges", collegeList);
+			}
+			
+			List<Department> departmentList = userService.getDepartments();
+			if (departmentList != null) {
+				mav.addObject("departments", departmentList);
+			}
+			
+			mav.setViewName("consult/professorSearchPage");
+			return mav; // 상담 가능 시간대가 없는 경우 교수 선택 페이지로 리턴
+		}
+		
+		// 해당 교수의 상담 불가능 시간 (이미 예약된 시간)
+		List<Consult> reservationList = consultService.getUndoneReservation(profId);
+		if (reservationList != null) {
+			mav.addObject("reservations", reservationList);
+		}
+		
+		mav.setViewName("consult/reservationForm");
+		return mav;
 	}
 
 }

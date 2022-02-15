@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import project.meetu.model.dao.mapper.ConsultMapper;
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.ConsultableTime;
 
 @Component
 public class ConsultDAOImpl implements ConsultDAO {
@@ -47,6 +48,11 @@ public class ConsultDAOImpl implements ConsultDAO {
 		}
 
 		return flag;
+	}
+
+	@Override
+	public List<ConsultableTime> findConsultableTimeList(String profId) {
+		return consultMapper.selectConsultableTimeByUser(profId);
 	}
 	
 }

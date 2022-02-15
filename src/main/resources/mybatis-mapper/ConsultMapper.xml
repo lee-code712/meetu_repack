@@ -117,4 +117,11 @@
 			JOIN department sd ON sm.dept_no = sd.dept_no
 		WHERE c.prof_id = #{profId} AND c.stu_id = #{stuId}
 	</select>
+	
+	<!-- 특정 교수의 상담 가능 시간 -->
+	<select id="selectConsultableTimeByUser" parameterType="String" resultType="ConsultableTime">
+		SELECT able_date, able_time, prof_id
+		FROM consultable_time
+		WHERE prof_id = #{profId}
+	</select>
 </mapper>
