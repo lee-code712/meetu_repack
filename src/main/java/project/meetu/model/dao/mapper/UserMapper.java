@@ -25,6 +25,8 @@ public interface UserMapper {
 	public List<College> selectCollege();
 	
 	public List<Department> selectDepartment();
+	
+	public List<Course> selectAllCourse();
 
 	public List<Professor> selectProfessorByDept(String deptNo);
 	
@@ -38,9 +40,9 @@ public interface UserMapper {
 	
 	public int updateMajor(@Param("major") String value, @Param("id") String userId);
 	
-	public int insertClass(Course classInfo);
+	public int insertClass(@Param("courseNo") String value, @Param("id") String userId);
 	
-	public int deleteClass(Course classInfo);
+	public int deleteClass(@Param("courseNo") String value, @Param("id") String userId);
 	
 	public int insertConsultableTime(ConsultableTime consultableTime);
 	

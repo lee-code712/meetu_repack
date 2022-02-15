@@ -34,4 +34,19 @@ public class UpdateMemberInfoController {
 		return "redirect:/user/my/info";
 		
 	}
+	
+	@GetMapping("/user/my/class")
+	public String addOrRemoveClass(String type, String courseNo, HttpServletRequest req, RedirectAttributes rttr) {
+		
+		HttpSession session = req.getSession();
+		String userId = (String) session.getAttribute("id");
+		
+		boolean success = userService.addOrRemoveClass(type, courseNo, userId);
+		if (!success) {
+			rttr.addFlashAttribute("changeFailed", true);
+		}
+		
+		return "redirect:/user/my/info";
+		
+	}
 }

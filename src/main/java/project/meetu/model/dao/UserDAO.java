@@ -4,6 +4,7 @@ package project.meetu.model.dao;
 import java.util.List;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
@@ -28,6 +29,9 @@ public interface UserDAO {
 		
 	// 전체 학과 조회
 	List<Department> findDepartmentList();
+	
+	// 전체 과목 조회
+	List<Course> findCourseList();
 
 	// 학과별 교수 조회
 	List<Professor> findDeptProfessorList(String deptNo);
@@ -43,4 +47,10 @@ public interface UserDAO {
 	
 	// 전공 변경
 	boolean changeMajor(String value, String userId);
+	
+	// 과목 추가
+	boolean createClass(String courseNo, String userId);
+	
+	// 과목 삭제
+	boolean deleteClass(String courseNo, String userId);
 }
