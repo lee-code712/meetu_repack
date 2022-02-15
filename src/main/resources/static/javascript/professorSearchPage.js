@@ -3,7 +3,7 @@ $(document).ready(function(){ // html이 로드되면 실행됨
 		alert('이미 상담 예약이 신청된 교수님입니다.');
 	}
 	if (hasConsultableTime == 0) {
-		alert('상담이 가능한 시간대가 없습니다.');
+		alert('선택한 교수에 대한 상담 가능 시간대가 없습니다.');
 	}
 	if (date_check == false) {
 		alert('동일한 시간대에 예약 내역이 존재합니다.');

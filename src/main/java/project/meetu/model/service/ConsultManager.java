@@ -102,8 +102,6 @@ public class ConsultManager {
 			endTime = Integer.toString(start_timeInt + consultTimeInt);
 		}
 		String end_date = choiceDate + " " + endTime + ":00:00";
-		System.out.println("start_date: " + start_date);
-		System.out.println("end_time: " + end_date);
 
 		// 예약 DTO 생성
 		Consult consult = new Consult();
@@ -138,7 +136,7 @@ public class ConsultManager {
 
 		// 선택한 시간대에 예약 내역이 존재하는지 확인
 		boolean date_check = consultDao.checkDuplicatedConsultDate(consult.getStuUser().getUserId(), consult.getStartDate(), consult.getEndDate());
-		if (date_check) {
+		if (!date_check) {
 			return 2;
 		}
 

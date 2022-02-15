@@ -100,7 +100,7 @@ public class ReservationController {
 
 		// 해당 교수의 상담 가능 시간
 		List<ConsultableTime> consultableTimeList = consultService.getConsultableTimes(profId);
-		if (consultableTimeList != null) {
+		if (consultableTimeList != null && consultableTimeList.size() != 0) {
 			mav.addObject("consultableTimes", consultableTimeList);
 		} else {
 			mav.addObject("hasConsultableTime", 0);
@@ -130,7 +130,7 @@ public class ReservationController {
 	}
 
 	@PostMapping("/consult/reservate")
-	public String reservate(HttpServletRequest req, RedirectAttributes rttr) {
+	public String reservate(HttpServletRequest req, RedirectAttributes rttr, Model model) {
 		HttpSession session = req.getSession();
 		String choiceDate = req.getParameter("choiceDate");
 		String startTime = req.getParameter("startTime");
@@ -139,14 +139,6 @@ public class ReservationController {
 		String radio = req.getParameter("radio");
 		String profId = req.getParameter("profId");
 		String stuId = (String) session.getAttribute("id");
-
-		System.out.println("choiceDate: " + choiceDate);
-		System.out.println("startTime: " + startTime);
-		System.out.println("consultTime: " + consultTime);
-		System.out.println("typeBtn: " + typeBtn);
-		System.out.println("radio: " + radio);
-		System.out.println("profId: " + profId);
-		System.out.println("stuId: " + stuId);
 		
 		int result = consultService.makeReservation(choiceDate, startTime, consultTime, typeBtn, radio, profId, stuId);
 
@@ -154,32 +146,32 @@ public class ReservationController {
 			return "redirect:/user/my";
 		}
 		else if (result == 2) {
-			rttr.addAttribute("date_check", false);
+			model.addAttribute("date_check", false);
 			
 			List<College> collegeList = userService.getColleges();
 			if (collegeList != null) {
-				rttr.addAttribute("colleges", collegeList);
+				model.addAttribute("colleges", collegeList);
 			}
 
 			List<Department> departmentList = userService.getDepartments();
 			if (departmentList != null) {
-				rttr.addAttribute("departments", departmentList);
+				model.addAttribute("departments", departmentList);
 			}
-			return "redirect:/consult/professorSearchPage";
+			return "/consult/professorSearchPage";
 		}
 		else {
-			rttr.addAttribute("is_added", false);
+			model.addAttribute("is_added", false);
 			
 			List<College> collegeList = userService.getColleges();
 			if (collegeList != null) {
-				rttr.addAttribute("colleges", collegeList);
+				model.addAttribute("colleges", collegeList);
 			}
 
 			List<Department> departmentList = userService.getDepartments();
 			if (departmentList != null) {
-				rttr.addAttribute("departments", departmentList);
+				model.addAttribute("departments", departmentList);
 			}
-			return "redirect:/consult/professorSearchPage";
+			return "/consult/professorSearchPage";
 		}
 	}
 }
