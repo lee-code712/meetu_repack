@@ -52,7 +52,7 @@
 				<result column="title" jdbcType="VARCHAR" property="title" javaType="string" />
 			</collection>
 			<collection property="consultableTimes" ofType="ConsultableTime">
-				<id column="able_date" jdbcType="INTEGER" property="ableDate" javaType="int" />
+				<result column="able_date" jdbcType="INTEGER" property="ableDate" javaType="int" />
 				<result column="able_time" jdbcType="VARCHAR" property="ableTime" javaType="string" />
 				<result column="prof_id" jdbcType="VARCHAR" property="profId" javaType="string" />
 			</collection>
