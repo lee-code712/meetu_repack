@@ -1,0 +1,426 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background: #FAFAFA;
+}
+
+#noticeIcon:hover,
+#reserveIcon:hover,
+#messageIcon:hover {
+    cursor: pointer;
+}
+
+#noticeIcon,
+#reserveIcon,
+#messageIcon {
+    color: black;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+#title,
+#title a:link,
+#title a:visited,
+#title a:hover {
+    color: #1abc9c;
+
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+#headerInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 1194px;
+    height: 100%;
+}
+
+#headerInnerL {
+    display: flex;
+    align-items: center;
+}
+
+#title {
+    font-family: 'Yellowtail', cursive;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#gnb {
+    margin-left: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    font-size: 14px;
+}
+
+#headerInnerR {
+    display: flex;
+    align-items: center;
+}
+
+#dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    padding: 14px;
+}
+
+#dropdown-button div {
+    justify-content: flex-end;
+}
+
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    margin-top: 14px;
+    min-width: 130px;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+#dropdown-content a {
+    color: black;
+    padding: 8px;
+    text-decoration: none;
+    display: block;
+}
+
+#dropdown-content a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#dropdown:hover #dropdown-content {
+    display: block;
+}
+
+#headerInnerR img {
+    margin-left: 60px;
+}
+
+#navWrap {
+    padding-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 1194px;
+}
+
+#navL {
+    width: 318px;
+    height: 500px;
+    border-radius: 5px;
+}
+
+#navLTit {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+#navListWrap {
+    width: 100%;
+    border: 1px solid #EAEAEA;
+    background: white;
+    border-radius: 5px;
+}
+
+.navListName {
+    display: flex;
+    align-items: center;
+    width: 298px;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #1abc9c;
+}
+
+.navList {
+    display: flex;
+    width: 298px;
+    height: 30px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+#office_map {
+    display: flex;
+    width: 298px;
+    height: 500px;
+    padding-left: 20px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.navListOn {
+    display: flex;
+    align-items: center;
+    width: 298px;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 14px;
+    background: #1abc9c;
+    color: white;
+}
+
+#navR {
+    width: 816px;
+    height: 500px;
+}
+
+#navRTit {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    width: 796px;
+    height: 40px;
+    font-size: 15px;
+    background: white;
+    border-radius: 5px 5px 0px 0px;
+    border: 1px solid #EAEAEA;
+}
+
+#navRContentWrap {
+    margin-bottom: 20px;
+    width: 776px;
+    padding: 20px;
+    background: white;
+    border-radius: 0px 0px 5px 5px;
+    border-bottom: 1px solid #EAEAEA;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    font-size: 14px;
+}
+
+.startTimeBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 96px;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: regular;
+    background: #E5E5E5;
+}
+
+.timeBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 96px;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: regular;
+}
+
+.typeBtnWrap {
+    display: flex;
+    margin-left: 240px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 328px;
+}
+
+.typeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 96px;
+    border: 1px solid #C4C4C4;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: regular;
+    cursor: pointer;
+}
+
+.updateBtn,
+.backBtn,
+.reservationBtn {
+    margin-top: 20px;
+    margin-left: 20px;
+    float: right;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border: 1px solid #1abc9c;
+}
+
+#topHeader {
+    width: 100%;
+    height: 34px;
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+}
+
+.updateBtn:hover,
+.backBtn:hover,
+.reservationBtn:hover {
+    cursor: pointer;
+}
+
+.timeTitle {
+    margin-bottom: 20px;
+}
+
+.timeBoxWrap {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 328px;
+}
+
+#anotherReason {
+    width: 236px;
+    border-radius: 30px;
+    border: 1px solid #C4C4C4;
+    margin-left: 20px;
+    padding: 4px 10px;
+}
+
+#topHeaderInner {
+    margin: 0 auto;
+    width: 1194px;
+    height: 100%;
+}
+
+#topHeaderInner div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    float: right;
+    color: white;
+}
+
+#calendar td {
+    text-align: center;
+    border-radius: 10px;
+}
+
+#selectBox {
+    margin-top: 20px;
+    float: right;
+}
+
+#selectOk {
+    color: #4E65B5;
+}
+
+#selectNotOk {
+    margin-left: 20px;
+    color: #DA3D3D;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.scriptCalendar {
+    text-align: center;
+    margin-left: 234px;
+}
+
+.scriptCalendar > thead > tr > td {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+}
+
+.scriptCalendar > thead > tr:first-child > td {
+    font-weight: bold;
+}
+
+.scriptCalendar > thead > tr:last-child > td {
+    background-color: #90EE90;
+}
+
+.scriptCalendar > tbody > tr > td {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+}
+
+#timeBoxesWrap,
+#reasonWrap {
+    margin-left: 240px;
+}
+
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old) {
+    width: 28px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label {
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 28px;
+    background: url('../../images/checkImg.svg') no-repeat 0 0;
+    line-height: 24px;
+}
+
+input[type=checkbox]:not(old):checked + label {
+    background-position: 0 -24px;
+}
+
+input[type=radio]:not(old):checked + label {
+    background-position: 0 -48px;
+}
+
+#noticeImg {
+    width: 14px;
+    height: 14px;
+}
+
+#noticeImg:hover {
+    cursor: pointer;
+}
+
+
+#blankDiv {
+    width: 60px;
+}

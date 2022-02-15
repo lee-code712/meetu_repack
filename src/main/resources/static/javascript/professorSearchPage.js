@@ -187,5 +187,6 @@ function updatePage(professors) {
 }
 
 function selectProf() {
-	
+	var profNo = event.currentTarget.closest("tr").id;
+	location.href = "reservationForm?profNo=" + profNo;
 }

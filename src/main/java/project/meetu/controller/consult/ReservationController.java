@@ -41,5 +41,11 @@ public class ReservationController {
 		return "redirect:/user/my";
 		
 	}
+	
+	@GetMapping("/consult/reservationForm")
+	public String goReservationForm(@RequestParam("profNo") String profNo, Model model) {
+		
+		return "consult/reservationForm";
+	}
 
 }
