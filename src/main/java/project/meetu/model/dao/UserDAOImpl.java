@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
@@ -47,6 +48,12 @@ public class UserDAOImpl implements UserDAO {
 	public List<Department> findDepartmentList() {
 		return userMapper.selectDepartment();
 	}
+	
+	// 전체 과목 조회
+	@Override
+	public List<Course> findCourseList() {
+		return userMapper.selectAllCourse();
+	}
 
 	// 학과별 교수 조회
 	@Override
@@ -84,6 +91,22 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean changeMajor(String value, String userId) {
 		int ck = userMapper.updateMajor(value, userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 과목 추가
+	@Override
+	public boolean createClass(String courseNo, String userId) {
+		int ck = userMapper.insertClass(courseNo, userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 과목 삭제
+	@Override
+	public boolean deleteClass(String courseNo, String userId) {
+		int ck = userMapper.deleteClass(courseNo, userId);
 		if (ck > 0) return true;
 		return false;
 	}

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import project.meetu.model.dto.Consult;
+import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Member;
 import project.meetu.model.service.ConsultManager;
 import project.meetu.model.service.UserManager;
@@ -51,6 +52,11 @@ public class MyPageController {
 		Member memberInfo = userService.getMemberInfo(userId, role);
 		if (memberInfo != null) {
 			model.addAttribute("member", memberInfo);
+		}
+		
+		List<Course> courses = userService.getCourses();
+		if(courses != null) {
+			model.addAttribute("courses", courses);
 		}
 		
 		return "user/userInfoView";

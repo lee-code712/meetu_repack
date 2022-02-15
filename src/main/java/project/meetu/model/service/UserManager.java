@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Professor;
@@ -49,6 +50,11 @@ public class UserManager {
 	/* 전체 학과 조회 */
 	public List<Department> getDepartments() {
 		return userDao.findDepartmentList();
+	}
+	
+	/* 전체 과목 조회 */
+	public List<Course> getCourses() {
+		return userDao.findCourseList();
 	}
 
 	/* 학과별 교수 목록 조회 */
@@ -133,4 +139,16 @@ public class UserManager {
 		}
 	}
 	
+	/* 과목 추가 또는 삭제 */
+	public boolean addOrRemoveClass(String type, String courseNo, String userId) {
+		if (type.equals("add")) {
+			return userDao.createClass(courseNo, userId);
+		}
+		else if (type.equals("remove")) {
+			return userDao.deleteClass(courseNo, userId);
+		}
+		else {
+			return false;
+		}
+	}
 }

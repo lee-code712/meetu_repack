@@ -149,6 +149,12 @@
     SELECT dept_no, dept_name, college_no
     FROM department
   </select>
+  
+  <!-- 전체 과목 조회 -->
+  <select id="selectAllCourse" resultType="Course">
+  	SELECT course_no, title, dept_no
+  	FROM course
+  </select>
     
   <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
 		SELECT p.member_no AS prof_no, p.major, p.office_no, 
@@ -215,20 +221,26 @@
   </update>
   
   <!-- 담당과목 추가 -->
-  <insert id="insertClass" parameterType="Course">
-		INSERT class 
-		VALUES (#{courseNo}, #{profNo})
+  <insert id="insertClass" parameterType="String">
+		INSERT INTO class (course_no, prof_no)
+		SELECT c.course_no, m.member_no AS prof_no
+		FROM service_user su
+			JOIN member m ON su.member_no = m.member_no
+			JOIN course c ON m.dept_no = c.dept_no 
+		WHERE course_no = #{courseNo} AND user_id = #{id}
 	</insert>
 	
 	<!-- 담당과목 삭제 -->
-	<delete id="deleteClass" parameterType="Course">
+	<delete id="deleteClass" parameterType="String">
 		DELETE FROM class
-		WHERE course_no = #{courseNo} AND prof_no = #{profNo}
+		WHERE course_no = #{courseNo} AND prof_no = (SELECT member_no 
+			FROM service_user JOIN member USING(member_no) 
+			WHERE user_id = #{id})
 	</delete>
 	
 	<!-- 상담가능시간 추가 -->
 	<insert id="insertConsultableTime" parameterType="ConsultableTime">
-		INSERT class 
+		INSERT INTO consultable_time 
 		VALUES (#{ableDate}, #{ableTime}, #{profId})
 	</insert>
 	
