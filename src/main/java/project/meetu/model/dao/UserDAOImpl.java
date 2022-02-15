@@ -49,10 +49,10 @@ public class UserDAOImpl implements UserDAO {
 		return userMapper.selectDepartment();
 	}
 	
-	// 전체 과목 조회
+	// 학과에 따른 과목 조회
 	@Override
-	public List<Course> findCourseList() {
-		return userMapper.selectAllCourse();
+	public List<Course> findCourseListByDept(String userId) {
+		return userMapper.selectCourseByDeptNo(userId);
 	}
 
 	// 학과별 교수 조회

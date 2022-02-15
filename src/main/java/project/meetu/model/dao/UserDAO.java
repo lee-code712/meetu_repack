@@ -30,8 +30,8 @@ public interface UserDAO {
 	// 전체 학과 조회
 	List<Department> findDepartmentList();
 	
-	// 전체 과목 조회
-	List<Course> findCourseList();
+	// 학과에 따른 과목 조회
+	List<Course> findCourseListByDept(String userId);
 
 	// 학과별 교수 조회
 	List<Professor> findDeptProfessorList(String deptNo);
