@@ -69,7 +69,10 @@ public class ReservationController {
 		}
 		
 		// 같은 교수에게 예약 레코드가 있는지 여부 구함	
-		// boolean is_reservated = consultService.isReservatedProfessor(userId, profId);
+		boolean isReservated = consultService.checkReservated(userId, profId);
+		if(isReservated) { 
+			return "consult/professorSearchPage?isReservated=1"; // 예약 레코드가 있는 경우 교수 선택 페이지로 리턴
+		}
 		
 		return "consult/reservationForm";
 	}

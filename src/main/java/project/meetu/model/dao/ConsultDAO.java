@@ -14,4 +14,7 @@ public interface ConsultDAO {
 	
 	// 예약 상태 변경
 	boolean changeStatus(Consult reservation);
+
+	// 특정 학생-교수 간 예약 레코드 존재 여부
+	boolean checkDuplicatedConsultion(String stuId, String profId);
 }

@@ -47,4 +47,9 @@ public class ConsultManager {
 	public boolean changeReservationStatus(Consult reservation) {
 		return consultDao.changeStatus(reservation);
 	}
+	
+	/* 특정 학생-교수 간 예약 레코드 존재 여부 */
+	public boolean checkReservated(String stuId, String profId) {
+		return consultDao.checkDuplicatedConsultion(stuId, profId);
+	}
 }

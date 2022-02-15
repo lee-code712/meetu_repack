@@ -1,3 +1,9 @@
+$(document).ready(function(){ // html이 로드되면 실행됨 
+	if(isReservated) {
+		alert('이미 상담 예약이 신청된 교수님입니다.');
+	}
+});
+
 // college 클릭 시 slideUp/Down 이벤트 추가
 $('.college').click(function() {
 	$('.deptList').slideUp();

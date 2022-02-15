@@ -33,5 +33,20 @@ public class ConsultDAOImpl implements ConsultDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+
+	// 특정 학생-교수 간 예약 레코드 존재 여부
+	@Override
+	public boolean checkDuplicatedConsultion(String stuId, String profId) {
+		List<Consult> consultList = consultMapper.selectConsultByStuIdAndProfId(stuId, profId);
+		boolean flag = false;
+		
+		for (Consult c : consultList) {
+			if (c.getStatus() == 0 || c.getStatus() == 1) {
+				flag = true;
+			}
+		}
+
+		return flag;
+	}
 	
 }
