@@ -1,5 +1,6 @@
 package project.meetu.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +63,15 @@ public class ConsultManager {
 	/* 특정 교수의 예약 대기, 예약 확정 상담 반환 */
 	public List<Consult> getUndoneReservation(String profId) {
 		List<Consult> consultList = consultDao.findConsultList(profId);
-		for (int i = 0; i < consultList.size(); i++) {
-			if (consultList.get(i).getStatus() != 0 && consultList.get(i).getStatus() != 1) {
-				consultList.remove(i);
+		List<Consult> resultList = new ArrayList<Consult>();
+		
+		if (consultList != null) {
+			for (Consult consult : consultList) {
+				if (consult.getStatus() == 0 || consult.getStatus() == 1) {
+					resultList.add(consult);
+				}
 			}
 		}
-		return consultList;
+		return resultList;
 	}
 }

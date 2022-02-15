@@ -57,9 +57,10 @@ function drawMap(responseText) {
 
 /**
  * @brief   날짜 클릭 시
- * @details 사용자가 선택한 날짜에 체크표시를 남기고, 선택 가능한 시작시간을 출력한다.
+ * @details 선택 가능한 시작시간을 출력한다.
  */
 function calendarChoiceDate() {
+	var today = new Date();
 	var choiceDate = $("#choiceDate").val();
     var contentDay = choiceDate.split('-')[2];
 
@@ -103,28 +104,34 @@ function calendarChoiceDate() {
 				}
 			}
 		}
-		// 상담 불가능 일자(이미 예약이 있는 경우)에 대하여
-		else {
-			var disable_dateArr = disable_day.split("-"); // 예약이 차 있는 날짜 배열
+	});
+	
+	Array.from(reservations).forEach(function(reservation, i) {
+		var startDate = reservation.startDate;
+		var endDate = reservation.endDate;
+		var startTime = startDate.split(" ")[1].substring(0, 5);
+		var endTime = endDate.split(" ")[1].substring(0, 5);
+		let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+		
+		var disable_dateArr = startDate.split(" ")[0].split("-"); // 예약이 차 있는 날짜 배열
+		console.log(startTime);
+		
+		if ((doMonth.getMonth() + 1) == Number(disable_dateArr[1]) && Number(contentDay) == Number(disable_dateArr[2])) { 			
+			// 불가능 시작 시간
+			var j = 0;
 			
-			if (dateObj.getDay() == disable_date && (doMonth.getMonth() + 1) == disable_dateArr[0] && Number(contentDay) == disable_dateArr[1]) { 			
-				// 불가능 시작 시간
-				var disable_timeArr = disable_time.split("~"); // 예약이 차 있는 시간 배열
-				var j = 0;
-				
-				while (classes.length > j) {
-					if($(classes[j]).attr("id") == disable_timeArr[0])
-						break;
-					j++;
-				}
-				
-				while (classes.length > j) {
-					if($(classes[j]).attr("id") == disable_timeArr[1])
-						break;
-					$(classes[j]).attr("isDisabled", "true");
-					classes[j].style.backgroundColor = "#E5E5E5";
-					j++;
-				}
+			while (classes.length > j) {
+				if($(classes[j]).attr("id") == startTime)
+					break;
+				j++;
+			}
+			
+			while (classes.length > j) {
+				if($(classes[j]).attr("id") == endTime)
+					break;
+				$(classes[j]).attr("isDisabled", "true");
+				classes[j].style.backgroundColor = "#E5E5E5";
+				j++;
 			}
 		}
 	});
@@ -331,8 +338,6 @@ function ck_timeBox() {
 }
 
 function ck_reservation_form() {
-	var form = document.join_form;
-        
 	if(!$("#choiceDate").val()) {
 		alert("상담 날짜를 선택해 주세요.");
 		return false;
@@ -362,15 +367,4 @@ function ck_reservation_form() {
 		alert("기타 사유를 입력해 주세요.");
 		return false;
 	}
-}
-
-//알림 내역 확인
-function readNewAlerts() {
-	window.open("alert.do", "childform", "width=400; height=260; left=400; top=180; resizable = no;");
-	$("#noticeCount").text(0);
-}
-
-//알림 내역에서 클릭한 바로가기 페이지 url로 이동
-window.movePage = function(url) {
-	location.href = url;
 }
