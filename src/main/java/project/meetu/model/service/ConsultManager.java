@@ -30,16 +30,17 @@ public class ConsultManager {
 	/* 회원의 스케줄목록 조회 */
 	public List<Consult> getUserSchedules(String userId) {
 		List<Consult> consultList = consultDao.findConsultList(userId);
+		List<Consult> resultList = new ArrayList<Consult>();
 		
 		if (consultList != null) {
 			for (Consult consult : consultList) {
-				if (consult.getStatus() != 1 && consult.getStatus() != 3) {
-					consultList.remove(consult);
+				if (consult.getStatus() == 1 || consult.getStatus() == 3) {
+					resultList.add(consult);
 				}
 			}
 		}
 		
-		return consultList;
+		return resultList;
 	}
 	
 	/* 상담id에 대한 상세정보 조회 */
