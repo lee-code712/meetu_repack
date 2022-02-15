@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBO59kYyP7M8RIYNDEcF6_ftc1rZDQfT-A&callback=buildMap&region=kr"></script>
-  <script src="/reservation/js/reservationForm.js"></script>
+  <script src="/javascript/reservationForm.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -58,17 +58,17 @@
 				<div id="navLTit">상담예약</div>
 				<div id="navListWrap">
 					<div class="navListName">교수명</div>
-					<div class="navList" id="name">${param.name}</div>
+					<div th:text="${professorInfo.member.name}" class="navList" id="name">${param.name}</div>
 					<div class="navListName">학과</div>
-					<div class="navList" id="dept">${param.dept}</div>
+					<div th:text="${professorInfo.member.deptInfo.deptName}" class="navList" id="dept">${param.dept}</div>
 					<div class="navListName">전공</div>
-					<div class="navList" id="major">${param.major}</div>
+					<div th:text="${professorInfo.major}" class="navList" id="major">${param.major}</div>
 					<div class="navListName">담당과목</div>
-					<div class="navList" id="course">${param.course}</div>
+					<div th:each="course : ${professorInfo.courses}" th:text="${course.title}" class="navList" id="course"></div>
 					<div class="navListName">이메일</div>
-					<div class="navList" id="email">${param.email}</div>
-					<div class="navListName">연구소 위치</div>
-					<div class="navList" id="office">${param.office}</div>
+					<div th:text="${professorInfo.member.email}" class="navList" id="email">${param.email}</div>
+					<div class="navListName">연구실 위치</div>
+					<div th:text="${professorInfo.officeNo}" class="navList" id="office">${param.office}</div>
 					<div id="office_map"></div>
 				</div>
 			</div>

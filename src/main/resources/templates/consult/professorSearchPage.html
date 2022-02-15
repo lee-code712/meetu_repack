@@ -11,6 +11,7 @@
   <link th:href="@{/css/home.css}" rel="stylesheet" />
   <link th:href="@{/css/professorSearchPage.css}" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/javascript/professorSearchPage.js"></script>
 </head>
 
 <body id="reservationBodyBg">
@@ -88,7 +89,7 @@
                     </div>
                   </td>
                   <td th:if="${prof.user == true}">
-                    <button id="checkBtn">선택하기</button>
+                    <button id="checkBtn" onclick="selectProf()">선택하기</button>
                   </td>
                 </tr>
               </tbody>

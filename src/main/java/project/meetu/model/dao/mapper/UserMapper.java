@@ -23,4 +23,6 @@ public interface UserMapper {
 	public ServiceUser selectServiceUserByMemberNo(String memberNo);
 	
 	public List<Professor> selectProfessorByKeyword(String keyword);
+	
+	public Professor selectProfessorByMemberNo(String memberNo);
 }

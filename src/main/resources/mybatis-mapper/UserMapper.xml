@@ -31,7 +31,7 @@
 		<result column="college_no" jdbcType="VARCHAR" property="collegeNo" javaType="string" />
 	</resultMap>
 	
-	<resultMap id="deptProfessorsResultMap" type="Professor">
+	<resultMap id="professorResultMap" type="Professor">
 		<id column="prof_no" jdbcType="VARCHAR" property="memberNo" javaType="string" />
 		<result column="major" jdbcType="VARCHAR" property="major" javaType="string" />
 		<result column="office_no" jdbcType="VARCHAR" property="officeNo" javaType="string" />
@@ -70,7 +70,7 @@
         FROM department
     </select>
     
-    <select id="selectProfessorByDept" parameterType="String" resultMap="deptProfessorsResultMap">
+    <select id="selectProfessorByDept" parameterType="String" resultMap="professorResultMap">
 		SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
     		d.dept_name,
@@ -90,7 +90,7 @@
         WHERE member_no = #{memberNo}
     </select>
     
-    <select id="selectProfessorByKeyword" parameterType="String" resultMap="deptProfessorsResultMap">
+    <select id="selectProfessorByKeyword" parameterType="String" resultMap="professorResultMap">
     	SELECT p.member_no AS prof_no, p.major, p.office_no, 
     		m.member_no, m.email, m.dept_no, m.name,
     		d.dept_name,
@@ -101,5 +101,18 @@
     		JOIN class cl ON cl.prof_no = p.member_no
     		JOIN course co ON co.course_no = cl.course_no
     	where m.name LIKE #{keyword} OR replace(p.major, ' ', '') LIKE #{keyword} OR m.dept_no IN (SELECT dept_no FROM department WHERE dept_name LIKE #{keyword})
+    </select>
+    
+    <select id="selectProfessorByMemberNo" parameterType="String" resultMap="professorResultMap">
+        SELECT p.member_no AS prof_no, p.major, p.office_no, 
+    		m.member_no, m.email, m.dept_no, m.name,
+    		d.dept_name,
+    		co.course_no, co.title
+		FROM professor p
+    		JOIN member m ON p.member_no = m.member_no
+    		JOIN department d ON m.dept_no = d.dept_no
+    		JOIN class cl ON cl.prof_no = p.member_no
+    		JOIN course co ON co.course_no = cl.course_no
+		WHERE m.member_no = #{memberNo}
     </select>
 </mapper>

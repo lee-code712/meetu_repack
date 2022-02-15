@@ -51,5 +51,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<Professor> findProfessorListByKeyword(String keyword) {
 		return userMapper.selectProfessorByKeyword(keyword);
+	}
+
+	// memberNo에 해당하는 교수 검색
+	@Override
+	public Professor findProfessorByMemberNo(String memberNo) {
+		return userMapper.selectProfessorByMemberNo(memberNo);
 	}	
 }

@@ -45,7 +45,7 @@ function updatePage(professors) {
 	console.log(professors);
 	var idx = 1;
 	for (key in professors) {
-		var p_user_id = professors[key].memberNo;
+		var profNo = professors[key].memberNo;
 		var name = professors[key].member.name;
 		var email = professors[key].member.email;
 		var dept = professors[key].member.deptInfo.deptName;
@@ -56,7 +56,7 @@ function updatePage(professors) {
 
 		var newTrElement = document.createElement("tr");
 		// tr의 id로 교수 id 사용
-		$(newTrElement).attr("id", p_user_id);
+		$(newTrElement).attr("id", profNo);
 
 		// 번호
 		var newCountTdElement = document.createElement("td");
