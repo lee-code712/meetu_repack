@@ -36,4 +36,9 @@ public class MyPageController {
 		
 		return "user/myPage";
 	}
+	
+	@GetMapping("/user/my/info")
+	public String goUserInfoView() {
+		return "user/userInfoView";
+	}
 }
