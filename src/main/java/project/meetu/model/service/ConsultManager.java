@@ -136,7 +136,7 @@ public class ConsultManager {
 		consult.setStuUser(stuUser);
 
 		// 선택한 시간대에 예약 내역이 존재하는지 확인
-		/*boolean date_check = consultDao.checkDuplicatedConsultDate(consult);
+		boolean date_check = consultDao.checkDuplicatedConsultDate(consult.getStuUser().getUserId(), consult.getStartDate(), consult.getEndDate());
 		if (date_check) {
 			return 2;
 		}
@@ -145,7 +145,7 @@ public class ConsultManager {
 		boolean is_added = consultDao.makeReservation(consult);
 		if (!is_added) {
 			return 3;
-		}*/
+		}
 		
 		return 1;
 	}

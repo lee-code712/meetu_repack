@@ -20,4 +20,8 @@ public interface ConsultMapper {
 	public List<Consult> selectConsultByStuIdAndProfId(@Param("stuId") String stuId, @Param("profId") String profId);
 	
 	public List<ConsultableTime> selectConsultableTimeByUser(String profId);
+
+	public List<Consult> selectConsultByDate(@Param("stuId") String stuId, @Param("startDate") String startDate, @Param("endDate") String endDate);
+
+	public int insertConsult(Consult consult);
 }

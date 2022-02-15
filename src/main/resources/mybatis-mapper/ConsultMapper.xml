@@ -124,4 +124,35 @@
 		FROM consultable_time
 		WHERE prof_id = #{profId}
 	</select>
+	
+	<!-- 선택한 시간대에 예약 내역이 존재하는지 확인 -->
+	<select id="selectConsultByDate" parameterType="String" resultMap="consultResultMap">
+		SELECT consult_id, start_date, end_date, reason, type, status, c.prof_id, c.stu_id, cancel_msg,
+    		pm.member_no AS prof_no, pm.name AS prof_name, pm.dept_no AS prof_dept_no,
+    		p.office_no,
+    		pd.dept_name AS prof_dept_name,
+   		 	sm.member_no AS stu_no, sm.name AS stu_name, sm.dept_no AS stu_dept_no,
+   		 	s.year,
+   		 	sd.dept_name AS stu_dept_name
+		FROM consult c 
+    		JOIN service_user pu ON c.prof_id = pu.user_id
+    		JOIN member pm ON pu.member_no = pm.member_no
+    		JOIN professor p ON pu.member_no = p.member_no
+    		JOIN department pd ON pm.dept_no = pd.dept_no 
+			JOIN service_user su ON c.stu_id = su.user_id  
+			JOIN member sm ON su.member_no = sm.member_no
+			JOIN student s ON su.member_no = s.member_no 
+			JOIN department sd ON sm.dept_no = sd.dept_no
+		WHERE c.stu_id = #{stuId} AND (status = 0 OR status = 1)
+			AND ((start_date <![CDATA[>=]]> TO_DATE(#{startDate},'YY/MM/DD HH24:MI:SS') AND start_date <![CDATA[<]]> TO_DATE(#{endDate},'YY/MM/DD HH24:MI:SS'))
+					OR (end_date > TO_DATE(#{startDate},'YY/MM/DD HH24:MI:SS') AND end_date <![CDATA[<=]]> TO_DATE(#{endDate},'YY/MM/DD HH24:MI:SS')))
+	</select>
+	
+	<!-- 예약 생성 -->
+	<insert id="insertConsult" parameterType="Consult">
+	<selectKey keyProperty="id" resultType="int" order="BEFORE"> SELECT CONSULT_SEQ.nextval FROM DUAL </selectKey>
+		INSERT INTO consult (consult_id, start_date, end_date, reason, type, status, stu_id, prof_id)
+		VALUES (#{id}, TO_DATE(#{startDate}, 'YY/MM/DD HH24:mi:ss'), TO_DATE(#{endDate}, 'YY/MM/DD HH24:mi:ss'),
+				#{reason}, #{type}, #{status}, #{stuUser.userId}, #{profUser.userId})
+	</insert>
 </mapper>

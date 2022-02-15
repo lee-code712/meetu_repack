@@ -21,4 +21,10 @@ public interface ConsultDAO {
 
 	// 특정 교수의 상담 가능 시간 반환
 	List<ConsultableTime> findConsultableTimeList(String profId);
+
+	// 선택한 시간대에 예약 내역이 존재하는지 확인
+	boolean checkDuplicatedConsultDate(String stuId, String startDate, String endDate);
+
+	// 예약 생성
+	boolean makeReservation(Consult consult);
 }

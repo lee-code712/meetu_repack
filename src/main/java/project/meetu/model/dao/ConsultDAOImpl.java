@@ -50,9 +50,29 @@ public class ConsultDAOImpl implements ConsultDAO {
 		return flag;
 	}
 
+	// 특정 교수의 상담 가능 시간 반환
 	@Override
 	public List<ConsultableTime> findConsultableTimeList(String profId) {
 		return consultMapper.selectConsultableTimeByUser(profId);
+	}
+
+	// 선택한 시간대에 예약 내역이 존재하는지 확인
+	@Override
+	public boolean checkDuplicatedConsultDate(String stuId, String startDate, String endDate) {
+		List<Consult> consultList = consultMapper.selectConsultByDate(stuId, startDate, endDate);
+		
+		if (consultList == null) {
+			return true;
+		}
+		return false;
+	}
+
+	// 예약 생성
+	@Override
+	public boolean makeReservation(Consult consult) {
+		int ck = consultMapper.insertConsult(consult);
+		if (ck > 0) return true;
+		return false;
 	}
 	
 }
