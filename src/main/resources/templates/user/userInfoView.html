@@ -22,7 +22,7 @@
         <div id="navListWrap">
           <div id="userImgWrap"></div>
           <div id="profMfName" th:text="${member.name}"></div>
-          <div id="navList">${univ_dto.getUnivName()}</div>
+          <div id="navList" th:text="'00대학교 ' + ${member.deptInfo.collegeInfo.collegeName}"></div>
           <div id="profDataMfBtnWrap">
             <button id="backBtn" onClick="location.href='/user/my'">닫기</button>
           </div>

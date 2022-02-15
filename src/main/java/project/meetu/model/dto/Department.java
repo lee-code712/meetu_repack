@@ -4,6 +4,7 @@ public class Department {
 	private String deptNo;
 	private String deptName;
 	private String collegeNo; // College로 바꾸면 더 간편해지지 않을까..?
+	private College collegeInfo;
 	
 	public String getDeptNo() {
 		return deptNo;
@@ -23,4 +24,11 @@ public class Department {
 	public void setCollegeNo(String collegeNo) {
 		this.collegeNo = collegeNo;
 	}
+	public College getCollegeInfo() {
+		return collegeInfo;
+	}
+	public void setCollegeInfo(College collegeInfo) {
+		this.collegeInfo = collegeInfo;
+	}
+	
 }
