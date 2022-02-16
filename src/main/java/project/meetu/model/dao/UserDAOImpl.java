@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
@@ -108,6 +109,22 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean deleteClass(String courseNo, String userId) {
 		int ck = userMapper.deleteClass(courseNo, userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 상담 가능 시간 추가
+	@Override
+	public boolean createConsultableTime(ConsultableTime consultableTime) {
+		int ck = userMapper.insertConsultableTime(consultableTime);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 상담 가능 시간 삭제
+	@Override
+	public boolean deleteConsultableTime(ConsultableTime consultableTime) {
+		int ck = userMapper.deleteConsultableTime(consultableTime);
 		if (ck > 0) return true;
 		return false;
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
@@ -147,6 +148,19 @@ public class UserManager {
 		}
 		else if (type.equals("remove")) {
 			return userDao.deleteClass(courseNo, userId);
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/* 상담가능시간 추가 또는 삭제 */
+	public boolean addOrRemoveConsultableTime(String type, ConsultableTime consultableTime) {
+		if (type.equals("add")) {
+			return userDao.createConsultableTime(consultableTime);
+		}
+		else if (type.equals("remove")) {
+			return userDao.deleteConsultableTime(consultableTime);
 		}
 		else {
 			return false;

@@ -4,6 +4,7 @@ package project.meetu.model.dao;
 import java.util.List;
 
 import project.meetu.model.dto.College;
+import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Member;
@@ -54,6 +55,12 @@ public interface UserDAO {
 	
 	// 과목 삭제
 	boolean deleteClass(String courseNo, String userId);
+	
+	// 상담 가능 시간 추가
+	boolean createConsultableTime(ConsultableTime consultableTime);
+	
+	// 상담 가능 시간 삭제
+	boolean deleteConsultableTime(ConsultableTime consultableTime);
 	
 	// 교수 연구실
 	Office findOfficeByProfId(String memberNo);

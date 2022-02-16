@@ -5,6 +5,17 @@ public class ConsultableTime {
 	private String ableTime;
 	private String profId;
 	
+	public ConsultableTime() {
+		super();
+	}
+
+	public ConsultableTime(int ableDate, String ableTime, String profId) {
+		super();
+		this.ableDate = ableDate;
+		this.ableTime = ableTime;
+		this.profId = profId;
+	}
+	
 	public int getAbleDate() {
 		return ableDate;
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.service.UserManager;
 
 @Controller
@@ -49,4 +50,22 @@ public class UpdateMemberInfoController {
 		return "redirect:/user/my/info";
 		
 	}
+	
+	@GetMapping("/user/my/consultableTime")
+	public String addOrRemoveConsultableTime(String type, String ableDate, String ableTime, 
+			HttpServletRequest req, RedirectAttributes rttr) {
+		
+		HttpSession session = req.getSession();
+		String userId = (String) session.getAttribute("id");
+		
+		ConsultableTime consultableTime = new ConsultableTime(Integer.parseInt(ableDate), ableTime, userId);
+		boolean success = userService.addOrRemoveConsultableTime(type, consultableTime);
+		if (!success) {
+			rttr.addFlashAttribute("changeFailed", true);
+		}
+		
+		return "redirect:/user/my/info";
+		
+	}
+	
 }
