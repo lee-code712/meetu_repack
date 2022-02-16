@@ -13,7 +13,10 @@
   <script src="/javascript/userInfoView.js"></script>
   <script th:inline="javascript">
     var courses = [[${courses}]];
-    var consultableTimes = [[${member.profInfo.consultableTimes}]];
+    var consultableTimes = null;
+    if ([[${session.role}]] == 0) {
+    	consultableTimes = [[${member.profInfo?.consultableTimes}]];
+    }
   </script>
 </head>
 
@@ -46,7 +49,7 @@
           </div>
           <div id="profLocationMfWrap" th:if="${session.role == 0}">
             <div id="profLocationMfTit">연구실 위치</div>
-            <div id="profLocationMfText" th:text="${member.profInfo.officeNo}"></div>
+            <div id="profLocationMfText" th:text="${member.profInfo?.officeNo}"></div>
           </div>
           <div id="profEmailMfWrap">
             <div id="profEmailContentWrap">
@@ -60,7 +63,7 @@
               <div id="profMajorMfTit">전공</div>
               <button id="modifyBtn" onClick="majorMfBtn()">수정</button>
             </div>
-            <div id="profMajorMfText" th:text="${member.profInfo.major}"></div>
+            <div id="profMajorMfText" th:text="${member.profInfo?.major}"></div>
           </div>
           <div id="profSubjectMfWrap" th:if="${session.role == 0}">
             <div id="profSubjectContentWrap">
@@ -68,7 +71,7 @@
               <button id="modifyBtn" onClick="subjectAddBtn()">추가</button>
             </div>
             <div id="profSubjectMfText">
-                <div th:id="${course.courseNo}" th:each="course : ${member.profInfo.courses}">
+                <div th:id="${course.courseNo}" th:each="course : ${member.profInfo?.courses}">
                    [[${course.title}]] &nbsp;<a id="rejectBtn" onclick="classRemoveBtn()">x</a>
                 </div>
             </div>
@@ -79,7 +82,7 @@
               <button id="modifyBtn" onClick="profAbleTimeAddBtn()">추가</button>
             </div>
             <div id="profAbleTimeMfText">
-            	<div th:id="${consultableTime.ableDate}" th:each="consultableTime : ${member.profInfo.consultableTimes}">
+            	<div th:id="${consultableTime.ableDate}" th:each="consultableTime : ${member.profInfo?.consultableTimes}">
             		<span th:if="${consultableTime.ableDate == 0}">일</span>
             		<span th:if="${consultableTime.ableDate == 1}">월</span> 
             		<span th:if="${consultableTime.ableDate == 2}">화</span> 

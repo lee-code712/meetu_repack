@@ -54,9 +54,11 @@ public class MyPageController {
 			model.addAttribute("member", memberInfo);
 		}
 		
-		List<Course> courses = userService.getCoursesByDept(userId);
-		if(courses != null) {
-			model.addAttribute("courses", courses);
+		if (role == 0) {
+			List<Course> courses = userService.getCoursesByDept(userId);
+			if(courses != null) {
+				model.addAttribute("courses", courses);
+			}
 		}
 		
 		return "user/userInfoView";
