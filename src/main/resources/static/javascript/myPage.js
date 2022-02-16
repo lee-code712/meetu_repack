@@ -56,7 +56,7 @@ function check() {
 			return;
 	}
 	else if(buttonType == "consultationRecordBtn") {
-		// 상담기록 페이지로 이동
+		location.href="/consult/recordConsult?consultId=" + consultId;
 	}
 }
 
@@ -82,7 +82,7 @@ function changeReservationState(data) {
 			}
 			else if(data["status"] == 3) {
 				if (confirm("상담일지를 지금 기록하시겠습니까? 기록한 내역은 학교측에 전달됩니다.\n[마이페이지]-[상담완료]에서 작성 및 수정이 가능합니다.") == true) {
-					// 상담기록 페이지 이동
+					location.href="/consult/recordConsult?consultId=" + data["id"];
 				}
 				else {
 					alert("완료되었습니다.");

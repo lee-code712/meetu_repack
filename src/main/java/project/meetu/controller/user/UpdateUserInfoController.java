@@ -12,12 +12,12 @@ import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.service.UserManager;
 
 @Controller
-public class UpdateMemberInfoController {
+public class UpdateUserInfoController {
 	
 	private final UserManager userService;
 	
 	@Autowired
-	public UpdateMemberInfoController(UserManager userService) {
+	public UpdateUserInfoController(UserManager userService) {
 		this.userService = userService;
 	}
 	
