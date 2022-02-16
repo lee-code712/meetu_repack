@@ -27,4 +27,7 @@ public interface ConsultDAO {
 
 	// 예약 생성
 	boolean makeReservation(Consult consult);
+	
+	// 상담 백업 생성
+	boolean createConsultBackup(String consultId);
 }

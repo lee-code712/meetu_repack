@@ -155,4 +155,16 @@
 		VALUES (#{id}, TO_DATE(#{startDate}, 'YY/MM/DD HH24:mi:ss'), TO_DATE(#{endDate}, 'YY/MM/DD HH24:mi:ss'),
 				#{reason}, #{type}, #{status}, #{stuUser.userId}, #{profUser.userId})
 	</insert>
+	
+	<!-- 상담 백업 생성 -->
+	<insert id="insertConsultBackup" parameterType="String">
+		INSERT INTO consult_backup (backup_id, start_date, end_date, reason, type, consult_id, stu_no, prof_no)
+		SELECT CONCAT('CB', c.consult_id) AS backup_id, c.start_date, c.end_date, c.reason, c.type, c.consult_id,
+			pu.member_no AS prof_no,
+			su.member_no AS stu_no		
+		FROM consult c
+			JOIN service_user pu ON c.prof_id = pu.user_id
+			JOIN service_user su ON c.stu_id = su.user_id 
+		WHERE c.consult_id = #{consultId}
+	</insert>
 </mapper>

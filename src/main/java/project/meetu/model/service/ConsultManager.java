@@ -50,7 +50,14 @@ public class ConsultManager {
 	
 	/* 예약 상태 변경 */
 	public boolean changeReservationStatus(Consult reservation) {
-		return consultDao.changeStatus(reservation);
+		if (reservation.getStatus() == 3) {
+			boolean success = consultDao.changeStatus(reservation);
+			if (!success) return false;
+			return consultDao.createConsultBackup(String.valueOf(reservation.getId())); 
+		}
+		else {
+			return consultDao.changeStatus(reservation);
+		}
 	}
 	
 	/* 특정 학생-교수 간 예약 레코드 존재 여부 */

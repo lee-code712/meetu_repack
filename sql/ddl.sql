@@ -162,21 +162,22 @@ FOREIGN KEY (member_no) REFERENCES MEMBER (member_no),
 FOREIGN KEY (office_no) REFERENCES OFFICE (office_no)
 );
 
+-- 변수 타입 모두 변경(22.2.16 이유리)
 CREATE TABLE CONSULT_BACKUP
 (
-	backup_id            CHAR(18) NOT NULL ,
-	start_date           CHAR(18) NULL ,
-	end_date             CHAR(18) NULL ,
-	reason               CHAR(18) NULL ,
-	type                 CHAR(18) NULL ,
-	content              CHAR(18) NULL ,
+	backup_id            VARCHAR2(10) NOT NULL ,
+	start_date           DATE NULL ,
+	end_date             DATE NULL ,
+	reason               VARCHAR2(50) NULL ,
+	type                 NUMBER(38, 0) NULL ,
+	content              VARCHAR2(4000) NULL ,
 	consult_id           VARCHAR2(8) NULL ,
 	stu_no               VARCHAR2(10) NOT NULL ,
 	prof_no              VARCHAR2(10) NOT NULL ,
  PRIMARY KEY (backup_id),
 FOREIGN KEY (consult_id) REFERENCES CONSULT (consult_id) ON DELETE SET NULL,
-FOREIGN KEY (stu_no) REFERENCES STUDENT (member_no),
-FOREIGN KEY (prof_no) REFERENCES PROFESSOR (member_no)
+FOREIGN KEY (stu_no) REFERENCES MEMBER (member_no),
+FOREIGN KEY (prof_no) REFERENCES MEMBER (member_no)
 );
 
 CREATE TABLE CONSULT_RECORD

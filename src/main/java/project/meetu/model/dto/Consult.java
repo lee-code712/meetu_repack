@@ -10,6 +10,7 @@ public class Consult {
 	private ServiceUser profUser;
 	private ServiceUser stuUser;
 	private String cancelMsg;
+	private String content; // consult_record table의 column을 통합 
 	
 	public int getId() {
 		return id;
@@ -64,6 +65,12 @@ public class Consult {
 	}
 	public void setCancelMsg(String cancelMsg) {
 		this.cancelMsg = cancelMsg;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 }

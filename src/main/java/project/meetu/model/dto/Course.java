@@ -24,4 +24,11 @@ public class Course {
 	public void setDeptNo(String deptNo) {
 		this.deptNo = deptNo;
 	}
+	public String getProfNo() {
+		return profNo;
+	}
+	public void setProfNo(String profNo) {
+		this.profNo = profNo;
+	}
+	
 }
