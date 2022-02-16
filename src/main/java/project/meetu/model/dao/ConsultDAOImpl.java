@@ -61,7 +61,7 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public boolean checkDuplicatedConsultDate(String stuId, String startDate, String endDate) {
 		List<Consult> consultList = consultMapper.selectConsultByDate(stuId, startDate, endDate);
 		
-		if (consultList == null) {
+		if (consultList == null || consultList.size() == 0) {
 			return true;
 		}
 		return false;
