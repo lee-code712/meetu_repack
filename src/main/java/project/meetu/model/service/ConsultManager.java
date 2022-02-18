@@ -162,7 +162,9 @@ public class ConsultManager {
 	
 	/* 상담 내용 수정 */
 	public boolean changeConsultContent(Consult consult) {
-		return consultDao.changeConsultRecord(consult);
+		boolean success = consultDao.changeConsultRecord(consult);
+		if (!success) return false;
+		return consultDao.changeConsultBackupContent(consult);
 	}
 	
 }

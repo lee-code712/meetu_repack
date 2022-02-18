@@ -98,5 +98,13 @@ public class ConsultDAOImpl implements ConsultDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+
+	// 상담 백업의 상담 내용 변경
+	@Override
+	public boolean changeConsultBackupContent(Consult consult) {
+		int ck = consultMapper.updateConsultBackupContent(consult);
+		if (ck > 0) return true;
+		return false;
+	}
 	
 }

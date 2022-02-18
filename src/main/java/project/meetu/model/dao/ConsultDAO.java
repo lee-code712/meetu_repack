@@ -37,4 +37,6 @@ public interface ConsultDAO {
 	// 상담 내용 변경
 	boolean changeConsultRecord(Consult consult);
 	
+	// 상담 백업의 상담 내용 변경
+	boolean changeConsultBackupContent(Consult consult);
 }

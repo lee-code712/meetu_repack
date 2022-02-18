@@ -30,4 +30,6 @@ public interface ConsultMapper {
 	public int insertConsultRecord(String consultId);
 	
 	public int updateConsultRecord(Consult consult);
+	
+	public int updateConsultBackupContent(Consult consult);
 }
