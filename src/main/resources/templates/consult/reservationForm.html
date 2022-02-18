@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/default_layout}">
 <th:block layout:fragment="head">
   <meta charset="UTF-8">
   <title>예약</title>
-  <link th:href="@{/css/home.css}" rel="stylesheet" />
+  <link th:href="@{/css/header.css}" rel="stylesheet" />
   <link th:href="@{/css/reservationForm.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

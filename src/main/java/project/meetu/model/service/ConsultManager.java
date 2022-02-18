@@ -51,9 +51,13 @@ public class ConsultManager {
 	/* 예약 상태 변경 */
 	public boolean changeReservationStatus(Consult reservation) {
 		if (reservation.getStatus() == 3) {
+			String consultId = String.valueOf(reservation.getId());
+
 			boolean success = consultDao.changeStatus(reservation);
 			if (!success) return false;
-			return consultDao.createConsultBackup(String.valueOf(reservation.getId())); 
+			success = consultDao.createConsultRecord(consultId);
+			if (!success) return false;
+			return consultDao.createConsultBackup(consultId); 
 		}
 		else {
 			return consultDao.changeStatus(reservation);
@@ -155,4 +159,10 @@ public class ConsultManager {
 		
 		return 1;
 	}
+	
+	/* 상담 내용 수정 */
+	public boolean changeConsultContent(Consult consult) {
+		return consultDao.changeConsultRecord(consult);
+	}
+	
 }

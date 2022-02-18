@@ -30,4 +30,11 @@ public interface ConsultDAO {
 	
 	// 상담 백업 생성
 	boolean createConsultBackup(String consultId);
+	
+	// 상담 내용 생성
+	boolean createConsultRecord(String consultId);
+	
+	// 상담 내용 변경
+	boolean changeConsultRecord(Consult consult);
+	
 }

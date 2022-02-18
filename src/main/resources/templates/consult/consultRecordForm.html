@@ -4,8 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>consultRecord</title>
-	<link rel="stylesheet" href="/css/header_bootstrap.css" />
+	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="stylesheet" href="/css/consultRecordForm.css" />
+	<link rel="stylesheet" href="/css/footer.css" />
 	<link
 		href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
 		rel="stylesheet">
@@ -14,6 +15,7 @@
 		rel="stylesheet">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/javascript/consultRecordForm.js"></script>
 </head>
 <body id="cltRecordBg">
 	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
@@ -25,7 +27,7 @@
 					<div id="navList" class="consultSubTit">교수정보</div>
 					<div id="navList" th:text="${consult.profUser.memberInfo.name}"></div>
 					<div id="navList" class="consultSubTit">학생정보</div>
-					<div id="navList" th:text="${consult.profUser.memberInfo.name}"></div>
+					<div id="navList" th:text="${consult.stuUser.memberInfo.name}"></div>
 					<div id="navList" class="consultSubTit">상담일시</div>
 					<div id="navList" th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
                     	+ ${#strings.substring(consult.endDate,11,16)}"></div>
@@ -44,9 +46,9 @@
 					<div id="writerName" th:text="${consult.profUser.memberInfo.name}"></div>
 				</div>
 				<div id="navRContentWrap">
-					<textarea th:if="${consult.content == null}" id="recordText" name="story" rows="30" cols="120"
+					<textarea th:if="${consult.content == ' '}" id="recordText" name="story" rows="30" cols="120"
 						placeholder="내용을 입력하세요."></textarea>
-					<textarea th:if="${consult.content != null}" id="recordText" name="story" rows="30" cols="120"
+					<textarea th:if="${consult.content != ' '}" id="recordText" name="story" rows="30" cols="120"
 						placeholder="내용을 입력하세요." th:text="${consult.content}"></textarea>
 				</div>
 				<button id="backBtn" onclick="history.back();">닫기</button>

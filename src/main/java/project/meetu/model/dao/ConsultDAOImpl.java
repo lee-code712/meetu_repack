@@ -82,5 +82,21 @@ public class ConsultDAOImpl implements ConsultDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+
+	// 상담 내용 생성
+	@Override
+	public boolean createConsultRecord(String consultId) {
+		int ck = consultMapper.insertConsultRecord(consultId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 상담 내용 변경
+	@Override
+	public boolean changeConsultRecord(Consult consult) {
+		int ck = consultMapper.updateConsultRecord(consult);
+		if (ck > 0) return true;
+		return false;
+	}
 	
 }

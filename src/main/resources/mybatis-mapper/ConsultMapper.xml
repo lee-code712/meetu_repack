@@ -144,4 +144,17 @@
 			JOIN service_user su ON c.stu_id = su.user_id 
 		WHERE c.consult_id = #{consultId}
 	</insert>
+	
+	<!-- 상담 내용 생성 -->
+	<insert id="insertConsultRecord" parameterType="String">
+		INSERT INTO consult_record (consult_id, content)
+		VALUES (#{consultId}, ' ')
+	</insert>
+	
+	<!-- 상담 내용 변경 -->
+	<insert id="updateConsultRecord" parameterType="Consult">
+		UPDATE consult_record
+		SET content = #{content}
+		WHERE consult_id = #{id}
+	</insert>
 </mapper>
