@@ -1,64 +1,47 @@
-@charset "UTF-8";
-
-#joinWrap {
-    width: 500px;
-    margin: 180px auto;
+body {
+  background-color: #fafafa;
 }
 
-#joinTitle {
-    margin-bottom: 40px;
-    text-align: center;
-    font-size: 48px;
-    font-family: 'Yellowtail', cursive;
-    font-weight: bold;
-    color: #1abc9c;
+section {
+  width: 500px;
+  margin: 180px auto;
 }
 
-#title:hover {
-    cursor: pointer;
+#logo {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 48px;
+  font-family: 'Yellowtail', cursive;
+  font-weight: bold;
+  color: #1abc9c;
+  cursor: pointer;
 }
 
-#joinBodyBg {
-    background: #FAFAFA;
+#memberNo,
+#password,
+#passwordCk {
+  margin: 10px 0px 20px 0px;
+  padding-left: 20px;
+  width: 480px;
+  height: 38px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
-#join_btn {
-    display: block;
-    margin: 20px auto;
-    width: 500px;
-    height: 40px;
-    background: #1abc9c;;
-    color: white;
-    border: none;
-    border-radius: 5px;
+#memberNo:focus,
+#password:focus,
+#passwordCk:focus {
+  outline-color: #1abc9c;
 }
 
-#join_btn:hover {
-    cursor: pointer;
-}
-
-/* 대학 검색 버튼 클릭 시 드롭다운 리스트 */
-.dropdown-content {
-    background-color: white;
-    min-width: 443px;
-    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    padding: 12px 12px;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.show-dropdown {
-    display: block
-}
-
-#roleWrap {
-  	margin-bottom: 40px;
+#joinBtn {
+  margin: 20px auto;
+  width: 500px;
+  height: 40px;
+  background: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
