@@ -1,39 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Header</title>
+<header>
+  <div>
+    <div id="logo" onclick="location.href='/home'">MEETU</div>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <ul id="gnb">
+      <li><a href="#">공지사항</a></li>
+      <li><a href="/consult/professorSearch">상담예약</a></li>
+      <li><a href="#">쪽지함</a></li>
+    </ul>
 
-</head>
-
-<body>
-  <header>
-    <div>
-      <div id="logo" onclick="location.href='/home'">MEETU</div>
-
-      <ul id="gnb">
-        <li><a href="#">공지사항</a></li>
-        <li><a href="/consult/professorSearch">상담예약</a></li>
-        <li><a href="#">쪽지함</a></li>
-      </ul>
-
-      <div id="subGnb">
-        <div id="dropdown">
-          <div id="dropdownBtn"><span th:text="${session.name}"></span>님 😊</div>
-          <div id="dropdownContent">
-            <a href="/user/my">마이페이지</a>
-            <a href="/user/logout">로그아웃</a>
-          </div>
+    <div id="subGnb">
+      <div id="dropdown">
+        <div id="dropdownBtn"><span th:text="${session.name}"></span>님 😊</div>
+        <div id="dropdownContent">
+          <a href="/user/my">마이페이지</a>
+          <a href="/user/logout">로그아웃</a>
         </div>
-
-        <img src="/images/bell.svg" id="alertImg" />
       </div>
+
+      <img src="/images/bell.svg" id="alertImg" />
     </div>
-  </header>
-</body>
+  </div>
+</header>
 
 </html>

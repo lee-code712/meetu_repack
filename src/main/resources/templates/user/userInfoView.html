@@ -5,38 +5,45 @@
 <head>
   <meta charset="UTF-8">
   <title>myInfo</title>
-  <link rel="stylesheet" href="/css/header_bootstrap.css" />
-  <link rel="stylesheet" href="/css/userInfoView.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/header.css}" rel="stylesheet" />
+  <link th:href="@{/css/userInfoView.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
+
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/javascript/userInfoView.js"></script>
+
   <script th:inline="javascript">
-    var courses = [[${courses}]];
+    var courses = [[${ courses }]];
     var consultableTimes = null;
-    if ([[${session.role}]] == 0) {
-    	consultableTimes = [[${member.profInfo?.consultableTimes}]];
+    if ([[${ session.role }]] == 0) {
+      consultableTimes = [[${ member.profInfo?.consultableTimes }]];
     }
   </script>
 </head>
 
 <body>
   <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+  
   <div layout:fragment="content" class="content">
-    <div id="navWrap">
-      <div id="navL">
-        <div id="navLTit"></div>
-        <div id="navListWrap">
-          <div id="userImgWrap"></div>
-          <div id="profMfName" th:text="${member.name}"></div>
-          <div id="navList" th:text="'00대학교 ' + ${member.deptInfo.collegeInfo.collegeName}"></div>
-          <div id="profDataMfBtnWrap">
-            <button id="backBtn" onClick="location.href='/user/my'">닫기</button>
+    <section>
+      <div id="userInfoWrap">
+        <div id="userInfo">
+          <img src="/images/user.svg" id="userImg" />
+          <div id="name" th:text="${member.name}"></div>
+          <div id="univName" th:text="'00대학교 ' + ${member.deptInfo.collegeInfo.collegeName}"></div>
+          <div id="closeBtnWrap">
+            <button id="closeBtn" onClick="location.href='/user/my'">닫기</button>
           </div>
         </div>
       </div>
 
-      <div id="navR">
+      <div id="viewWrap">
         <div id="navRTit">내 정보</div>
         <div id="navRContentWrap">
           <div id="profNameMfWrap">
@@ -49,7 +56,7 @@
           </div>
           <div id="profLocationMfWrap" th:if="${session.role == 0}">
             <div id="profLocationMfTit">연구실 위치</div>
-            <div id="profLocationMfText" th:text="${member.profInfo?.officeNo}"></div>
+            <div id="profLocationMfText" th:text="${member.profInfo.officeNo}"></div>
           </div>
           <div id="profEmailMfWrap">
             <div id="profEmailContentWrap">
@@ -63,7 +70,7 @@
               <div id="profMajorMfTit">전공</div>
               <button id="modifyBtn" onClick="majorMfBtn()">수정</button>
             </div>
-            <div id="profMajorMfText" th:text="${member.profInfo?.major}"></div>
+            <div id="profMajorMfText" th:text="${member.profInfo.major}"></div>
           </div>
           <div id="profSubjectMfWrap" th:if="${session.role == 0}">
             <div id="profSubjectContentWrap">
@@ -71,9 +78,9 @@
               <button id="modifyBtn" onClick="subjectAddBtn()">추가</button>
             </div>
             <div id="profSubjectMfText">
-                <div th:id="${course.courseNo}" th:each="course : ${member.profInfo?.courses}">
-                   [[${course.title}]] &nbsp;<a id="rejectBtn" onclick="classRemoveBtn()">x</a>
-                </div>
+              <div th:id="${course.courseNo}" th:each="course : ${member.profInfo.courses}">
+                [[${course.title}]] &nbsp;<a id="rejectBtn" onclick="classRemoveBtn()">x</a>
+              </div>
             </div>
           </div>
           <div id="profAbleTimeMfWrap" th:if="${session.role == 0}">
@@ -82,24 +89,24 @@
               <button id="modifyBtn" onClick="profAbleTimeAddBtn()">추가</button>
             </div>
             <div id="profAbleTimeMfText">
-            	<div th:id="${consultableTime.ableDate}" th:each="consultableTime : ${member.profInfo?.consultableTimes}">
-            		<span th:if="${consultableTime.ableDate == 0}">일</span>
-            		<span th:if="${consultableTime.ableDate == 1}">월</span> 
-            		<span th:if="${consultableTime.ableDate == 2}">화</span> 
-            		<span th:if="${consultableTime.ableDate == 3}">수</span> 
-            		<span th:if="${consultableTime.ableDate == 4}">목</span> 
-            		<span th:if="${consultableTime.ableDate == 5}">금</span> 
-            		<span th:if="${consultableTime.ableDate == 6}">토</span> 
-            		[[${consultableTime.ableTime}]] &nbsp;
-            		<a id="rejectBtn" onclick="profAbleTimeRemoveBtn()">x</a>
+              <div th:id="${consultableTime.ableDate}" th:each="consultableTime : ${member.profInfo.consultableTimes}">
+                <span th:if="${consultableTime.ableDate == 0}">일</span>
+                <span th:if="${consultableTime.ableDate == 1}">월</span>
+                <span th:if="${consultableTime.ableDate == 2}">화</span>
+                <span th:if="${consultableTime.ableDate == 3}">수</span>
+                <span th:if="${consultableTime.ableDate == 4}">목</span>
+                <span th:if="${consultableTime.ableDate == 5}">금</span>
+                <span th:if="${consultableTime.ableDate == 6}">토</span>
+                [[${consultableTime.ableTime}]] &nbsp;
+                <a id="rejectBtn" onclick="profAbleTimeRemoveBtn()">x</a>
               </div>
             </div>
           </div>
         </div>
-        <div id="blank"></div>
       </div>
-    </div>
+    </section>
   </div>
+  
   <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
 </body>
 
