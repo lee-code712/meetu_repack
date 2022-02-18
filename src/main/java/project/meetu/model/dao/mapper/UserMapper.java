@@ -50,4 +50,6 @@ public interface UserMapper {
 	public int deleteConsultableTime(ConsultableTime consultableTime);
 
 	public Office selectOfficeByProfId(String memberNo);
+	
+	public int insertServiceUser(ServiceUser serviceUser);
 }

@@ -3,6 +3,7 @@ package project.meetu.model.dto;
 public class Department {
 	private String deptNo;
 	private String deptName;
+	private String collegeNo;	// 삭제 필요 
 	private College collegeInfo;
 	
 	public String getDeptNo() {
@@ -16,6 +17,12 @@ public class Department {
 	}
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
+	}
+	public String getCollegeNo() {
+		return collegeNo;
+	}
+	public void setCollegeNo(String collegeNo) {
+		this.collegeNo = collegeNo;
 	}
 	public College getCollegeInfo() {
 		return collegeInfo;
