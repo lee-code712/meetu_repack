@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/default_layout}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Message</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/header.css}" rel="stylesheet" />
+  <link th:href="@{/css/message.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
+</head>
+
+<body>
+  <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+
+  <section>
+    <div id="userInfoWrap">
+      <div id="tit">쪽지함</div>
+      <div id="userInfo">
+        <ul class="tabs">
+          <li class="tab">
+            <input type="radio" id="tab-1" name="tab-group-1" checked>
+            <label for="tab-1" id="tabName">컴퓨터학과 교수님</label>
+          </li>
+
+          <li class="tab">
+            <input type="radio" id="tab-2" name="tab-group-1">
+            <label for="tab-2" id="tabName">컴퓨터학과 교수님</label>
+          </li>
+
+          <li class="tab">
+            <input type="radio" id="tab-3" name="tab-group-1">
+            <label for="tab-3" id="tabName">컴퓨터학과 교수님</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="testWrap">
+      <div id="screenWrap">
+        <div id="receiverTit">컴퓨터학과 교수님</div>
+        <div id="screen">
+
+          <div id="recieveMsgWrap">
+            <div id="reciever">보낸 사람</div>
+            <div id="recieveMsg">
+              <div id="msgInner">
+                <div id="recieveMsgContent">
+                  <div id="missionCompleteMsg">안녕하세요</div>
+                </div>
+              </div>
+            </div>
+            <div id="receiveTime">오후 4:19</div>
+          </div>
+
+          <div id="sendWrap">
+            <div id="sendMsgWrap">
+              <div id="sendMsgInner">
+                <div id="sendMsg">
+                  <div id="missionCompleteMsg">안녕하세요</div>
+                </div>
+              </div>
+            </div>
+            <div id="sendTime">오후 4:27</div>
+          </div>
+        </div>
+
+        <div id="chatWrap">
+          <input type="text" placeholder="글을 입력하세요." id="chat" />
+          <img src="/images/sendImg.svg" id="sendImg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
+</body>
+
+</html>
