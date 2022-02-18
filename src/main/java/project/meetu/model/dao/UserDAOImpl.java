@@ -135,4 +135,12 @@ public class UserDAOImpl implements UserDAO {
 		return userMapper.selectOfficeByProfId(memberNo);
 	}
 	
+	// 회원가입
+	@Override
+	public boolean createServiceUser(ServiceUser serviceUser) {
+		int ck = userMapper.insertServiceUser(serviceUser);
+		if (ck > 0) return true;
+		return false;
+	}
+	
 }

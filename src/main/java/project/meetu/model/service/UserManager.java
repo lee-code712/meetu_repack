@@ -171,4 +171,11 @@ public class UserManager {
 	public Office getOfficeByProfId(String memberNo) {
 		return userDao.findOfficeByProfId(memberNo);
 	}
+	
+	/* 회원가입 */
+	public boolean register(ServiceUser serviceUser) {
+		String userId = "ex" + serviceUser.getMemberInfo().getMemberNo();
+		serviceUser.setUserId(userId);
+		return userDao.createServiceUser(serviceUser);
+	}
 }

@@ -64,4 +64,7 @@ public interface UserDAO {
 	
 	// 교수 연구실
 	Office findOfficeByProfId(String memberNo);
+	
+	// 회원가입
+	boolean createServiceUser(ServiceUser serviceUser);
 }

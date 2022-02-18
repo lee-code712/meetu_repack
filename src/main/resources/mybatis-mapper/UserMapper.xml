@@ -259,4 +259,10 @@
 		FROM office o, professor p
 		WHERE member_no = #{memberNo} AND o.office_no = p.office_no
   </select>
+  
+  <!-- 회원가입 -->
+  	<insert id="insertServiceUser" parameterType="ServiceUser">
+  		INSERT INTO service_user (user_id, password, member_no)
+  		VALUES (#{userId}, #{password}, #{memberInfo.memberNo})
+  	</insert>
 </mapper>
