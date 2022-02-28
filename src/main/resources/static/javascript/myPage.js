@@ -15,12 +15,17 @@ function viewReservation() {
 			"width=600; height=400; left=300; top=130; resizable=no;");
 }
 
-function check() {
+function check(date) {
 	const buttonType = event.currentTarget.id;
 	const consultId = event.currentTarget.closest("tr").id;
+	const today = new Date();
+	const consultDay = new Date(date);
 	let data;
 	
 	if(buttonType == "editBtn") {
+		 if(today > consultDay) {
+			 alert("상담일시가 지나 수정할 수 없습니다. 상담을 완료하시거나 취소하시기 바랍니다.");
+		 }
 		// 수정 페이지로 이동
 	}
 	else if(buttonType == "cancelBtn") {
@@ -32,12 +37,17 @@ function check() {
 			return;
 	}
 	else if(buttonType == "approvalBtn") {
-		if (confirm("선택한 예약을 승인하시겠습니까?") == true) {
-			data = {"status" : 1, "id" : consultId}
-			changeReservationState(data);
+		if(today > consultDay) {
+			 alert("상담일시가 지나 승인할 수 없습니다. 상담을 반려하시기 바랍니다.");
 		}
-		else 
-			return;
+		else {
+			if (confirm("선택한 예약을 승인하시겠습니까?") == true) {
+				data = {"status" : 1, "id" : consultId}
+				changeReservationState(data);
+			}
+			else 
+				return;
+		}
 	}
 	else if(buttonType == "rejectBtn") {
 		if (confirm("선택한 예약을 반려하시겠습니까?") == true) {
@@ -48,12 +58,17 @@ function check() {
 			return;
 	}
 	else if(buttonType == "consultedBtn") {
-		if (confirm("선택한 상담을 진행하셨습니까?") == true) {
-			data = {"status" : 3, "id" : consultId}
-			changeReservationState(data);
+		if(today < consultDay) {
+			 alert("상담일시가 지나지 않았습니다. 상담을 진행하시기 바랍니다.");
+		 }
+		else {
+			if (confirm("선택한 상담을 진행하셨습니까?") == true) {
+				data = {"status" : 3, "id" : consultId}
+				changeReservationState(data);
+			}
+			else 
+				return;
 		}
-		else 
-			return;
 	}
 	else if(buttonType == "consultationRecordBtn") {
 		location.href="/consult/recordConsult?consultId=" + consultId;
@@ -125,11 +140,23 @@ function addCancelMessage(data) {
 			});
 		}
 		else {
-			let sender = $("#dropdown-button").text();
-			sender = sender.substring(0, 4) + "의 메시지";
+			let sender = $("#dropdownBtn").text();
+			sender = sender.slice(0, -3) + "의 메시지";
 			let cancelMsg = $("#cancelMsg").val();
-			data["cancelMsg"] = cancelMsg;
+			data["cancelMsg"] = sender + "/" + cancelMsg;
 			changeReservationState(data);
 		}
+	});
+}
+
+function readCancelMessage(msg) {
+	var msgArr = msg.split("/");
+	swal({
+		title: msgArr[0],
+		text: msgArr[1],
+		buttons: {
+			cancel: "닫기"
+		},
+		closeOnClickOutside: false
 	});
 }
