@@ -34,18 +34,26 @@ public class AlertDAOImpl implements AlertDAO {
 		return false;
 	}
 
-	// 새로운 알림 생성
-	@Override
-	public boolean createAlert(Alert alert, int role, int consultId) {
-		int ck = alertMapper.insertAlert(alert, role, consultId);
-		if (ck > 0) return true;
-		return false;
-	}
-
 	// 읽음여부가 1인 알림 목록 삭제
 	@Override
 	public boolean deleteReadAlert(String userId) {
 		int ck = alertMapper.deleteAlertByIsRead(userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 새로운 알림 생성
+	@Override
+	public boolean createAlert(Alert alert) {
+		int ck = alertMapper.insertAlert(alert);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 상담 id를 이용해 새로운 알림 생성
+	@Override
+	public boolean createAlertByConsultId(Alert alert, int role, int consultId) {
+		int ck = alertMapper.insertAlertByConsultId(alert, role, consultId);
 		if (ck > 0) return true;
 		return false;
 	}

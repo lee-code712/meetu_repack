@@ -10,6 +10,17 @@ public class Alert {
 	private String title; // alert_type table의 column을 통합
 	private String url;	// 알림과 관련있는 url정보 저장
 	
+	public Alert() {
+		super();
+	}
+
+	public Alert(String alertMsg, String userId, int typeNo) {
+		super();
+		this.alertMsg = alertMsg;
+		this.userId = userId;
+		this.typeNo = typeNo;
+	}
+	
 	public String getId() {
 		return id;
 	}

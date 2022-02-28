@@ -157,7 +157,10 @@ public class ReservationController {
 
 	@PostMapping("/consult/reservate")
 	public String reservate(HttpServletRequest req, RedirectAttributes rttr, Model model) {
+		
 		HttpSession session = req.getSession();
+		String name = (String) session.getAttribute("name"); 
+		
 		String choiceDate = req.getParameter("choiceDate");
 		String startTime = req.getParameter("startTime");
 		String consultTime = req.getParameter("consultTime");
@@ -169,6 +172,11 @@ public class ReservationController {
 		int result = consultService.makeReservation(choiceDate, startTime, consultTime, typeBtn, radio, profId, stuId);
 
 		if (result == 1) {
+			// 새로운 예약에 대한 알림 생성
+			boolean success = alertService.addAlertByMakeReservation(name, profId);
+			if (!success) {
+				rttr.addFlashAttribute("addAlertFailed", true);
+			}
 			return "redirect:/user/my";
 		}
 		else if (result == 2) {

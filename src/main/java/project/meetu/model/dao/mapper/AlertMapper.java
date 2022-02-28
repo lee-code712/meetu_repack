@@ -16,7 +16,9 @@ public interface AlertMapper {
 	
 	public int updateIsRead(String userId);
 	
-	public int insertAlert(@Param("alert") Alert alert, @Param("role") int role, 
+	public int insertAlert(@Param("alert") Alert alert);
+	
+	public int insertAlertByConsultId(@Param("alert") Alert alert, @Param("role") int role, 
 			@Param("consultId") int consultId);
 	
 	public int deleteAlertByIsRead(String userId);

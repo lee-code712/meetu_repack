@@ -53,6 +53,13 @@ public class AlertManager {
 	public boolean changeReadState(String userId) {
 		return alertDao.changeRead(userId);
 	}
+	
+	/* 새 예약에 대한 새로운 알림 생성 */
+	public boolean addAlertByMakeReservation(String name, String userId) {
+		String alertMsg = name + "님이 예약을 신청했습니다.";
+		Alert alert = new Alert(alertMsg, userId, 0);
+		return alertDao.createAlert(alert);
+	}
  	
 	/* 예약 상태 변경에 따른 새로운 알림 생성 */
 	public boolean addAlertByReservationStatus(String name, int role, Consult reservation) {
@@ -76,7 +83,7 @@ public class AlertManager {
 			alert.setAlertMsg(name + "님이 예약을 취소했습니다.");
 		}
 		
-		return alertDao.createAlert(alert, role, reservation.getId());
+		return alertDao.createAlertByConsultId(alert, role, reservation.getId());
 	}
 
 }
