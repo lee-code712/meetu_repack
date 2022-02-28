@@ -61,10 +61,6 @@ public class LoginController {
 	public String logout (HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
-		session.removeAttribute("id");
-		session.removeAttribute("name");
-		session.removeAttribute("role");
-		
 	    session.invalidate();
 		
 	    return "redirect:/";

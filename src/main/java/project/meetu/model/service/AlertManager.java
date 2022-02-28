@@ -54,9 +54,9 @@ public class AlertManager {
 		return alertDao.changeRead(userId);
 	}
 	
-	/* 새 예약에 대한 새로운 알림 생성 */
+	/* 예약에 대한 새로운 알림 생성 */
 	public boolean addAlertByMakeReservation(String name, String userId) {
-		String alertMsg = name + "님이 예약을 신청했습니다.";
+		String alertMsg = name + "님이 상담을 예약했습니다.";
 		Alert alert = new Alert(alertMsg, userId, 0);
 		return alertDao.createAlert(alert);
 	}
@@ -84,6 +84,11 @@ public class AlertManager {
 		}
 		
 		return alertDao.createAlertByConsultId(alert, role, reservation.getId());
+	}
+	
+	/* 상담 예정일에 대한 새로운 알림 생성 */
+	public boolean addAlertByConsultDate(int role, List<Consult> consults) {
+		return true;
 	}
 
 }

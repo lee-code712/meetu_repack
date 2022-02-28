@@ -30,7 +30,7 @@
 	<!-- 알림생성 -->
 	<insert id="insertAlert">
 		INSERT INTO alert (alert_id, alert_date, alert_msg, user_id, type_no)
-		VALUES (alert_seq.NEXTVAL, SYSDATE, #{alert.alertMsg}, #{userId}, #{alert.typeNo})
+		VALUES (alert_seq.NEXTVAL, SYSDATE, #{alertMsg}, #{userId}, #{typeNo})
 	</insert>
 	
 	<!-- 상담id로 알림 생성 -->
