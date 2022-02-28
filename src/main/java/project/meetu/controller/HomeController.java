@@ -42,8 +42,8 @@ public class HomeController {
 		}
 
 		// newAlerts속성이 존재하지 않는 경우, 최초 로그인한 상태를 의미 - 상담 예정일 알림 생성
-		String existAttr = (String) session.getAttribute("newAlerts");
-		if (existAttr == null) {
+		if (session.getAttribute("newAlerts") == null) {
+			System.out.println("최초 로그인 시 홈 접근");
 			boolean success = alertService.addAlertByConsultDate(role, consultList);
 			if (!success) {
 				rttr.addFlashAttribute("addAlertFailed", true);
