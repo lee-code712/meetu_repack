@@ -20,7 +20,7 @@
       </div>
       
       <img src="/images/bell.svg" id="noticeOnImg"/>
-      <div id="noticeCount" onclick="readNewAlerts()">0</div>
+      <div id="noticeCount" onclick="readNewAlerts()" th:text="${session.newAlerts}"></div>
     </div>
   </div>
 </header>

@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.meetu.model.dto.Consult;
+import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.ConsultManager;
 
 @Controller 
 public class HomeController { 
 	
 	private final ConsultManager consultService;
+	private final AlertManager alertService;
 	
 	@Autowired
-	public HomeController(ConsultManager consultService) {
+	public HomeController(ConsultManager consultService, AlertManager alertService) {
 		this.consultService = consultService;
+		this.alertService = alertService;
 	}
 	
 	@RequestMapping(value = "/home", method=RequestMethod.GET) 
@@ -35,6 +38,10 @@ public class HomeController {
 			mav.setViewName("home");
 			mav.addObject("schedules", consultList);
 		}
+		
+		// 알림 개수 갱신
+		int newAlertCount = alertService.getNewAlertCount(userId);
+		session.setAttribute("newAlerts", newAlertCount);
 		
 		return mav; 
 	} 

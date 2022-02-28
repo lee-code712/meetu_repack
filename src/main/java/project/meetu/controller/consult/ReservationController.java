@@ -23,6 +23,7 @@ import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
+import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.ConsultManager;
 import project.meetu.model.service.UserManager;
 
@@ -31,11 +32,14 @@ public class ReservationController {
 
 	private final ConsultManager consultService;
 	private final UserManager userService;
+	private final AlertManager alertService;
 
 	@Autowired
-	public ReservationController(ConsultManager consultService, UserManager userService) {
+	public ReservationController(ConsultManager consultService, UserManager userService,
+			AlertManager alertService) {
 		this.consultService = consultService;
 		this.userService = userService;
+		this.alertService = alertService;
 	}
 
 	@GetMapping("/consult/viewReservation")
@@ -62,6 +66,7 @@ public class ReservationController {
 
 	@RequestMapping(value = "/consult/reservationForm", method = RequestMethod.GET)
 	public ModelAndView goReservationForm(HttpServletRequest req, ModelAndView mav) {
+		
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("id");
 		String profNo = (String) req.getParameter("profNo");
@@ -132,6 +137,11 @@ public class ReservationController {
 		}
 
 		mav.setViewName("consult/reservationForm");
+		
+		// 알림 개수 갱신
+		int newAlertCount = alertService.getNewAlertCount(userId);
+		session.setAttribute("newAlerts", newAlertCount);
+		
 		return mav;
 	}
 

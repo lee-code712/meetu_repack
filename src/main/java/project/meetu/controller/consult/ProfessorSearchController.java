@@ -3,6 +3,7 @@ package project.meetu.controller.consult;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,26 @@ import org.springframework.web.servlet.ModelAndView;
 import project.meetu.model.dto.College;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Professor;
+import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.UserManager;
 
 @Controller
 public class ProfessorSearchController {
 
 	private final UserManager userService;
+	private final AlertManager alertService;
 	
 	@Autowired
-	public ProfessorSearchController(UserManager userService) {
+	public ProfessorSearchController(UserManager userService, AlertManager alertService) {
 		this.userService = userService;
+		this.alertService = alertService;
 	}
 	
 	@GetMapping(value = "/consult/professorSearch")
 	public String goProfessorSearchPage(HttpServletRequest req, Model model) {
+		
+		HttpSession session = req.getSession();
+		String userId = (String) session.getAttribute("id");
 		
 		List<College> collegeList = userService.getColleges();
 		if (collegeList != null) {
@@ -46,6 +53,10 @@ public class ProfessorSearchController {
 			}
 		}
 		
+		// 알림 개수 갱신
+		int newAlertCount = alertService.getNewAlertCount(userId);
+		session.setAttribute("newAlerts", newAlertCount);
+				
 		return "consult/professorSearchPage";
 	}
 	

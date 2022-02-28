@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.Course;
 import project.meetu.model.dto.Member;
+import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.ConsultManager;
 import project.meetu.model.service.UserManager;
 
@@ -21,11 +22,14 @@ public class MyPageController {
 
 	private final UserManager userService;
 	private final ConsultManager consultService;
+	private final AlertManager alertService;
 	
 	@Autowired
-	public MyPageController(ConsultManager consultService, UserManager userService) {
+	public MyPageController(ConsultManager consultService, UserManager userService,
+			AlertManager alertService) {
 		this.consultService = consultService;
 		this.userService = userService;
+		this.alertService = alertService;
 	}
 	
 	@GetMapping("/user/my")
@@ -38,6 +42,10 @@ public class MyPageController {
 		if (consultList != null) {
 			model.addAttribute("consults", consultList);
 		}
+		
+		// 알림 개수 갱신
+		int newAlertCount = alertService.getNewAlertCount(userId);
+		session.setAttribute("newAlerts", newAlertCount);
 		
 		return "user/myPage";
 	}
@@ -60,6 +68,10 @@ public class MyPageController {
 				model.addAttribute("courses", courses);
 			}
 		}
+		
+		// 알림 개수 갱신
+		int newAlertCount = alertService.getNewAlertCount(userId);
+		session.setAttribute("newAlerts", newAlertCount);
 		
 		return "user/userInfoView";
 	

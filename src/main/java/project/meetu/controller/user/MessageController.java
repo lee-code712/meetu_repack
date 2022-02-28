@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MessageController {
 	
 	@GetMapping("/user/message")
-	public String goLoginForm() {
+	public String goMessagePage() {
 		return "user/message";
 	}
 

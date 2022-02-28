@@ -11,7 +11,7 @@
 	</select>
 	
 	<!-- 새 알림 목록 조회 -->
-	<select id="selectAlertByIsRead" parameterType="String" resultType="Aelrt">
+	<select id="selectAlertByIsRead" parameterType="String" resultType="Alert">
 		SELECT alert_id AS id, alert_date AS alertDate, alert_msg AS alertMsg, is_read AS isRead, user_id AS userId, 
 			type_no AS typeNo, title
 		FROM alert 
@@ -19,5 +19,24 @@
 		WHERE user_id = #{userId} AND is_read = 0
 		ORDER BY alert_date DESC
 	</select>
+	
+	<!-- 알림 읽음여부 변경 -->
+	<update id="updateIsRead" parameterType="String">
+		UPDATE alert
+		SET is_read = 1
+		WHERE user_id = #{userId} AND is_read = 0
+	</update>
+	
+	<!-- 알림 생성 -->
+	<insert id="insertAlert" parameterType="Alert">
+		INSERT INTO alert (alert_id, alert_date, alert_msg, user_id, type_no)
+		VALUES (alert_seq.NEXTVAL, SYSDATE, #{alertMsg}, #{userId}, #{typeNo})
+	</insert>
 
+	<!-- 읽음여부가 1인 알림 삭제 -->
+	<delete id="deleteAlertByIsRead" parameterType="String">
+		DELETE FROM alert
+		WHERE user_id = #{usertId} AND is_read = 1
+	</delete>
+	
 </mapper>
