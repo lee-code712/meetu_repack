@@ -95,6 +95,16 @@ header > div {
   display: block;
 }
 
-#alertImg {
-  margin-left: 40px;
+#noticeCount  {
+	cursor: pointer;
+	position: relative;
+	right: 16px;
+	top: -3px;
+	font-size: 12px;
+	color: white;
+}
+
+#noticeOnImg {
+	width: 24px;
+	height: 20px;
 }

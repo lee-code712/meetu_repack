@@ -45,34 +45,6 @@
   margin-left: 20px;
 }
 
-#noticeCount {
-  position: relative;
-  right: 12px;
-  top: -3px;
-  font-size: 12px;
-  color: white;
-}
-
-#noticeImg {
-  width: 20px;
-  height: 20px;
-}
-
-#noticeOnImg {
-  cursor: pointer;
-  width: 24px;
-  height: 20px;
-}
-
-#noticeImg {
-  width: 14px;
-  height: 14px;
-}
-
-#noticeImg:hover {
-  cursor: pointer;
-}
-
 #noticeIcon:hover,
 #reserveIcon:hover,
 #messageIcon:hover {
