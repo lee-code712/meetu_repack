@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.meetu.model.dto.Member;
 import project.meetu.model.dto.ServiceUser;
+import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.UserManager;
 import project.meetu.model.service.exception.LoginException;
 
@@ -19,10 +20,12 @@ import project.meetu.model.service.exception.LoginException;
 public class LoginController {
 	
 	private final UserManager userService;
+	private final AlertManager alertService;
 	
 	@Autowired // 컨테이너에 있는 서비스와 연결됨
-	public LoginController(UserManager userService) {
+	public LoginController(UserManager userService, AlertManager alertService) {
 		this.userService = userService;
+		this.alertService = alertService;
 	}
 
 	@GetMapping("/")
@@ -58,10 +61,13 @@ public class LoginController {
 	}
 	
 	@GetMapping("/user/logout")
-	public String logout (HttpServletRequest req) {
+	public String logout(HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
-	    session.invalidate();
+		String userId = (String) session.getAttribute("id");
+		alertService.removeReadAlert(userId);
+	    
+		session.invalidate();
 		
 	    return "redirect:/";
 	}

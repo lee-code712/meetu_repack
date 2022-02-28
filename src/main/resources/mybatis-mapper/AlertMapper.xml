@@ -49,7 +49,7 @@
 	<!-- 읽음여부가 1인 알림 삭제 -->
 	<delete id="deleteAlertByIsRead" parameterType="String">
 		DELETE FROM alert
-		WHERE user_id = #{usertId} AND is_read = 1
+		WHERE user_id = #{userId} AND is_read = 1
 	</delete>
-	
+
 </mapper>

@@ -1,5 +1,6 @@
 package project.meetu.model.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,8 +88,64 @@ public class AlertManager {
 	}
 	
 	/* 상담 예정일에 대한 새로운 알림 생성 */
-	public boolean addAlertByConsultDate(int role, List<Consult> consults) {
-		return true;
+	public boolean addAlertByConsultDate(String userId, int role, List<Consult> consults) {
+		boolean success = false;
+		
+		if (consults != null) {
+			for (Consult consult : consults) {
+				if (consult.getStatus() != 1)
+					continue;
+				
+				String startDate = consult.getStartDate().substring(0, 10);
+				String[] dateArr = startDate.split("-");
+				int dday = getDDay(dateArr[0], dateArr[1], dateArr[2]);
+				
+				String name;
+				if (role == 0) {
+					name = consult.getStuUser().getMemberInfo().getName();
+				}
+				else {
+					name = consult.getProfUser().getMemberInfo().getName();
+				}
+				
+				String alertMsg;
+				if(dday < 0) {
+					alertMsg = name + "님과의 상담 예정일이 지났습니다. 상담취소 혹은 완료처리 바랍니다.";
+				}
+				else if(dday == 0) {
+					alertMsg = name + "님과의 상담 예정일 D-Day";
+				}
+				else {
+					alertMsg = name + "님과의 상담까지 D-" + dday;
+				}
+				
+				Alert alert = new Alert(alertMsg, userId, 7);
+				success = alertDao.createAlert(alert);
+			}
+		}
+		return success;
+	}
+	
+	/* 읽음여부가 1인 알림 목록 삭제 */
+	public boolean removeReadAlert(String userId) {
+		return alertDao.deleteReadAlert(userId);
+	}
+
+	// d-day 계산
+	private int getDDay(String year, String month, String day) {
+		try {
+			Calendar today = Calendar.getInstance();
+			Calendar dday = Calendar.getInstance();
+			dday.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+				
+			long lToday = today.getTimeInMillis() / (24*60*60*1000);
+			long lDday = dday.getTimeInMillis() / (24*60*60*1000);
+				
+			long substract = lDday - lToday;
+			return (int)substract;
+		} catch (Exception e) {
+			return -1;
+		}
 	}
 
 }
