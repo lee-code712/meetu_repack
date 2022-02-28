@@ -8,6 +8,7 @@ public class Alert {
 	private String userId;
 	private int typeNo;
 	private String title; // alert_type table의 column을 통합
+	private String url;	// 알림과 관련있는 url정보 저장
 	
 	public String getId() {
 		return id;
@@ -50,6 +51,12 @@ public class Alert {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

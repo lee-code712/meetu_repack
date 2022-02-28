@@ -139,7 +139,7 @@
               <td th:if="${session.role == 0}"><button id="cancelBtn" onClick="check()">취소하기</button></td>
               <td th:if="${session.role == 0}"><button id="editBtn" onClick="check()">수정하기</button></td>
               <td th:if="${session.role == 0}"><button id="consultedBtn" onClick="check()">완료하기</button></td>
-              <td th:if="${session.role == 1}"><button id="msgBtn">쪽지함</button></td>
+              <td th:if="${session.role == 1}"><button id="msgBtn" onClick="location.href='/message'">쪽지함</button></td>
             </tr>
           </tbody>
         </table>

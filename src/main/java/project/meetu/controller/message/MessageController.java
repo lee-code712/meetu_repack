@@ -1,4 +1,4 @@
-package project.meetu.controller.user;
+package project.meetu.controller.message;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MessageController {
 	
-	@GetMapping("/user/message")
+	@GetMapping("/message")
 	public String goMessagePage() {
-		return "user/message";
+		return "message/messageView";
 	}
 
 }
