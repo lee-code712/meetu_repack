@@ -16,7 +16,7 @@ public interface AlertDAO {
 	boolean changeRead(String userId);
 	
 	// 새로운 알림 생성
-	boolean createAlert(Alert alert);
+	boolean createAlert(Alert alert, int role, int consultId);
 	
 	// 읽음여부가 1인 알림 목록 삭제
 	boolean deleteReadAlert(String userId);

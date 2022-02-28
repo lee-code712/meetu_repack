@@ -53,11 +53,21 @@ public class ReservationController {
 	}
 
 	@GetMapping("/consult/changeStatus")
-	public String changeStatus(Consult reservation, RedirectAttributes rttr) {
+	public String changeStatus(Consult reservation, HttpServletRequest req, RedirectAttributes rttr) {
+		
+		HttpSession session = req.getSession();
+		String name = (String) session.getAttribute("name");
+		int role = (int) session.getAttribute("role");
 
 		boolean success = consultService.changeReservationStatus(reservation);
 		if (!success) {
 			rttr.addFlashAttribute("changeFailed", true);
+		}
+		
+		// 예약 상태 변경에 따른 알림 생성
+		success = alertService.addAlertByReservationStatus(name, role, reservation);
+		if (!success) {
+			rttr.addFlashAttribute("addAlertFailed", true);
 		}
 
 		return "redirect:/user/my";

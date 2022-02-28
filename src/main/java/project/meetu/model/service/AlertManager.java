@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import project.meetu.model.dao.AlertDAO;
 import project.meetu.model.dto.Alert;
+import project.meetu.model.dto.Consult;
 
 @Service
 public class AlertManager {
@@ -53,6 +54,29 @@ public class AlertManager {
 		return alertDao.changeRead(userId);
 	}
  	
-	/* 읽은 알림목록 삭제 */
+	/* 예약 상태 변경에 따른 새로운 알림 생성 */
+	public boolean addAlertByReservationStatus(String name, int role, Consult reservation) {
+		Alert alert = new Alert();
+		
+		int status = reservation.getStatus();
+		if (status == 1) {
+			alert.setTypeNo(1);
+			alert.setAlertMsg(name + "님이 예약을 승인했습니다.");
+		}
+		else if (status == 2) {
+			alert.setTypeNo(2);
+			alert.setAlertMsg(name + "님이 예약을 반려했습니다.");
+		}
+		else if (status == 3) {
+			alert.setTypeNo(3);
+			alert.setAlertMsg(name + "님이 상담을 완료처리 했습니다.");
+		}
+		else if (status == 4) {
+			alert.setTypeNo(4);
+			alert.setAlertMsg(name + "님이 예약을 취소했습니다.");
+		}
+		
+		return alertDao.createAlert(alert, role, reservation.getId());
+	}
 
 }

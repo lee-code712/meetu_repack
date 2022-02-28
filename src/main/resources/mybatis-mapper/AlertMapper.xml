@@ -28,9 +28,16 @@
 	</update>
 	
 	<!-- 알림 생성 -->
-	<insert id="insertAlert" parameterType="Alert">
+	<insert id="insertAlert">
 		INSERT INTO alert (alert_id, alert_date, alert_msg, user_id, type_no)
-		VALUES (alert_seq.NEXTVAL, SYSDATE, #{alertMsg}, #{userId}, #{typeNo})
+		<if test="role == 0">
+			VALUES (alert_seq.NEXTVAL, SYSDATE, #{alert.alertMsg}, 
+				(SELECT stu_id FROM consult WHERE consult_id = #{consultId}), #{alert.typeNo})
+		</if>
+		<if test="role == 1">
+			VALUES (alert_seq.NEXTVAL, SYSDATE, #{alert.alertMsg}, 
+				(SELECT prof_id FROM consult WHERE consult_id = #{consultId}), #{alert.typeNo})
+		</if>
 	</insert>
 
 	<!-- 읽음여부가 1인 알림 삭제 -->

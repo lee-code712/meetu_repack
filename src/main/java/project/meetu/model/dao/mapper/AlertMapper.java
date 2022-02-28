@@ -3,6 +3,7 @@ package project.meetu.model.dao.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import project.meetu.model.dto.Alert;
 
@@ -15,7 +16,8 @@ public interface AlertMapper {
 	
 	public int updateIsRead(String userId);
 	
-	public int insertAlert(Alert alert);
+	public int insertAlert(@Param("alert") Alert alert, @Param("role") int role, 
+			@Param("consultId") int consultId);
 	
 	public int deleteAlertByIsRead(String userId);
 	

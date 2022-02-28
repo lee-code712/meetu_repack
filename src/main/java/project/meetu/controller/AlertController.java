@@ -31,8 +31,11 @@ public class AlertController {
 		String userId = (String) session.getAttribute("id");
 		
 		List<Alert> newAlerts = alertService.getNewAlerts(userId);
-		if (newAlerts != null) {
+		if (newAlerts.size() > 0) {
 			model.addAttribute("alerts", newAlerts);
+		}
+		else {
+			model.addAttribute("notFound", true);
 		}
 		
 		boolean success = alertService.changeReadState(userId);

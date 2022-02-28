@@ -36,8 +36,8 @@ public class AlertDAOImpl implements AlertDAO {
 
 	// 새로운 알림 생성
 	@Override
-	public boolean createAlert(Alert alert) {
-		int ck = alertMapper.insertAlert(alert);
+	public boolean createAlert(Alert alert, int role, int consultId) {
+		int ck = alertMapper.insertAlert(alert, role, consultId);
 		if (ck > 0) return true;
 		return false;
 	}

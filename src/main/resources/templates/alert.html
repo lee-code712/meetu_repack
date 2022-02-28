@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>새 알림</title>
+	<meta charset="UTF-8">
+	<title>새 알림</title>
+	<link th:href="@{/css/alert.css}" rel="stylesheet" />
 </head>
-<script>
+<script th:inline="javascript">
 	function returnUrl() {
 		var url = event.currentTarget.closest("div").id;
 		opener.movePage(url);
@@ -14,19 +15,15 @@
 <div id="pop01">
     <div id="alertWrap">
         <div id="alertTitle">알림</div>
-        <c:if test="${requestScope.alerts == null}">
-        	새로운 알림이 없습니다.
-        </c:if>
-        <c:forEach items="${requestScope.alerts}" var="alert">
-                    <div id="alertBox">
-                        <div id="alertBoxBottom">
-                        <div id="alertType">${alert.alert_type}</div>
-                            <div id="${alert.url}" class="link" onclick="returnUrl()">바로가기</div>
-                            </div>
-            			<div id="alertContent">${alert.alert_msg}</div>
-                        <div id="alertDate">${alert.alert_date}</div>
-        			</div>
-        </c:forEach>
+        <span th:if="${notFound}">새로운 알림이 없습니다.</span>
+				<div id="alertBox" th:each="alert : ${alerts}">
+          <div id="alertBoxBottom">
+          	<div id="alertType" th:text="${alert.title}"></div>
+          	<div th:id="${alert.url}" class="link" onclick="returnUrl()">바로가기</div>
+          </div>
+        	<div id="alertContent" th:text="${alert.alertMsg}"></div>
+        	<div id="alertDate" th:text="${alert.alertDate}"></div>
+        </div>
     </div>
 </div>
 </body>
