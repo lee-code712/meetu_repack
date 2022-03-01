@@ -16,6 +16,20 @@
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+    #moreImg {
+      width: 16px;
+      height: 16px;
+    }
+
+    section {
+      display: flex;
+      justify-content: space-between;
+      margin: 80px auto;
+      width: 1194px;
+      height: 800px;
+    }
+  </style>
 </head>
 
 <body>
@@ -80,14 +94,14 @@
               <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
               </td>
               <td th:if="${consult.type == 1}">온라인</td>
-              <td th:if="${session.role == 0}"><button id="approvalBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">승인하기</button></td>
-              <td th:if="${session.role == 0}"><button id="rejectBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">반려하기</button></td>
-              <td th:if="${session.role == 1}"><button id="cancelBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">취소하기</button></td>
-              <td th:if="${session.role == 1}"><button id="editBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">수정하기</button></td>
+              <td th:if="${session.role == 0}"><button id="approvalBtn"
+                  th:onClick="check([[${consult.startDate}]]);">승인하기</button></td>
+              <td th:if="${session.role == 0}"><button id="rejectBtn"
+                  th:onClick="check([[${consult.startDate}]]);">반려하기</button></td>
+              <td th:if="${session.role == 1}"><button id="cancelBtn"
+                  th:onClick="check([[${consult.startDate}]]);">취소하기</button></td>
+              <td th:if="${session.role == 1}"><button id="editBtn"
+                  th:onClick="check([[${consult.startDate}]]);">수정하기</button></td>
             </tr>
           </tbody>
         </table>
@@ -114,10 +128,10 @@
               <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
               </td>
               <td th:if="${consult.type == 1}">온라인</td>
-              <td th:if="${consult.status == 2}"><button id="rejectMsgBtn" 
-              	th:onClick="readCancelMessage([[${consult.cancelMsg}]]);">반려사유</button></td>
-              <td th:if="${consult.status == 4}"><button id="rejectMsgBtn" 
-              	th:onClick="readCancelMessage([[${consult.cancelMsg}]]);">취소사유</button></td>
+              <td th:if="${consult.status == 2}"><button id="rejectMsgBtn"
+                  th:onClick="readCancelMessage([[${consult.cancelMsg}]]);">반려사유</button></td>
+              <td th:if="${consult.status == 4}"><button id="rejectMsgBtn"
+                  th:onClick="readCancelMessage([[${consult.cancelMsg}]]);">취소사유</button></td>
             </tr>
           </tbody>
         </table>
@@ -143,12 +157,12 @@
               <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
               </td>
               <td th:if="${consult.type == 1}">온라인</td>
-              <td th:if="${session.role == 0}"><button id="cancelBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">취소하기</button></td>
-              <td th:if="${session.role == 0}"><button id="editBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">수정하기</button></td>
-              <td th:if="${session.role == 0}"><button id="consultedBtn" 
-              	th:onClick="check([[${consult.endDate}]]);">완료하기</button></td>
+              <td th:if="${session.role == 0}"><button id="cancelBtn"
+                  th:onClick="check([[${consult.startDate}]]);">취소하기</button></td>
+              <td th:if="${session.role == 0}"><button id="editBtn"
+                  th:onClick="check([[${consult.startDate}]]);">수정하기</button></td>
+              <td th:if="${session.role == 0}"><button id="consultedBtn"
+                  th:onClick="check([[${consult.endDate}]]);">완료하기</button></td>
               <td th:if="${session.role == 1}"><button id="msgBtn" onClick="location.href='/message'">쪽지함</button></td>
             </tr>
           </tbody>
@@ -175,8 +189,8 @@
               <td th:if="${consult.type == 0}" th:text="${consult.profUser.memberInfo.profInfo.officeNo}">오프라인
               </td>
               <td th:if="${consult.type == 1}">온라인</td>
-              <td th:if="${session.role == 0}"><button id="consultationRecordBtn" 
-              	th:onClick="check([[${consult.startDate}]]);">상담일지</button></td>
+              <td th:if="${session.role == 0}"><button id="consultationRecordBtn"
+                  th:onClick="check([[${consult.startDate}]]);">상담일지</button></td>
             </tr>
           </tbody>
         </table>
@@ -185,7 +199,7 @@
   </section>
 
   <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
-  
+
   <script src="/javascript/myPage.js"></script>
   <script src="/javascript/alert.js"></script>
 </body>

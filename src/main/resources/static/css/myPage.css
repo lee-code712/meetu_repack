@@ -7,6 +7,7 @@ section {
   justify-content: space-between;
   margin: 80px auto;
   width: 1194px;
+  height: 800px;
 }
 
 #userInfoWrap {
@@ -54,6 +55,11 @@ section {
   border: 1px solid #dddddd;
   color: #c4c4c4;
   cursor: pointer;
+}
+
+#moreImg {
+  width: 16px;
+  height: 16px;
 }
 
 /* 수정해야 할 부분 */

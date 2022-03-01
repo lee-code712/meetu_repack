@@ -62,7 +62,6 @@ section {
 #viewWrap {
   width: 816px;
   height: 500px;
-  background-color: white;
 }
 
 #navRTit {
@@ -79,11 +78,11 @@ section {
 #navRContentWrap {
   width: 776px;
   padding: 0px 20px;
-  background: white;
   border-bottom: 1px solid #eaeaea;
   border-left: 1px solid #eaeaea;
   border-right: 1px solid #eaeaea;
   font-size: 14px;
+  background: white;
 }
 
 #profNameMfWrap,
