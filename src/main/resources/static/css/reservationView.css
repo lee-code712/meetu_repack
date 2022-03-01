@@ -1,108 +1,56 @@
-@charset "UTF-8";
-
-#rejectMsgBg {
-  background: #fafafa;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#rejectMsgWrap {
+#rezViewWrap {
+  margin: 20px;
+}
+
+#rezViewTit {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #1abc9c;
+}
+
+#rezViewSubTit {
+  margin-bottom: 40px;
+  font-size: 12px;
+  color: #939393;
+}
+
+#rezViewInfoWrap {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  margin-bottom: 20px;
+}
+
+#rezViewInfoTit {
+  width: 126px;
+  font-size: 14px;
+  color: #666666;
+}
+
+#rezViewInfoContent {
+  font-size: 14px;
+  color: #939393;
 }
 
 #closeBtnWrap {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-top: 20px;
+  width: 100%;
+  height: 30px;
 }
 
 #reservationInfoCloseBtn {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-right: 20px;
-  align-items: center;
-  padding: 6px 24px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: none;
-  background: #1abc9c;
-  color: white;
-}
-
-#reservationInfoCloseBtn:hover {
-  cursor: pointer;
-}
-
-#rejectImg {
   width: 80px;
-  height: 80px;
-}
-
-#rejectImgWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0px 10px 0px;
-  width: 500px;
-  background: white;
-  border-radius: 10px 10px 0px 0px;
-}
-
-#rejectTit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 40px;
-  width: 500px;
-  background: white;
-  font-size: 24px;
-}
-
-#infoWrap {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
-#infoTitle {
-  display: flex;
-  align-items: center;
-  width: 140px;
-  height: 40px;
+  height: 30px;
   color: #1abc9c;
-}
-
-#InfoTable {
-  margin: 0px 20px;
-  collapse: none;
-}
-
-#infoText {
-  display: flex;
-  align-items: center;
-  padding: 0px 20px;
-  height: 40px;
-  width: 370px;
-  background: white;
-  color: #535353;
-}
-
-#rejectMsgInnerWrap {
-  padding-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-#reservationTit {
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-  padding-left: 20px;
-  height: 40px;
-  background: #1abc9c;
-  color: white;
-  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #1abc9c;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: white;
 }

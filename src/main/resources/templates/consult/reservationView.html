@@ -5,40 +5,101 @@
   <meta charset="UTF-8">
   <title>상세정보</title>
   <link rel="stylesheet" href="/css/reservationView.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #rezViewWrap {
+      margin: 20px;
+    }
+
+    #rezViewTit {
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #1abc9c;
+    }
+
+    #rezViewSubTit {
+      margin-bottom: 40px;
+      font-size: 12px;
+      color: #939393;
+    }
+
+    #rezViewInfoWrap {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    #rezViewInfoTit {
+      width: 126px;
+      font-size: 14px;
+      color: #666666;
+    }
+
+    #rezViewInfoContent {
+      font-size: 14px;
+      color: #939393;
+    }
+
+    #closeBtnWrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 20px;
+      width: 100%;
+      height: 30px;
+    }
+
+    #reservationInfoCloseBtn {
+      width: 80px;
+      height: 30px;
+      color: #1abc9c;
+      border: 1px solid #1abc9c;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: white;
+    }
+  </style>
 </head>
 
-<body id="reservationInfoBg">
-  <div id="rejectMsgWrap">
-    <div id="rejectMsgInnerWrap">
-      <div id="reservationTit">예약정보</div>
-      <table id="InfoTable">
-        <tr id="infoWrap">
-          <td id="infoTitle">교수정보</td>
-          <td id="infoText" th:text="${reservation.profUser.memberInfo.name}"></td>
-        </tr>
-        <tr id="infoWrap">
-          <td id="infoTitle">학생정보</td>
-          <td id="infoText" th:text="${reservation.stuUser.memberInfo.name}"></td>
-        </tr>
-        <tr id="infoWrap">
-          <td id="infoTitle">상담일시</td>
-          <td id="infoText" th:text="${#strings.substring(reservation.startDate,0,16)} + ' ~ ' 
-                    	+ ${#strings.substring(reservation.endDate,11,16)}"></td>
-        </tr>
-        <tr id="infoWrap">
-          <td id="infoTitle">상담신청사유</td>
-          <td id="infoText" th:text="${reservation.reason}"></td>
-        </tr>
-        <tr id="infoWrap">
-          <td id="infoTitle">상담유형</td>
-          <td id="infoText" th:if="${reservation.type == 0}"
-            th:text="${reservation.profUser.memberInfo.profInfo.officeNo}">오프라인</td>
-          <td id="infoText" th:if="${reservation.type == 1}">온라인</td>
-        </tr>
-      </table>
-      <div id="closeBtnWrap">
-        <button onclick="window.close()" id="reservationInfoCloseBtn">확인</button>
-      </div>
+<body>
+  <div id="rezViewWrap">
+    <div id="rezViewTit">예약 정보</div>
+    <div id="rezViewSubTit">회원님께서 예약하신 상담 관련 정보입니다.</div>
+
+    <div id="rezViewInfoWrap">
+      <div id="rezViewInfoTit">교수 정보</div>
+      <div id="rezViewInfoContent" th:text="${reservation.profUser.memberInfo.name}"></div>
+    </div>
+
+    <div id="rezViewInfoWrap">
+      <div id="rezViewInfoTit">학생 정보</div>
+      <div id="rezViewInfoContent" th:text="${reservation.stuUser.memberInfo.name}"></div>
+    </div>
+
+    <div id="rezViewInfoWrap">
+      <div id="rezViewInfoTit">상담 일시</div>
+      <div id="rezViewInfoContent" th:text="${#strings.substring(reservation.startDate,0,16)} + ' ~ ' 
+                    	+ ${#strings.substring(reservation.endDate,11,16)}"></div>
+    </div>
+
+    <div id="rezViewInfoWrap">
+      <div id="rezViewInfoTit">상담 신청 사유</div>
+      <div id="rezViewInfoContent" th:text="${reservation.reason}"></div>
+    </div>
+
+    <div id="rezViewInfoWrap">
+      <div id="rezViewInfoTit">상담 유형</div>
+      <div id="rezViewInfoContent" th:if="${reservation.type == 0}"
+        th:text="${reservation.profUser.memberInfo.profInfo.officeNo}">오프라인</div>
+      <div id="rezViewInfoContent" th:if="${reservation.type == 1}">온라인</div>
+    </div>
+
+    <div id="closeBtnWrap">
+      <button onclick="window.close()" id="reservationInfoCloseBtn">확인</button>
     </div>
   </div>
 </body>
