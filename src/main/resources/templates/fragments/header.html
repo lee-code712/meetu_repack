@@ -18,9 +18,13 @@
           <a href="/user/logout">로그아웃</a>
         </div>
       </div>
-      
-      <img src="/images/bell.svg" id="noticeOnImg"/>
-      <div id="noticeCount" onclick="readNewAlerts()" th:text="${session.newAlerts}"></div>
+
+      <div id="noticeOnImgWrap">
+        <div id="noticeOnImgInner">
+          <img src="/images/bell.svg" id="noticeImg" />
+        </div>
+        <div id="noticeCount" onclick="readNewAlerts()" th:text="${session.newAlerts}"></div>
+      </div>
     </div>
   </div>
 </header>

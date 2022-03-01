@@ -49,6 +49,7 @@ header > div {
 
 #subGnb {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 166px;
 }
@@ -95,16 +96,30 @@ header > div {
   display: block;
 }
 
-#noticeCount  {
-	cursor: pointer;
-	position: relative;
-	right: 16px;
-	top: -3px;
-	font-size: 12px;
-	color: white;
+#noticeOnImgWrap {
+  position: relative;
+  width: 22px;
+  height: 24px;
+  cursor: pointer;
 }
 
-#noticeOnImg {
-	width: 24px;
-	height: 20px;
+#noticeOnImgInner {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+#noticeImg {
+  width: 24px;
+  height: 24px;
+}
+
+#noticeCount {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  text-align: center;
+  color: white;
 }
