@@ -2,29 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>새 알림</title>
+	<title>MEETU</title>
 	<link th:href="@{/css/alert.css}" rel="stylesheet" />
+	<script th:inline="javascript">
+		function returnUrl() {
+			var url = event.currentTarget.closest("div").id;
+			opener.movePage(url);
+		}
+		
+		function alertCloseBtn() {
+			window.close();
+		}
+	</script>
 </head>
-<script th:inline="javascript">
-	function returnUrl() {
-		var url = event.currentTarget.closest("div").id;
-		opener.movePage(url);
-	}
-</script>
 <body id="alertBg">
-<div id="pop01">
-    <div id="alertWrap">
-        <div id="alertTitle">알림</div>
-        <span th:if="${notFound}">새로운 알림이 없습니다.</span>
-				<div id="alertBox" th:each="alert : ${alerts}">
-          <div id="alertBoxBottom">
-          	<div id="alertType" th:text="${alert.title}"></div>
-          	<div th:id="${alert.url}" class="link" onclick="returnUrl()">바로가기</div>
-          </div>
-        	<div id="alertContent" th:text="${alert.alertMsg}"></div>
-        	<div id="alertDate" th:text="${alert.alertDate}"></div>
-        </div>
+  <div id="alertHeader">
+    <div id="alertTit">알림</div>
+    <img src="/images/alertCloseBtn.svg" onClick="alertCloseBtn()" />
+  </div>
+  
+  <div id="alertNull" th:if="${notFound}">새로운 알림이 없습니다.</div>
+
+  <div id="alertBox" th:each="alert : ${alerts}">
+    <div id="alertBtnWrap">
+      <div id="alertType" th:text="${alert.title}"></div>
+      <div th:id="${alert.url}" class="link" onclick="returnUrl()">바로가기</div>
     </div>
-</div>
+    <div id="alertContent" th:text="${alert.alertMsg}"></div>
+    <div id="alertDate" th:text="${alert.alertDate}"></div>
+  </div>
 </body>
 </html>
