@@ -1,144 +1,174 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/default_layout}">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/default_layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MEETU</title>
 
-<head>
-  <title>상담예약</title>
-  <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
-  <link th:href="@{/css/header.css}" rel="stylesheet" />
-  <link th:href="@{/css/professorSearchPage.css}" rel="stylesheet" />
-  <link th:href="@{/css/footer.css}" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="/javascript/professorSearchPage.js"></script>
-  <script th:inline="javascript">
-  	var isReservated = [[${isReservated}]];
-  	var hasConsultableTime = [[${hasConsultableTime}]];
-  	var date_check = [[${date_check}]];
-  	var is_added = [[${is_added}]];
-  	var professors = [[${professors}]];
-  </script>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
 
-<body id="reservationBodyBg">
-  <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-  <div layout:fragment="content" class="content">
+    <link th:href="@{/css/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/professorSearchPage.css}" rel="stylesheet" />
+    <link th:href="@{/css/footer.css}" rel="stylesheet" />
 
-    <div id="reservationWrap">
-      <div>
-        <div id="selectDept">상담예약</div>
-        <ul id="deptWrap">
-          <li th:each="college : ${colleges}" class="college">
-            <div th:text="${college.collegeName}"></div>
-            <ul class="deptList">
-              <li th:each="dept : ${departments}" th:text="${dept.deptName}" class="dept"
-                th:attr="onclick=|searchProfessorByDept('${dept.deptNo}')|"></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    <script src="/javascript/professorSearchPage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-      <div id="messageInner">
-        <div id="sender">
-          <div class="resultArea">
-            <div id="search">
-              <input type="text" placeholder="검색어를 입력하세요." id="searchText">
-              <img src="/images/search.svg" id="searchBtn" onclick="searchProfessorByKeyword()" />
-            </div>
+    <script th:inline="javascript">
+      var isReservated = [[${isReservated}]];
+      var hasConsultableTime = [[${hasConsultableTime}]];
+      var date_check = [[${date_check}]];
+      var is_added = [[${is_added}]];
+      var professors = [[${professors}]];
+    </script>
+  </head>
+
+  <body>
+    <th:block
+      layout:fragment="header"
+      th:include="@{/fragments/header}"
+    ></th:block>
+    <div layout:fragment="content" class="content">
+      <div id="profSearchPageWrap">
+        <div id="profSearchInputWrap">
+          <div id="profSearchTit">상담예약</div>
+
+          <div id="search">
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요."
+              id="searchText"
+            />
+            <img
+              src="/images/search.svg"
+              id="searchBtn"
+              onclick="searchProfessorByKeyword()"
+            />
           </div>
         </div>
 
-        <div id="messageInnerWrap">
-          <div id="profListWrap">
-            <table class="profList">
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>교수명</th>
-                  <th>학과</th>
-                  <th>상세정보</th>
-                  <th></th>
-                </tr>
-              </thead>
+        <div id="profSearchContent">
+          <div id="deptSearchBox">
+            <ul id="deptWrap">
+              <li th:each="college : ${colleges}" class="college">
+                <div th:text="${college.collegeName}"></div>
+                <ul class="deptList">
+                  <li
+                    th:each="dept : ${departments}"
+                    th:text="${dept.deptName}"
+                    class="dept"
+                    th:attr="onclick=|searchProfessorByDept('${dept.deptNo}')|"
+                  ></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div id="resultBox">
+            <table>
+              <tr>
+                <th id="thNo">번호</th>
+                <th id="thProfName">교수명</th>
+                <th id="thDept">학과</th>
+                <th id="thInfo">상세 정보</th>
+                <th id="thBtn"></th>
+              </tr>
 
-              <tbody id="searchResult">
-                <tr th:each="prof, i : ${professors}" th:id="${prof.memberNo}">
-                  <td th:text="${i.index + 1}"></td>
-                  <td th:text="${prof.member.name}"></td>
-                  <td th:text="${prof.member.deptInfo.deptName}"></td>
-                  <td>
-                    <div id="infoBox">
-                      <img id="infoBtn" src="/images/info.svg">
-                      <div id="infoBox-content">
-                        <div>
-                          <span id="infoTitle">전공</span>
-                        </div>
-                        <div th:text="${prof.major}"></div>
-                        <p />
-                        <div>
-                          <span id="infoTitle">담당과목</span>
-                        </div>
-                        <div>
-                          <div th:each="course : ${prof.courses}" th:text="${course.title}"></div>
-                        </div>
-                        <p />
-                        <div>
-                          <span id="infoTitle">이메일</span>
-                        </div>
-                        <div th:text="${prof.member.email}"></div>
-                        <p />
-                        <div>
-                          <span id="infoTitle">연구실 위치</span>
-                        </div>
-                        <div th:text="${prof.officeNo}"></div>
-                      </div>
+              <tr th:each="prof, i : ${professors}" th:id="${prof.memberNo}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${prof.member.name}"></td>
+                <td th:text="${prof.member.deptInfo.deptName}"></td>
+                <td>
+                  <div id="dropdown">
+                    <div id="dropdownBtn"><img src="/images/info.svg" /></div>
+                    <div id="dropdownContent">
+                      <div id="infoTit">전공</div>
+                      <div id="infoContent" th:text="${prof.major}"></div>
+                      <div id="infoTit">담당과목</div>
+                      <div
+                        id="infoContent"
+                        th:each="course : ${prof.courses}"
+                        th:text="${course.title}"
+                      ></div>
+                      <div id="infoTit">이메일</div>
+                      <div
+                        id="infoContent"
+                        th:text="${prof.member.email}"
+                      ></div>
+                      <div id="infoTit">연구실 위치</div>
+                      <div id="infoContent" th:text="${prof.officeNo}"></div>
                     </div>
-                  </td>
-                  <td th:if="${prof.user == true}">
-                    <button id="checkBtn" onclick="selectProf()">선택하기</button>
-                  </td>
-                </tr>
-              </tbody>
+                  </div>
+                </td>
+                <td th:if="${prof.user == true}">
+                  <button id="selectBtn" onclick="selectProf()">
+                    선택하기
+                  </button>
+                </td>
+              </tr>
             </table>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- 
-<div id="recommendWrap">
-    <div id="recommendTit">추천 교수님</div>
-    <div id="recommendInfoBox">
+
+    <!--
+    <div id="recommendWrap">
+      <div id="recommendTit">추천 교수님</div>
+      <div id="recommendInfoBox">
         <div id="recProfNDWrap">
-            <div id="recProfName">${recommend_prof.name} 교수님
-                <div id="recProfDept">${recommend_prof.dept}</div>
+          <div id="recProfName">
+            ${recommend_prof.name} 교수님
+            <div id="recProfDept">${recommend_prof.dept}</div>
+          </div>
+          <c:if test="${recommend_prof.is_member == true}">
+            <div
+              id="recReservationBtn"
+              onclick="location.href='reservationForm.do?p_user_id=${recommend_prof.p_user_id}'"
+            >
+              선택하기
             </div>
-            <c:if test="${recommend_prof.is_member == true}">
-            	<div id="recReservationBtn" onclick="location.href='reservationForm.do?p_user_id=${recommend_prof.p_user_id}'">선택하기</div>
-            </c:if>
+          </c:if>
         </div>
         <div id="recProfMajor">전공: <span>${recommend_prof.major}</span></div>
-        <div id="recProfSubject">담당과목: <span>${recommend_prof.course}</span></div>
-        <div id="recProfEmail">이메일: <span>${recommend_prof.email}</span></div>
-        <div id="recProfLocation">연구실 위치: <span>${recommend_prof.office}</span></div>
+        <div id="recProfSubject">
+          담당과목: <span>${recommend_prof.course}</span>
+        </div>
+        <div id="recProfEmail">
+          이메일: <span>${recommend_prof.email}</span>
+        </div>
+        <div id="recProfLocation">
+          연구실 위치: <span>${recommend_prof.office}</span>
+        </div>
         <div id="recTag">${recommend_prof.tag}</div>
+      </div>
     </div>
-</div>
- -->
-  <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
-  <script>
-    $('.college').click(function () {
-      $('.deptList').slideUp();
-      if ($(this).children('.deptList').is(':visible')) {
-        $(this).children('.deptList').slideUp();
-      } else {
-        $(this).children('.deptList').slideDown();
-      }
-    });
-  </script>
-  <script src="/javascript/alert.js"></script>
-</body>
+    -->
 
+    <th:block
+      layout:fragment="footer"
+      th:include="@{/fragments/footer}"
+    ></th:block>
+
+    <script>
+      // college 클릭 시 slideUp/Down 이벤트 추가
+      $(".college").click(function () {
+        $(".deptList").slideUp();
+        if ($(this).children(".deptList").is(":visible")) {
+          $(this).children(".deptList").slideUp();
+        } else {
+          $(this).children(".deptList").slideDown();
+        }
+      });
+    </script>
+
+    <script src="/javascript/alert.js"></script>
+  </body>
 </html>
