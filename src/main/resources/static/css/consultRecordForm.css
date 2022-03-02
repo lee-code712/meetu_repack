@@ -1,185 +1,129 @@
-@charset "UTF-8";
-
-#navWrap {
-    padding-top: 80px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 1194px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#navL {
-    width: 318px;
-    height: 500px;
-    border-radius: 5px;
+body {
+  background-color: #fafafa;
 }
 
-#navLTit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #EAEAEA;
-    font-size: 18px;
-    background: white;
-    border-radius: 5px 5px 0px 0px;
+#recorePageWrap {
+  margin: 80px auto;
+  width: 1194px;
 }
 
-#navListWrap {
-    width: 100%;
-    border-bottom: 1px solid #EAEAEA;
-    border-left: 1px solid #EAEAEA;
-    border-right: 1px solid #EAEAEA;
-    background: white;
-    border-radius: 0px 0px 5px 5px;
+#consultInfoTit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  font-size: 18px;
 }
 
-#navList {
-    display: flex;
-    align-items: center;
-    width: 298px;
-    height: 40px;
-    padding-left: 20px;
-    font-size: 14px;
+#consultInfoHeader,
+#consultInfo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #eaeaea;
+  background-color: white;
 }
 
-#navListOn {
-    display: flex;
-    align-items: center;
-    width: 298px;
-    height: 40px;
-    padding-left: 20px;
-    font-size: 14px;
-    background: #1abc9c;
-    color: white;
+#profInfoTit,
+#stuInfoTit,
+#consultTypeTit,
+#profInfo,
+#stuInfo,
+#consultType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  font-size: 14px;
 }
 
-#navR {
-    width: 816px;
-    height: 500px;
+#consultDateTit,
+#consultReasonTit,
+#consultDate,
+#consultReason {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 297px;
+  height: 100%;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  font-size: 14px;
 }
 
-#navRTit {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    width: 796px;
-    height: 40px;
-    font-size: 18px;
-    background: white;
-    border-radius: 5px 5px 0px 0px;
-    border: 1px solid #EAEAEA;
+#consultContentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  width: 1154px;
+  height: 40px;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  margin-top: 80px;
+  font-size: 18px;
 }
 
-#writerName {
-	padding-right: 20px;
-	color: #535353;
-	font-size: 14px;
+#writer {
+  font-size: 14px;
+  color: #c4c4c4;
 }
 
-#navRContentWrap {
-    width: 776px;
-    padding: 20px;
-    background: white;
-    border-radius: 0px 0px 5px 5px;
-    border-bottom: 1px solid #EAEAEA;
-    border-left: 1px solid #EAEAEA;
-    border-right: 1px solid #EAEAEA;
-    font-size: 14px;
+#consultContent {
+  padding: 20px;
+  width: 1154px;
+  height: 460px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
 }
 
-#recordText {
-    width: 776px;
-    height: 490px;
-    border: none;
-    font-size: 14px;
+#consultContent:focus {
+  outline: none;
 }
 
-#recordText:focus {
-    outline: none;
+#btnWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60px;
+  width: 100%;
+  height: 40px;
 }
 
-#backBtn {
-    margin-left: 20px;
-    margin-top: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    border: 1px solid #E0E0E0;
-    border-radius: 5px;
-    background: #3498db;
-    color: white;
+#btnWrap > div {
+  display: flex;
+}
+
+#cancelBtn {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  color: #bc1a1a;
+  border: 1px solid #bc1a1a;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 #saveBtn {
-    margin-left: 20px;
-    margin-top: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    border: 1px solid #E0E0E0;
-    border-radius: 5px;
-    background: #1abc9c;
-    color: white;
-}
-
-#noticeImg {
-    width: 14px;
-    height: 14px;
-}
-
-#noticeImg:hover {
-    cursor: pointer;
-}
-
-#blankDiv {
-        width: 60px;
-}
-
-#noticeCount {
-	position: relative;
-	right: 12px;
-	top: -3px;
-	font-size: 12px;
-	color: white;
-}
-
-#noticeImg {
-	width: 20px;
-	height: 20px;
-}
-
-#noticeOnImg {
-	cursor: pointer;
-	width: 24px;
-	height: 20px;
-}
-
-.consultSubTit {
-	color: #1abc9c;
-	font-size: 14px;
-}
-
-#backBtn:hover, #saveBtn:hover {
-	cursor: pointer;
-}
-
-#backBtn:focus, #saveBtn:focus {
-	outline: none;
-}
-
-#navLTit {
-	font-size: 18px;
-}
-
-textarea {
-	resize: none;
+  margin-left: 40px;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  color: #1abc9c;
+  border: 1px solid#1ABC9C;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
 }

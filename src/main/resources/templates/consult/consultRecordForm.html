@@ -1,63 +1,229 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/default_layout}">
-<head>
-	<meta charset="UTF-8">
-	<title>consultRecord</title>
-	<link rel="stylesheet" href="/css/header.css" />
-	<link rel="stylesheet" href="/css/consultRecordForm.css" />
-	<link rel="stylesheet" href="/css/footer.css" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
-		rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
-		rel="stylesheet">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body id="cltRecordBg">
-	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-  <div layout:fragment="content" class="content">
-		<div id="navWrap">
-			<div id="navL">
-				<div id="navLTit">상담정보</div>
-				<div id="navListWrap">
-					<div id="navList" class="consultSubTit">교수정보</div>
-					<div id="navList" th:text="${consult.profUser.memberInfo.name}"></div>
-					<div id="navList" class="consultSubTit">학생정보</div>
-					<div id="navList" th:text="${consult.stuUser.memberInfo.name}"></div>
-					<div id="navList" class="consultSubTit">상담일시</div>
-					<div id="navList" th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
-                    	+ ${#strings.substring(consult.endDate,11,16)}"></div>
-					<div id="navList" class="consultSubTit">상담신청사유</div>
-					<div id="navList" th:text="${consult.reason}"></div>
-					<div id="navList" class="consultSubTit">상담유형</div>
-					<div id="navList" th:if="${consult.type == 0}"
-            th:text="${consult.profUser.memberInfo.profInfo.officeNo}"></div>
-					<div id="navList" th:if="${consult.type == 1}">온라인</div>
-				</div>
-			</div>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/default_layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MEETU</title>
 
-			<div id="navR">
-				<div id="navRTit">
-					<div>상담내용</div>
-					<div id="writerName" th:text="${consult.profUser.memberInfo.name}"></div>
-				</div>
-				<div id="navRContentWrap">
-					<textarea th:if="${consult.content == ' '}" id="recordText" name="story" rows="30" cols="120"
-						placeholder="내용을 입력하세요."></textarea>
-					<textarea th:if="${consult.content != ' '}" id="recordText" name="story" rows="30" cols="120"
-						placeholder="내용을 입력하세요." th:text="${consult.content}"></textarea>
-				</div>
-				<button id="backBtn" onclick="history.back();">닫기</button>
-				<button id="saveBtn" onclick="updateContent();">저장</button>
-			</div>
-		</div>
-	</div>
-  <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
-  
-  <script src="/javascript/consultRecordForm.js"></script>
-  <script src="/javascript/alert.js"></script>
-</body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/consultRecordForm.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #fafafa;
+      }
+
+      #recorePageWrap {
+        margin: 80px auto;
+        width: 1194px;
+      }
+
+      #consultInfoTit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #eaeaea;
+        background-color: white;
+        font-size: 18px;
+      }
+
+      #consultInfoHeader,
+      #consultInfo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #eaeaea;
+        background-color: white;
+      }
+
+      #profInfoTit,
+      #stuInfoTit,
+      #consultTypeTit,
+      #profInfo,
+      #stuInfo,
+      #consultType {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 100%;
+        border: 1px solid #eaeaea;
+        background-color: white;
+        font-size: 14px;
+      }
+
+      #consultDateTit,
+      #consultReasonTit,
+      #consultDate,
+      #consultReason {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 297px;
+        height: 100%;
+        border: 1px solid #eaeaea;
+        background-color: white;
+        font-size: 14px;
+      }
+
+      #consultContentHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+        width: 1154px;
+        height: 40px;
+        border: 1px solid #eaeaea;
+        background-color: white;
+        margin-top: 80px;
+        font-size: 18px;
+      }
+
+      #writer {
+        font-size: 14px;
+        color: #c4c4c4;
+      }
+
+      #consultContent {
+        padding: 20px;
+        width: 1154px;
+        height: 460px;
+        border: 1px solid #eaeaea;
+        font-size: 14px;
+      }
+
+      #consultContent:focus {
+        outline: none;
+      }
+
+      #btnWrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 60px;
+        width: 100%;
+        height: 40px;
+      }
+
+      #btnWrap > div {
+        display: flex;
+      }
+
+      #cancelBtn {
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        color: #bc1a1a;
+        border: 1px solid #bc1a1a;
+        background-color: white;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #saveBtn {
+        margin-left: 40px;
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        color: #1abc9c;
+        border: 1px solid#1ABC9C;
+        background-color: white;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <th:block
+      layout:fragment="header"
+      th:include="@{/fragments/header}"
+    ></th:block>
+    <div layout:fragment="content" class="content">
+      <div id="recorePageWrap">
+        <div id="consultInfoTit">상담 정보</div>
+
+        <div id="consultInfoHeader">
+          <div id="profInfoTit">교수 정보</div>
+          <div id="stuInfoTit">학생 정보</div>
+          <div id="consultDateTit">상담 일시</div>
+          <div id="consultReasonTit">상담 신청 사유</div>
+          <div id="consultTypeTit">상담 유형</div>
+        </div>
+
+        <div id="consultInfo">
+          <div
+            id="profInfo"
+            th:text="${consult.profUser.memberInfo.name}"
+          ></div>
+          <div id="stuInfo" th:text="${consult.stuUser.memberInfo.name}"></div>
+          <div
+            id="consultDate"
+            th:text="${#strings.substring(consult.startDate,0,16)} + ' ~ ' 
+          + ${#strings.substring(consult.endDate,11,16)}"
+          ></div>
+          <div id="consultReason" th:text="${consult.reason}"></div>
+          <div
+            id="consultType"
+            th:if="${consult.type == 0}"
+            th:text="${consult.profUser.memberInfo.profInfo.officeNo}"
+          ></div>
+          <div id="consultType" th:if="${consult.type == 1}">온라인</div>
+        </div>
+
+        <div id="consultContentHeader">
+          <div id="consultContentTit">상담 내용</div>
+          <div id="writer" th:text="${consult.profUser.memberInfo.name}"></div>
+        </div>
+        <textarea
+          th:if="${consult.content == ' '}"
+          id="consultContent"
+          name="story"
+          placeholder="상담 내용을 입력하세요."
+        ></textarea>
+        <textarea
+          th:if="${consult.content != ' '}"
+          id="consultContent"
+          name="story"
+          placeholder="상담 내용을 입력하세요."
+          th:text="${consult.content}"
+        ></textarea>
+
+        <div id="btnWrap">
+          <div>
+            <button id="cancelBtn" onclick="history.back();">최소</button>
+            <button id="saveBtn" onclick="updateContent();">저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <th:block
+      layout:fragment="footer"
+      th:include="@{/fragments/footer}"
+    ></th:block>
+
+    <script src="/javascript/consultRecordForm.js"></script>
+    <script src="/javascript/alert.js"></script>
+  </body>
 </html>
