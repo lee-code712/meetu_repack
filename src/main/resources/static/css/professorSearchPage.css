@@ -133,22 +133,22 @@ td {
   width: 198px;
 }
 
-#dropdown {
+#infoDropdown {
   position: relative;
   display: inline-block;
   font-size: 14px;
   padding: 14px;
 }
 
-#dropdownBtn:hover {
+#infoDropdownBtn:hover {
   cursor: pointer;
 }
 
-#dropdownBtn div {
+#infoDropdownBtn div {
   justify-content: flex-end;
 }
 
-#dropdownContent {
+#infoDropdownContent {
   display: none;
   position: absolute;
   background-color: white;
@@ -160,7 +160,7 @@ td {
   z-index: 100;
 }
 
-#dropdown:hover #dropdownContent {
+#infoDropdown:hover #infoDropdownContent {
   display: block;
 }
 
