@@ -49,8 +49,8 @@ function calendarChoiceDate() {
     // startTimeBox 초기화
 	var classes = document.getElementsByClassName("startTimeBox");
 	Array.from(classes).forEach(function(c, i) {
-		$(c).css("background", "#E5E5E5");
-		$(c).css("border", "1px solid #C4C4C4");
+		$(c).css("background", "#EAEAEA");
+		$(c).css("border", "1px solid #EAEAEA");
 		$(c).css("cursor", "");
 		$(c).children("a").css("color", "black");
 		$(c).attr("isDisabled", "true");
@@ -111,7 +111,7 @@ function calendarChoiceDate() {
 				if($(classes[j]).attr("id") == endTime)
 					break;
 				$(classes[j]).attr("isDisabled", "true");
-				classes[j].style.backgroundColor = "#E5E5E5";
+				classes[j].style.backgroundColor = "#EAEAEA";
 				j++;
 			}
 		}
@@ -135,7 +135,7 @@ function startTimeBoxClick() {
 	
 	// timeBox 초기화
 	$(".timeBox").css("background", "#FFFFFF");
-	$(".timeBox").css("border", "1px solid #C4C4C4");
+	$(".timeBox").css("border", "1px solid #EAEAEA");
 	$(".timeBox").css("cursor", "");
 	$(".timeBox").children("a").css("color", "black");
 	$(".timeBox").attr("isDisabled", "false"); 
@@ -146,7 +146,7 @@ function startTimeBoxClick() {
 	Array.from(startTimeClasses).forEach(function(c, i) {
 		if($(c).attr("isDisabled") == "false") {
 			$(c).css("background", "#FFFFFF");
-			$(c).css("border", "1px solid #C4C4C4");
+			$(c).css("border", "1px solid #EAEAEA");
 			$(c).children("a").css("color", "black");
 		}
 	});
@@ -226,7 +226,7 @@ function timeBoxClick() {
 	Array.from(classes).forEach(function(c, i) {
 		if($(c).attr("isDisabled") != "true") {
 			$(c).css("background", "#FFFFFF");
-			$(c).css("border", "1px solid #C4C4C4");
+			$(c).css("border", "1px solid #EAEAEA");
 			$(c).children("a").css("color", "black");
 		}
 	});
@@ -260,7 +260,7 @@ function typeBtnClick() {
 		$("div#typeBtnOff").css("border", "1px solid  #1abc9c");
 		$("div#typeBtnOff").css("background", "#1abc9c");
 		$("div#typeBtnOff > a").css("color", "white");
-		$("div#typeBtnOn").css("border", "1px solid  #C4C4C4");
+		$("div#typeBtnOn").css("border", "1px solid  #EAEAEA");
 		$("div#typeBtnOn").css("background", "#FFFFFF");
 		$("div#typeBtnOn > a").css("color", "black");
 	}

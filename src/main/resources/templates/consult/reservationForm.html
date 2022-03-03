@@ -73,6 +73,60 @@
         return [true];
     }
   </script>
+  
+  <style>
+		#officeMapWrap {
+			margin-top: 40px;
+		}
+		
+		#officeMapTit {
+			display: flex;
+			align-items: center;
+			padding-left: 20px;
+			font-size: 14px;
+			height: 40px;
+			background-color: white;
+			border: 1px solid #EAEAEA;
+		}
+		
+		#office_map {
+			border: 1px solid #EAEAEA;
+		}
+		
+		#pickPeriodInner {
+			width: 100%;
+			text-align: center;
+		}
+		
+		#choiceDate {
+			width: 208px;
+			text-align: center;
+			border: none;
+			cursor: pointer;
+		}
+		
+		#navWrap {
+		    padding-top: 80px;
+		    display: flex;
+		    justify-content: space-between;
+		    margin: 0 auto;
+		    width: 1194px;
+		    height: 1200px;
+		}
+		
+		.reservationBtn {
+		    margin-top: 20px;
+		    margin-left: 20px;
+		    float: right;
+		    display: block;
+		    padding: 10px 20px;
+		    border-radius: 5px;
+		    color: #1abc9c;
+		    background-color: white;
+		    border: none;
+		    border: 1px solid #1abc9c;
+		}
+	</style>
 </th:block>
 
 <body>
@@ -95,6 +149,10 @@
 					<div th:text="${professorInfo.member.email}" class="navList" id="email">이메일</div>
 					<div class="navListName">연구실 위치</div>
 					<div th:text="${professorInfo.officeNo}" class="navList" id="office">연구실 위치</div>
+				</div>
+				
+				<div id="officeMapWrap">
+					<div id="officeMapTit">연구실 위치 지도</div>
 					<div id="office_map"></div>
 				</div>
 			</div>
@@ -104,7 +162,7 @@
 				<div id="navRContentWrap">
 					<div id="pickPeriodWrap">
 		                <div id="pickPeriodInner">
-		                    <input type="text" name="choiceDate" id="choiceDate" placeholder="상담 날짜" onfocus="this.blur()" />
+		                    <input type="text" name="choiceDate" id="choiceDate" placeholder="🗓 원하시는 날짜를 선택해주세요." onfocus="this.blur()" />
 		                </div>
 	            	</div>
 				</div>
