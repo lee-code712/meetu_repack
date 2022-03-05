@@ -23,7 +23,7 @@
         <div id="noticeOnImgInner">
           <img src="/images/bell.svg" id="noticeImg" />
         </div>
-        <div id="noticeCount" onclick="readNewAlerts()" th:text="${session.newAlerts}"></div>
+        <div id="noticeCount" onclick="readNewAlerts()">[[${session.newAlerts}]]</div>
       </div>
     </div>
   </div>

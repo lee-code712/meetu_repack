@@ -38,7 +38,7 @@ public class AlertManager {
 					alert.setUrl("/message");
 				}
 				else if(type == 7) {
-					if(alert.getAlertMsg().length() == 40) {
+					if(alert.getAlertMsg().length() > 30) {
 						alert.setUrl("/user/my");
 					}
 					else {
