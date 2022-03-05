@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,7 +42,7 @@ public class ReservationController {
 	}
 
 	@GetMapping("/consult/viewReservation")
-	public String goReservationView(@RequestParam("consultId") String consultId, Model model) {
+	public String goReservationView(String consultId, Model model) {
 
 		Consult reservation = consultService.getReservationInfo(consultId);
 		model.addAttribute("reservation", reservation);
@@ -207,5 +206,14 @@ public class ReservationController {
 			}
 			return "/consult/professorSearchPage";
 		}
+	}
+	
+	@RequestMapping("/consult/updateReservationForm")
+	public String goUpdateReservationForm(String consultId, Model model) {
+		
+		Consult reservation = consultService.getReservationInfo(consultId);
+		model.addAttribute("reservation", reservation);
+		
+		return "consult/reservationForm";
 	}
 }
