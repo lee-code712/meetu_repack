@@ -209,11 +209,13 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/consult/updateReservationForm")
-	public String goUpdateReservationForm(String consultId, Model model) {
+	public String goUpdateReservationForm(String consultId, RedirectAttributes rttr) {
 		
 		Consult reservation = consultService.getReservationInfo(consultId);
-		model.addAttribute("reservation", reservation);
+		rttr.addFlashAttribute("reservation", reservation);
+		// 예약폼에서 교수번호를 매개변수로 다 사용해서 임의로 교수번호 만듦(학교번호 수가 달라지면 에러남)
+		String profNo = reservation.getProfUser().getUserId().substring(2);
 		
-		return "consult/reservationForm";
+		return "redirect:/consult/reservationForm?profNo=" + profNo;
 	}
 }

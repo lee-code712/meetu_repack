@@ -21,12 +21,14 @@ function check(date) {
 	const today = new Date();
 	const consultDay = new Date(date);
 	let data;
-	
+	console.log(consultId);
 	if(buttonType == "editBtn") {
-		 if(today > consultDay) {
-			 alert("상담일시가 지나 수정할 수 없습니다. 상담을 완료하시거나 취소하시기 바랍니다.");
-		 }
-		// 수정 페이지로 이동
+		if(today > consultDay) {
+			alert("상담일시가 지나 수정할 수 없습니다. 상담을 완료하시거나 취소하시기 바랍니다.");
+		}
+		else {
+			location.href = "/consult/updateReservationForm?consultId=" + consultId;
+		}
 	}
 	else if(buttonType == "cancelBtn") {
 		if (confirm("선택한 예약을 취소하시겠습니까?") == true) {
