@@ -161,6 +161,9 @@ function calendarChoiceDate() {
 	    	$("div.typeBtn:contains('온라인')").trigger("click");
     	}
     }
+	
+	// 화면 상단이 나오도록 설정 
+    window.scrollTo({top:0, left:0, behavior:'auto'});
 }
 
 /**
