@@ -40,7 +40,7 @@
       <div id="tit">마이페이지</div>
       <div id="userInfo">
         <img src="/images/user.svg" id="userImg" />
-        <div id="name">이름</div>
+        <div id="name" th:text="${session.name}"></div>
         <div id="infoBtnWrap">
           <button id="infoBtn" onclick="location.href='/user/my/info'">내 정보</button>
         </div>

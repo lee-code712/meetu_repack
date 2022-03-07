@@ -2,7 +2,7 @@ $(document).ready(function(){ // html이 로드되면 실행됨
 	// 각 버튼에 click 이벤트 설정
 	$(".startTimeBox").click(ck_startTimeBox);
 	$(".timeBox").click(ck_timeBox);
-	$(".typeBtn").click(typeBtnClick);
+	// $(".typeBtn").click(typeBtnClick); // 예약 수정 시 trigger("click")함수가 작동이 안되서 html에 onclick 직접 작성함
 	$(".reservationBtn").click(reservationBtnClick);
 	
 	drawMap(); // 구글 맵 불러오기
@@ -45,7 +45,7 @@ function calendarChoiceDate() {
 	var today = new Date();
 	var choiceDate = $("#choiceDate").val();
     var contentDay = choiceDate.split('-')[2];
-
+    
     // startTimeBox 초기화
 	var classes = document.getElementsByClassName("startTimeBox");
 	Array.from(classes).forEach(function(c, i) {
@@ -90,23 +90,28 @@ function calendarChoiceDate() {
 	
 	Array.from(reservations).forEach(function(reservation, i) {
 		var startDate = reservation.startDate;
+		// 현재 수정하려는 예약일자와 같은 경우 넘어감
+		if (reservationInfo != null && startDate == reservationInfo['startDate']) {
+			return;
+		}
+		
 		var endDate = reservation.endDate;
 		var startTime = startDate.split(" ")[1].substring(0, 5);
 		var endTime = endDate.split(" ")[1].substring(0, 5);
 		let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-		
+			
 		var disable_dateArr = startDate.split(" ")[0].split("-"); // 예약이 차 있는 날짜 배열
-		
+			
 		if ((doMonth.getMonth() + 1) == Number(disable_dateArr[1]) && Number(contentDay) == Number(disable_dateArr[2])) { 			
 			// 불가능 시작 시간
 			var j = 0;
-			
+				
 			while (classes.length > j) {
 				if($(classes[j]).attr("id") == startTime)
 					break;
 				j++;
 			}
-			
+				
 			while (classes.length > j) {
 				if($(classes[j]).attr("id") == endTime)
 					break;
@@ -124,6 +129,34 @@ function calendarChoiceDate() {
 			$(element).css("cursor", "pointer");
 		}
 	});
+	
+	// 예약정보가 있다면 해당하는 버튼이 선택되도록 설정
+	if (reservationInfo != null) {
+    	var start = reservationInfo['startDate'].substring(11, 16);
+    	var end = reservationInfo['endDate'].substring(11, 16);
+    	var time = end.substring(0,2) - start.substring(0,2);
+	    $("div.startTimeBox:contains(" + start + ")").trigger("click");    
+	    $("div.timeBox:contains(" + time + ")").trigger("click");
+	    
+	    var reason = reservationInfo['reason'];
+	    var radio_ck = $("label:contains(" + reason + ")").prop('tagName');
+	    if(radio_ck == null) {
+	    	 $("label[for='radio5']").trigger("click");
+	    	 $("#anotherReason").val(reason);
+	    }
+	    else {
+	    	$("label:contains(" + reason + ")").trigger("click");
+	    }
+	    
+	    var type = reservationInfo['type'];
+	    console.log(type);
+	    if(type == 0) {
+	    	$("#typeBtnOff").trigger("click");
+	    }
+	    else {
+	    	$("#typeBtnOn").trigger("click");
+    	}
+    }
 }
 
 /**
