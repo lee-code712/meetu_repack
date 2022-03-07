@@ -79,6 +79,7 @@ public class ReservationController {
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("id");
 		String profNo = (String) req.getParameter("profNo");
+		String isUpdate = (String) req.getParameter("isUpdate"); // 수정하는 경우를 구별
 
 		// 교수의 회원 ID
 		ServiceUser profUser = userService.getUserByMemberNo(profNo);
@@ -99,23 +100,26 @@ public class ReservationController {
 			mav.addObject("professorInfo", professorInfo);
 		}
 
-		// 같은 교수에게 예약 레코드가 있는지 여부
-		boolean isReservated = consultService.checkReservated(userId, profId);
-		if (isReservated) {
-			mav.addObject("isReservated", 1);
-
-			List<College> collegeList = userService.getColleges();
-			if (collegeList != null) {
-				mav.addObject("colleges", collegeList);
+		// 수정하는 경우가 아니라면
+		if(isUpdate == null) {
+			// 같은 교수에게 예약 레코드가 있는지 여부
+			boolean isReservated = consultService.checkReservated(userId, profId);
+			if (isReservated) {
+				mav.addObject("isReservated", 1);
+	
+				List<College> collegeList = userService.getColleges();
+				if (collegeList != null) {
+					mav.addObject("colleges", collegeList);
+				}
+	
+				List<Department> departmentList = userService.getDepartments();
+				if (departmentList != null) {
+					mav.addObject("departments", departmentList);
+				}
+	
+				mav.setViewName("consult/professorSearchPage");
+				return mav; // 상담 가능 시간대가 없는 경우 교수 선택 페이지로 리턴
 			}
-
-			List<Department> departmentList = userService.getDepartments();
-			if (departmentList != null) {
-				mav.addObject("departments", departmentList);
-			}
-
-			mav.setViewName("consult/professorSearchPage");
-			return mav; // 상담 가능 시간대가 없는 경우 교수 선택 페이지로 리턴
 		}
 
 		// 해당 교수의 상담 가능 시간
@@ -215,7 +219,8 @@ public class ReservationController {
 		rttr.addFlashAttribute("reservation", reservation);
 		// 예약폼에서 교수번호를 매개변수로 다 사용해서 임의로 교수번호 만듦(학교번호 수가 달라지면 에러남)
 		String profNo = reservation.getProfUser().getUserId().substring(2);
+		String params = "profNo=" + profNo + "&isUpdate=" + "yes";
 		
-		return "redirect:/consult/reservationForm?profNo=" + profNo;
+		return "redirect:/consult/reservationForm?" + params;
 	}
 }

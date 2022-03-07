@@ -2,7 +2,6 @@ $(document).ready(function(){ // html이 로드되면 실행됨
 	// 각 버튼에 click 이벤트 설정
 	$(".startTimeBox").click(ck_startTimeBox);
 	$(".timeBox").click(ck_timeBox);
-	// $(".typeBtn").click(typeBtnClick); // 예약 수정 시 trigger("click")함수가 작동이 안되서 html에 onclick 직접 작성함
 	$(".reservationBtn").click(reservationBtnClick);
 	
 	drawMap(); // 구글 맵 불러오기
@@ -130,6 +129,12 @@ function calendarChoiceDate() {
 		}
 	});
 	
+	// type에 대한 클릭 이벤트 생성 - element에 click이벤트를 설정해야 click시 이벤트 처리가 가능
+	var type_classes = document.getElementsByClassName("typeBtn");
+    Array.from(type_classes).forEach(function(element, i) {
+			$(element).click(typeBtnClick);
+	});
+	
 	// 예약정보가 있다면 해당하는 버튼이 선택되도록 설정
 	if (reservationInfo != null) {
     	var start = reservationInfo['startDate'].substring(11, 16);
@@ -149,12 +154,11 @@ function calendarChoiceDate() {
 	    }
 	    
 	    var type = reservationInfo['type'];
-	    console.log(type);
 	    if(type == 0) {
-	    	$("#typeBtnOff").trigger("click");
+	    	$("div.typeBtn:contains('오프라인')").trigger("click");
 	    }
 	    else {
-	    	$("#typeBtnOn").trigger("click");
+	    	$("div.typeBtn:contains('온라인')").trigger("click");
     	}
     }
 }
@@ -288,7 +292,7 @@ function timeBoxClick() {
  */
 function typeBtnClick() {
 	var typeBtn = this;
-	
+
 	if($(typeBtn).attr('id') == "typeBtnOff") {
 		$("div#typeBtnOff").css("border", "1px solid  #1abc9c");
 		$("div#typeBtnOff").css("background", "#1abc9c");
