@@ -74,6 +74,14 @@ public class ConsultDAOImpl implements ConsultDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+	
+	// 예약 변경
+	@Override
+	public boolean updateReservation(Consult consult) {
+		int ck = consultMapper.updateConsult(consult);
+		if (ck > 0) return true;
+		return false;
+	}
 
 	// 상담 백업 생성
 	@Override

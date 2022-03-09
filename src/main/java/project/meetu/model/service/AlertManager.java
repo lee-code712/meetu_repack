@@ -61,6 +61,15 @@ public class AlertManager {
 		Alert alert = new Alert(alertMsg, userId, 0);
 		return alertDao.createAlert(alert);
 	}
+	
+	/* 예약 변경에 대한 새로운 알림 생성  */
+	public boolean addAlertByUpdateReservation(String name, int role, String consultId) {
+		Alert alert = new Alert();
+		alert.setTypeNo(1);
+		alert.setAlertMsg(name + "님이 예약정보를 수정했습니다.");
+		
+		return alertDao.createAlertByConsultId(alert, role, Integer.parseInt(consultId));
+	}
  	
 	/* 예약 상태 변경에 따른 새로운 알림 생성 */
 	public boolean addAlertByReservationStatus(String name, int role, Consult reservation) {

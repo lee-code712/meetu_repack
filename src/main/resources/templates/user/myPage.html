@@ -33,6 +33,12 @@
 </head>
 
 <body>
+	<script th:inline="javascript">
+		if ([[${ updateFailed }]]) {
+	      alert("예약정보 수정에 실패했습니다.");
+	    }
+	</script>
+  
   <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 
   <section>

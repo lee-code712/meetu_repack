@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import project.meetu.model.dao.ConsultDAO;
 import project.meetu.model.dto.Consult;
 import project.meetu.model.dto.ConsultableTime;
+import project.meetu.model.dto.Reservation;
 import project.meetu.model.dto.ServiceUser;
 
 @Service
@@ -158,6 +159,60 @@ public class ConsultManager {
 		}
 		
 		return 1;
+	}
+	
+	/* 예약 변경 */
+	public boolean changeReservationInfo(Reservation reservation, String consultId) {
+		// 예약 일시 생성 - 21/07/28 09:00:00의 형식
+		Calendar cal = Calendar.getInstance();
+		String year = Integer.toString(cal.get(Calendar.YEAR));
+		year = year.substring(2, 4);
+
+		String start_date = reservation.getChoiceDate() + " " + reservation.getStartTime() + ":00";
+
+		// end_time 생성 - 21/07/28 09:00:00의 형식
+		cal = Calendar.getInstance();
+		year = Integer.toString(cal.get(Calendar.YEAR));
+
+		String[] startTimeArr = reservation.getStartTime().split(":"); // 09:00을 09, 00으로 분리
+		int start_timeInt = Integer.parseInt(startTimeArr[0]); // 09만 이용
+		int consultTimeInt = Integer.parseInt(reservation.getConsultTime().replaceAll("[^0-9]", ""));
+		int endTimeInt = start_timeInt + consultTimeInt;
+
+		String endTime = "";
+		if (endTimeInt < 10) { // 시간이 한 자리 수인 경우 0을 붙여서 09와 같이 두 자리 수로 만들어 주어야 함
+			endTime = "0" + Integer.toString(start_timeInt + consultTimeInt);
+		} else {
+			endTime = Integer.toString(start_timeInt + consultTimeInt);
+		}
+		String end_date = reservation.getChoiceDate() + " " + endTime + ":00:00";
+		
+		// 예약 DTO 생성
+		Consult consult = new Consult();
+		consult.setId(Integer.parseInt(consultId));
+		consult.setStartDate(start_date);
+		consult.setEndDate(end_date);
+
+		String radio = reservation.getRadio();
+		if (radio.equals("1")) { // 상담 이유
+			consult.setReason("전담 교수 상담");
+		} else if (radio.equals("2")) {
+			consult.setReason("진로 상담");
+		} else if (radio.equals("3")) {
+			consult.setReason("휴학 상담");
+		} else if (radio.equals("4")) {
+			consult.setReason("대학원 상담");
+		} else {
+			consult.setReason(radio);
+		}
+
+		if (reservation.getType().equals("오프라인")) { // 온라인/오프라인 상담 구분. 오프라인 0, 온라인 1
+			consult.setType(0);
+		} else {
+			consult.setType(1);
+		}
+		
+		return consultDao.updateReservation(consult);
 	}
 	
 	/* 상담 내용 수정 */

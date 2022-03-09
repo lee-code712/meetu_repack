@@ -21,6 +21,7 @@ import project.meetu.model.dto.ConsultableTime;
 import project.meetu.model.dto.Department;
 import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
+import project.meetu.model.dto.Reservation;
 import project.meetu.model.dto.ServiceUser;
 import project.meetu.model.service.AlertManager;
 import project.meetu.model.service.ConsultManager;
@@ -160,7 +161,7 @@ public class ReservationController {
 
 	@PostMapping("/consult/reservate")
 	public String reservate(HttpServletRequest req, RedirectAttributes rttr, Model model) {
-		
+		System.out.println("reserve");
 		HttpSession session = req.getSession();
 		String name = (String) session.getAttribute("name"); 
 		
@@ -225,18 +226,26 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/consult/updateReservation")
-	public String updateReservation(HttpServletRequest req, RedirectAttributes rttr, Model model) {
+	public String updateReservation(Reservation reservation, String consultId, HttpServletRequest req, 
+			RedirectAttributes rttr) {
+
 		HttpSession session = req.getSession();
-		String name = (String) session.getAttribute("name"); 
+		String name = (String) session.getAttribute("name");
+		int role = (int) session.getAttribute("role"); 
 		
-		String choiceDate = req.getParameter("choiceDate");
-		String startTime = req.getParameter("startTime");
-		String consultTime = req.getParameter("consultTime");
-		String typeBtn = req.getParameter("type");
-		String radio = req.getParameter("radio");
-		String profId = req.getParameter("profId");
-		String stuId = (String) session.getAttribute("id");
+		boolean success = consultService.changeReservationInfo(reservation, consultId);
+		if (!success) {
+			rttr.addFlashAttribute("updateFailed", true);
+		}
+		
+		// 새로운 예약에 대한 알림 생성
+		success = alertService.addAlertByUpdateReservation(name, role, consultId);
+		if (!success) {
+			rttr.addFlashAttribute("addAlertFailed", true);
+		}
+		
 		return "redirect:/user/my";
+		
 	}
 	
 }

@@ -133,6 +133,16 @@
 				#{reason}, #{type}, #{status}, #{stuUser.userId}, #{profUser.userId})
 	</insert>
 	
+	<!-- 예약 변경 -->
+	<update id="updateConsult" parameterType="Consult">
+  	UPDATE consult
+		SET start_date = TO_DATE(#{startDate}, 'YY/MM/DD HH24:mi:ss'), 
+			end_date =  TO_DATE(#{endDate}, 'YY/MM/DD HH24:mi:ss'),
+			reason = #{reason},
+			type = #{type}
+		WHERE consult_id = #{id}
+  </update>
+	
 	<!-- 상담 백업 생성 -->
 	<insert id="insertConsultBackup" parameterType="String">
 		INSERT INTO consult_backup (backup_id, start_date, end_date, reason, type, consult_id, stu_no, prof_no)
@@ -164,4 +174,5 @@
 		SET content = #{content}
 		WHERE consult_id = #{id}
 	</insert>
+	
 </mapper>

@@ -358,7 +358,7 @@ function ck_timeBox() {
 	}
 }
 
-function ck_reservation_form() {
+function ck_reservation_form(type) {
 	if(!$("#choiceDate").val()) {
 		alert("상담 날짜를 선택해 주세요.");
 		return false;
@@ -389,9 +389,12 @@ function ck_reservation_form() {
 		return false;
 	}
 	
-	if (reservationInfo != null) {
-		form.action = "/consult/updateReservation";
-		form.submit();
-		return true;
+	if (type == 'reserve') {
+		reservation_form.action = "/consult/reservate";
+		reservation_form.submit();
+	}
+	else if (type == 'update') {
+		reservation_form.action = "/consult/updateReservation?consultId=" + reservationInfo['id'];
+		reservation_form.submit();
 	}
 }

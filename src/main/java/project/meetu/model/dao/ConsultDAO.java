@@ -39,4 +39,7 @@ public interface ConsultDAO {
 	
 	// 상담 백업의 상담 내용 변경
 	boolean changeConsultBackupContent(Consult consult);
+	
+	// 예약 변경
+	boolean updateReservation(Consult consult);
 }
