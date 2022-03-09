@@ -223,4 +223,20 @@ public class ReservationController {
 		
 		return "redirect:/consult/reservationForm?" + params;
 	}
+	
+	@PostMapping("/consult/updateReservation")
+	public String updateReservation(HttpServletRequest req, RedirectAttributes rttr, Model model) {
+		HttpSession session = req.getSession();
+		String name = (String) session.getAttribute("name"); 
+		
+		String choiceDate = req.getParameter("choiceDate");
+		String startTime = req.getParameter("startTime");
+		String consultTime = req.getParameter("consultTime");
+		String typeBtn = req.getParameter("type");
+		String radio = req.getParameter("radio");
+		String profId = req.getParameter("profId");
+		String stuId = (String) session.getAttribute("id");
+		return "redirect:/user/my";
+	}
+	
 }

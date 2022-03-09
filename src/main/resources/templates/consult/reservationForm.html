@@ -136,7 +136,7 @@
 
 <body>
 <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-	<form action="reservate" method="post" name="reservation_form" onsubmit="return ck_reservation_form()">
+	<form method="post" action="/consult/reservate" name="reservation_form" onsubmit="return ck_reservation_form()">
 		<input type="hidden" name="profId" th:value="${profId}">
 		<div id="navWrap">
 			<div id="navL">
@@ -265,7 +265,8 @@
 				</div>
 
 				<div>
-					<input class="reservationBtn" type="submit" value="예약하기" />
+					<input type="submit" th:if="${reservation} == null" class="reservationBtn" value="예약하기" />
+					<input type="submit" th:if="${reservation} != null" class="reservationBtn" value="수정하기" />
 				</div>
 				<div id="blank"></div>
 			</div>
