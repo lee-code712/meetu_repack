@@ -61,13 +61,22 @@ public class LoginController {
 	}
 	
 	@GetMapping("/user/logout")
-	public String logout(HttpServletRequest req) {
+	public String logout(HttpServletRequest req, RedirectAttributes rttr) {
 		
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("id");
 		alertService.removeReadAlert(userId);
-	    
+		
 		session.invalidate();
+		
+		String changePwdSuccess = (String) req.getParameter("changePwdSuccess");
+		if (changePwdSuccess != null) {
+			rttr.addFlashAttribute("changePwdSuccess", true);
+		}
+		String resignSuccess = (String) req.getParameter("resignSuccess");
+		if (resignSuccess != null) {
+			rttr.addFlashAttribute("resignSuccess", true);
+		}
 		
 	    return "redirect:/";
 	}

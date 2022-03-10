@@ -14,7 +14,9 @@ import project.meetu.model.dto.Member;
 import project.meetu.model.dto.Office;
 import project.meetu.model.dto.Professor;
 import project.meetu.model.dto.ServiceUser;
+import project.meetu.model.service.exception.ChangePwdException;
 import project.meetu.model.service.exception.LoginException;
+import project.meetu.model.service.exception.ResignException;
 import project.meetu.model.dao.UserDAO;
 
 @Service
@@ -177,5 +179,38 @@ public class UserManager {
 		String userId = "ex" + serviceUser.getMemberInfo().getMemberNo();
 		serviceUser.setUserId(userId);
 		return userDao.createServiceUser(serviceUser);
+	}
+	
+	/* 비밀번호 변경 */
+	public boolean changePwd(String userId, String oldPwd, String newPwd, String newPwdCk) 
+			throws ChangePwdException {
+		ServiceUser user = userDao.findUser(userId);
+		if (user != null) {
+			if (!user.getPassword().equals(oldPwd)) {
+				System.out.println(user.getPassword() + " " + oldPwd);
+				throw new ChangePwdException("기존 비밀번호가 일치하지 않습니다.");
+			}
+			else if (!newPwd.equals(newPwdCk)) {
+				throw new ChangePwdException("새 비밀번호 확인 값이 일치하지 않습니다.");
+			}
+			else {
+				return userDao.changePassword(newPwd, userId);
+			}
+		}
+		return false;
+	}
+	
+	/* 회원탈퇴 */
+	public boolean resign(String userId, String oldPwd) throws ResignException {
+		ServiceUser user = userDao.findUser(userId);
+		if (user != null) {
+			if (!user.getPassword().equals(oldPwd)) {
+				throw new ResignException("비밀번호가 일치하지 않습니다.");
+			}
+			else {
+				return userDao.deleteUser(oldPwd, userId);
+			}
+		}
+		return false;
 	}
 }

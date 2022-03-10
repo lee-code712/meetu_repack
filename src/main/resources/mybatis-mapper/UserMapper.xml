@@ -255,14 +255,28 @@
 	</delete>
 
 	<select id="selectOfficeByProfId" parameterType="String" resultType="Office">
-    	SELECT o.office_no, longitude, latitude
+    SELECT o.office_no, longitude, latitude
 		FROM office o, professor p
 		WHERE member_no = #{memberNo} AND o.office_no = p.office_no
   </select>
   
   <!-- 회원가입 -->
-  	<insert id="insertServiceUser" parameterType="ServiceUser">
-  		INSERT INTO service_user (user_id, password, member_no)
-  		VALUES (#{userId}, #{password}, #{memberInfo.memberNo})
-  	</insert>
+  <insert id="insertServiceUser" parameterType="ServiceUser">
+  	INSERT INTO service_user (user_id, password, member_no)
+  	VALUES (#{userId}, #{password}, #{memberInfo.memberNo})
+  </insert>
+  
+  <!-- 비밀번호 변경 -->
+  <update id="updatePassword" parameterType="String">
+  	UPDATE service_user
+		SET password = #{newPwd}
+		WHERE user_id = #{userId}
+  </update>
+  
+  <!-- 회원탈퇴 -->
+  <delete id="deleteServiceUser" parameterType="String">
+		DELETE FROM service_user
+		WHERE user_id = #{userId} AND password = #{oldPwd}
+	</delete>
+
 </mapper>

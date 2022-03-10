@@ -106,6 +106,7 @@ CREATE TABLE ALERT_TYPE
  PRIMARY KEY (type_no)
 );
 
+-- foreign key에 대하여 on delete cascade 추가(22.3.10 이유리)
 CREATE TABLE ALERT
 (
 	alert_id             VARCHAR2(8) NOT NULL ,
@@ -115,11 +116,12 @@ CREATE TABLE ALERT
 	user_id              VARCHAR2(18) NOT NULL ,
 	type_no              NUMBER(38,0) NOT NULL ,
  PRIMARY KEY (alert_id),
-FOREIGN KEY (user_id) REFERENCES SERVICE_USER (user_id),
+FOREIGN KEY (user_id) REFERENCES SERVICE_USER (user_id) on delete cascade,
 FOREIGN KEY (type_no) REFERENCES ALERT_TYPE (type_no)
 );
 
 -- state를 status로 컬럼명 변경(22.2.3 이유리)
+-- foreign key에 대하여 on delete cascade 추가(22.3.10 이유리)
 CREATE TABLE CONSULT
 (
 	consult_id           VARCHAR2(8) NOT NULL ,
@@ -132,8 +134,8 @@ CREATE TABLE CONSULT
 	stu_id               VARCHAR2(18) NOT NULL ,
 	cancel_msg           VARCHAR2(400) NULL ,
  PRIMARY KEY (consult_id),
-FOREIGN KEY (prof_id) REFERENCES SERVICE_USER (user_id),
-FOREIGN KEY (stu_id) REFERENCES SERVICE_USER (user_id)
+FOREIGN KEY (prof_id) REFERENCES SERVICE_USER (user_id) on delete cascade,
+FOREIGN KEY (stu_id) REFERENCES SERVICE_USER (user_id) on delete cascade
 );
 
 CREATE TABLE STUDENT
@@ -180,14 +182,16 @@ FOREIGN KEY (stu_no) REFERENCES MEMBER (member_no),
 FOREIGN KEY (prof_no) REFERENCES MEMBER (member_no)
 );
 
+-- foreign key에 대하여 on delete cascade 추가(22.3.10 이유리)
 CREATE TABLE CONSULT_RECORD
 (
 	content              VARCHAR2(4000) NULL ,
 	consult_id           VARCHAR2(8) NOT NULL ,
  PRIMARY KEY (consult_id),
-FOREIGN KEY (consult_id) REFERENCES CONSULT (consult_id)
+FOREIGN KEY (consult_id) REFERENCES CONSULT (consult_id) on delete cascade
 );
 
+-- foreign key에 대하여 on delete cascade 추가(22.3.10 이유리)
 CREATE TABLE MESSAGE
 (
 	msg_id               NUMBER(4,0) NOT NULL ,
@@ -197,8 +201,8 @@ CREATE TABLE MESSAGE
 	send_id              VARCHAR2(18) NOT NULL ,
 	recv_id              VARCHAR2(18) NOT NULL ,
  PRIMARY KEY (msg_id),
-FOREIGN KEY (send_id) REFERENCES SERVICE_USER (user_id),
-FOREIGN KEY (recv_id) REFERENCES SERVICE_USER (user_id)
+FOREIGN KEY (send_id) REFERENCES SERVICE_USER (user_id) on delete cascade,
+FOREIGN KEY (recv_id) REFERENCES SERVICE_USER (user_id) on delete cascade
 );
 
 CREATE TABLE CONSULTABLE_TIME

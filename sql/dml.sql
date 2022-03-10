@@ -3,7 +3,8 @@ insert into college (college_no, college_name) values ('0001', '인문대학');
 insert into department (dept_no, dept_name, college_no) values ('0101', '국어국문학과', '0001');
 insert into member (member_no, role, email, dept_no, name) values ('01010001', 1, 'hello@naver.com', '0101', '샘플');
 insert into member (member_no, role, email, dept_no, name) values ('01020002', 0, 'bye@naver.com', '0101', '예시');
-insert into office (office_no, longitude, latitude) values ('인문101', 37.607365317250675, 127.042562376703);
+-- 위/경도 순서 변경(22.3.10 이유리)
+insert into office (office_no, longitude, latitude) values ('인문101', 127.042562376703, 37.607365317250675);
 insert into student (year, member_no) values (3, '01010001');
 insert into professor (member_no, major, office_no) values ('01020002', '고전문학(한문학)', '인문101');
 insert into service_user (user_id, password, phone, member_no) values ('ex01020002', 'kim111', '010-1234-5678', '01020002');

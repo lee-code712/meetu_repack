@@ -67,4 +67,10 @@ public interface UserDAO {
 	
 	// 회원가입
 	boolean createServiceUser(ServiceUser serviceUser);
+	
+	// 비밀번호 변경
+	boolean changePassword(String newPwd, String userId);
+	
+	// 회원 탈퇴
+	boolean deleteUser(String oldPwd, String userId);
 }

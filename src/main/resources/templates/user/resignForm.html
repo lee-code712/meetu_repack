@@ -13,19 +13,26 @@
 	<link th:href="@{/css/resignForm.css}" rel="stylesheet" />
   <link th:href="@{/css/footer.css}" rel="stylesheet" />
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+	<script th:inline="javascript">
+    if ([[${ resignFailed }]]) {
+      alert([[${ exception }]])
+    }
+  </script>
+  
 	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 	
 	<section>
-		<form method="post" name="secession_form" action="secession.do" onsubmit="return ck_form()">
+		<form method="post" name="secession_form" action="/user/resign" onsubmit="return ck_form()">
 			<div id="secessionWrap">
 				<img src="/images/secession.svg" id="secessionImg"/>
 				<div id="secessionTit">회원탈퇴</div>
 				<div id="secessionSubTit">그동안 서비스를 이용해 주셔서 감사합니다.</div>
 				
 				<div id="secessionPwdTit">비밀번호 확인</div>
-				<input type="password" id="secessionPwdText" name="pwd" placeholder="비밀번호 확인">
+				<input type="password" id="secessionPwdText" name="oldPwd" placeholder="비밀번호 확인">
 				
 				<div id="secessionWarningWrap">
 					<img src="/images/warning.svg" id="secessionWarningImg"/>
@@ -41,5 +48,8 @@
 	</section>
 	
 	<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>	
+	
+	<script src="/javascript/resignForm.js"></script>
+	<script src="/javascript/alert.js"></script>
 </body>
 </html>

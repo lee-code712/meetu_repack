@@ -12,25 +12,33 @@
   <link th:href="@{/css/header.css}" rel="stylesheet" />
 	<link th:href="@{/css/pwdChangeForm.css}" rel="stylesheet" />
   <link th:href="@{/css/footer.css}" rel="stylesheet" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+	<script th:inline="javascript">
+    if ([[${ changePwdFailed }]]) {
+      alert([[${ exception }]])
+    }
+  </script>
+  
 	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 	
 	<section>
-		<form method="post" name="change_pwd_form" action="changePwd.do" onsubmit="return ck_form()">
+		<form method="post" name="change_pwd_form" action="/user/my/changePwd" onsubmit="return ck_form()">
 			<div id="resetPwdWrap">
 				<img src="/images/lock.svg" id="lockImg"/>
 				<div id="resetPwdTit">비밀번호 재설정</div>
 				<div id="resetPwdSubTit">비밀번호를 변경하여 개인정보를 보호하세요.</div>
 				
 				<div id="currentPwdTit">현재 비밀번호</div>
-				<input type="password" id="currentPwdText" name="old_pwd" placeholder="현재 비밀번호">
+				<input type="password" id="currentPwdText" name="oldPwd" placeholder="현재 비밀번호">
 				
 				<div id="newPwdTit">새 비밀번호</div>
-				<input type="password" id="newPwdText" name="new_pwd" placeholder="새 비밀번호">
+				<input type="password" id="newPwdText" name="newPwd" placeholder="새 비밀번호">
 				
 				<div id="newPwdCheckTit">새 비밀번호 확인</div>
-				<input type="password" id="newPwdCheckText" name="new_pwd_ck" placeholder="새 비밀번호 확인">
+				<input type="password" id="newPwdCheckText" name="newPwdCk" placeholder="새 비밀번호 확인">
 		
 				<div id="resetPwdBtnWrap">
 					<input class="resetPwdBtn" id="resetPwdBtn" type="submit" value="비밀번호 변경" />
@@ -41,5 +49,8 @@
 	</section>
 	
 	<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
+	
+	<script src="/javascript/pwdChangeForm.js"></script>
+	<script src="/javascript/alert.js"></script>
 </body>
 </html>

@@ -142,5 +142,21 @@ public class UserDAOImpl implements UserDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+
+	// 비밀번호 변경
+	@Override
+	public boolean changePassword(String newPwd, String userId) {
+		int ck = userMapper.updatePassword(newPwd, userId);
+		if (ck > 0) return true;
+		return false;
+	}
+
+	// 회원 탈퇴
+	@Override
+	public boolean deleteUser(String oldPwd, String userId) {
+		int ck = userMapper.deleteServiceUser(oldPwd, userId);
+		if (ck > 0) return true;
+		return false;
+	}
 	
 }
