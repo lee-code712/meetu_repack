@@ -77,4 +77,13 @@ public class MyPageController {
 	
 	}
 	
+	@GetMapping("/user/my/pwd")
+	public String goPwdChangeForm() {
+		return "user/pwdChangeForm";
+	}
+	
+	@GetMapping("/user/my/resignForm")
+	public String goResignForm() {
+		return "user/resignForm";
+	}
 }

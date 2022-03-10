@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+#secessionWrap {
+	margin: 0 auto;
+	width: 500px;
+}
+
+#secessionBg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: #FAFAFA;
+}
+
+#secessionImg {
+	display: block;
+	margin: 0 auto;
+}
+
+#secessionTit {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 24px;		
+}
+
+#secessionSubTit {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 80px;
+	color: #C4C4C4;
+	font-size: 14px;
+}
+
+#secessionPwdTit {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+#secessionPwdText {
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding-left: 10px;
+	width: 490px;
+	height: 40px;
+	border: 1px solid #EAEAEA;
+	border-radius: 5px;
+}
+
+#secessionPwdText:focus {
+	outline: 1px solid #1ABC9C;
+	border-radius: 5px;
+}
+
+#secessionWarningWrap {
+	display: flex;
+	align-items: center;
+	height: 40px;
+}
+
+#secessionWarning {
+	padding-left: 10px;
+	font-size: 12px;
+	color: #007BFF;
+}
+
+#secessionBtnWrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 80px;
+	width: 500px;
+}
+
+#secessionBtn {
+	width: 220px;
+	height: 40px;
+	background: #1ABC9C;
+	color: white;
+	border-radius: 5px;
+	border: none;
+}
+
+#cancelBtn {
+	width: 220px;
+	height: 40px;
+	background: #DFDFDF;
+	color: white;
+	border-radius: 5px;
+	border: none;
+}
+
+#secessionBtn:hover,
+#cancelBtn:hover {
+	cursor: pointer;
+}
+
+#secessionBtn:focus,
+#cancelBtn:focus {
+	outline: none;
+}
