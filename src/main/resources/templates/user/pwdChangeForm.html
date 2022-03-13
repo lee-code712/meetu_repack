@@ -22,8 +22,6 @@
     }
   </script>
   
-	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-	
 	<section>
 		<form method="post" name="change_pwd_form" action="/user/my/changePwd" onsubmit="return ck_form()">
 			<div id="resetPwdWrap">
@@ -47,8 +45,6 @@
 			</div>
 		</form>
 	</section>
-	
-	<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
 	
 	<script src="/javascript/pwdChangeForm.js"></script>
 	<script src="/javascript/alert.js"></script>
