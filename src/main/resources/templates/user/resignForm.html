@@ -22,8 +22,6 @@
     }
   </script>
   
-	<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-	
 	<section>
 		<form method="post" name="secession_form" action="/user/resign" onsubmit="return ck_form()">
 			<div id="secessionWrap">
@@ -46,8 +44,6 @@
 			</div>
 		</form>
 	</section>
-	
-	<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>	
 	
 	<script src="/javascript/resignForm.js"></script>
 	<script src="/javascript/alert.js"></script>
