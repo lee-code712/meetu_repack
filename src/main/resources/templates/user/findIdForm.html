@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+  	<title>FindId</title>
+
+  	<link rel="preconnect" href="https://fonts.googleapis.com">
+  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  	<link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+  
+  	<link th:href="@{/css/findIdForm.css}" rel="stylesheet" />
+</head>
+
+<body id="bodyBg">
+	<div id="findIdWrap">
+        <div id="loginTitle"><a>아이디 찾기</a></div>
+        <form method="post" action="/user/findId">
+            <div class="form-group">
+                <label>학번</label>
+                <input type="text" class="form-control" name="memberNo" id="memberNo" aria-describedby="emailHelp" placeholder="학번" required>
+            </div>
+            <button type="submit" id="findIdBtn">확인</button>
+        </form>
+    </div>
+</body>
+</html>

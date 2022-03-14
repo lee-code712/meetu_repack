@@ -76,4 +76,7 @@ public interface UserDAO {
 
 	// 학사 구성원 조회
 	Member findMemberByMemberNo(String memberNo);
+
+	// 회원 id에 해당하는 service_user 정보
+	ServiceUser findUserByUserId(String userId);
 }

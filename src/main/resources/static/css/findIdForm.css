@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#findIdWrap {
+    width: 500px;
+    margin: 240px auto;
+}
+
+#loginTitle {
+    margin-bottom: 60px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#loginTitle:hover {
+    cursor: pointer;
+}
+
+#bodyBg {
+    background: #FAFAFA;
+}
+
+#memberNo {
+    background: white;
+}
+
+#findIdBtn {
+    margin: 60px auto;
+    display: block;
+    width: 500px;
+    height: 40px;
+    background: #1abc9c;;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#findIdBtn:hover {
+    cursor: pointer;
+}
+
+#position {
+    margin-bottom: 30px;
+}

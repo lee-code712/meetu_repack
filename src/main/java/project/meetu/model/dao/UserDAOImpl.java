@@ -164,5 +164,11 @@ public class UserDAOImpl implements UserDAO {
 	public Member findMemberByMemberNo(String memberNo) {
 		return userMapper.selectMemberByMemberNo(memberNo);
 	}
+
+	// 회원 ID에 해당하는 member 정보 조회
+	@Override
+	public ServiceUser findUserByUserId(String userId) {
+		return userMapper.selectServiceUserByUserId(userId);
+	}
 	
 }
