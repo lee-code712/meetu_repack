@@ -17,6 +17,12 @@
     if ([[${ registerFailed }]]) {
     	alert("이미 가입된 회원이거나, 학사 DB에 정보가 존재하지 않습니다.");
     }
+    if ([[${ registerSucces }]]) {
+    	alert("회원가입에 성공했습니다.");
+    }
+    if ([[${ authFailed }]]) {
+    	alert("메일 인증에 실패했습니다.");
+    }
     if ([[${ loginFailed }]]) {
       alert([[${ exception }]])
     }

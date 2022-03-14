@@ -181,16 +181,17 @@ public class UserManager {
 	}	
 	
 	/* 회원가입 확인 */
-	public boolean registerCheck(ServiceUser serviceUser) {
+	public Member registerCheck(ServiceUser serviceUser) {
 		String memberNo = serviceUser.getMemberInfo().getMemberNo();
 		
-		if (userDao.findMemberByMemberNo(memberNo) != null) { // 학사 DB에 존재하는 사람 중
+		Member member = userDao.findMemberByMemberNo(memberNo);
+		if (member != null) { // 학사 DB에 존재하는 사람 중
 			if (userDao.findUserByMemberNo(memberNo) == null) { // 회원가입이 되어있지 않은 사람
-				return true;
+				return member;
 			}
 		}
 		
-		return false;
+		return null;
 	}
 	
 	/* 회원가입 */

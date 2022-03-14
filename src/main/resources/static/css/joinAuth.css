@@ -14,7 +14,7 @@
     font-weight: bold;
 }
 
-#input_code {
+#inputCode {
     margin-top: 40px;
     padding-left: 20px;
     width: 480px;
@@ -24,7 +24,7 @@
     background: #FAFAFA;
 }
 
-#input_code:focus {
+#inputCode:focus {
     outline: none;
 }
 
