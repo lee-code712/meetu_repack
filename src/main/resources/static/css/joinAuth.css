@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+#AuthWrap {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 500px;
+    min-height: 100vh;
+}
+
+#AuthTit {
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#input_code {
+    margin-top: 40px;
+    padding-left: 20px;
+    width: 480px;
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid #EAEAEA;
+    background: #FAFAFA;
+}
+
+#input_code:focus {
+    outline: none;
+}
+
+#AuthWarning {
+    margin-top: 20px;
+    font-size: 10px;
+    color: #7AAFFF;
+}
+
+#submitBtnWrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+#submit_btn {
+    width: 80px;
+    height: 34px;
+    background: #1ABC9C;
+    color: white;
+    border-radius: 50px;
+    border: none;
+}
+
+#submit_btn:hover {
+    cursor: pointer;
+}

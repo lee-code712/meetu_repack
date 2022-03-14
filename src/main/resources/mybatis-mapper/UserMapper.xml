@@ -279,4 +279,10 @@
 		WHERE user_id = #{userId} AND password = #{oldPwd}
 	</delete>
 
+  <!-- 학사 구성원 조회 -->
+  <select id="selectMemberByMemberNo" parameterType="String" resultType="Member">
+    SELECT member_no, role, email, dept_no, name
+    FROM member
+    WHERE member_no = #{memberNo}
+  </select>
 </mapper>

@@ -158,5 +158,11 @@ public class UserDAOImpl implements UserDAO {
 		if (ck > 0) return true;
 		return false;
 	}
+
+	// 학사 구성원 조회
+	@Override
+	public Member findMemberByMemberNo(String memberNo) {
+		return userMapper.selectMemberByMemberNo(memberNo);
+	}
 	
 }

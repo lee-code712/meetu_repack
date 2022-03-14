@@ -16,7 +16,7 @@
   <section>
     <div id="logo">MEETU</div>
 
-    <form action="/user/join" method="post">
+    <form action="/user/join" method="post" name="join_form" onsubmit="return ck_join_form()">
       <label>학번</label>
       <input type="text" placeholder="학번" name="memberInfo.memberNo" id="memberNo" />
 
@@ -29,6 +29,8 @@
       <button type="submit" id="joinBtn">가입하기</button>
     </form>
   </section>
+  
+  <script src="/javascript/join.js"></script>
 </body>
 
 </html>

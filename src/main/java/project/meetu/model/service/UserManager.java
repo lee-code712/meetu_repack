@@ -174,6 +174,25 @@ public class UserManager {
 		return userDao.findOfficeByProfId(memberNo);
 	}
 	
+	/* MemberNo에 해당하는 Member 조회 */
+	public Member getMemberByMemberNo(String memberNo) {
+		Member member = userDao.findMemberByMemberNo(memberNo);
+		return member;
+	}	
+	
+	/* 회원가입 확인 */
+	public boolean registerCheck(ServiceUser serviceUser) {
+		String memberNo = serviceUser.getMemberInfo().getMemberNo();
+		
+		if (userDao.findMemberByMemberNo(memberNo) != null) { // 학사 DB에 존재하는 사람 중
+			if (userDao.findUserByMemberNo(memberNo) == null) { // 회원가입이 되어있지 않은 사람
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	/* 회원가입 */
 	public boolean register(ServiceUser serviceUser) {
 		String userId = "ex" + serviceUser.getMemberInfo().getMemberNo();

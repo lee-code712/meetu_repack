@@ -73,4 +73,7 @@ public interface UserDAO {
 	
 	// 회원 탈퇴
 	boolean deleteUser(String oldPwd, String userId);
+
+	// 학사 구성원 조회
+	Member findMemberByMemberNo(String memberNo);
 }

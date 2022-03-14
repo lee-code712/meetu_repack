@@ -56,4 +56,6 @@ public interface UserMapper {
 	public int updatePassword(@Param("newPwd") String newPwd, @Param("userId") String userId);
 	
 	public int deleteServiceUser(@Param("oldPwd") String oldPwd, @Param("userId") String userId);
+
+	public Member selectMemberByMemberNo(String memberNo);
 }
