@@ -18,6 +18,9 @@
   
   <script th:inline="javascript">
       var memberMessage = [[${memberMessage}]];
+      var partner = [[${partner}]];
+      var memMsgName = [[${memMsgName}]];
+      var messages = [[${messages}]];
    </script>
 </head>
 
@@ -29,45 +32,67 @@
       <div id="tit">쪽지함</div>
       <div id="userInfo">
         <ul class="tabs">
-        	<li th:each="memMsg : memberMessage" class="tab">
-                <input type="radio" id="tab-1" name="tab-group-1" checked>
-            	<label th:text="${memMsg.value} ${memMsg.value}" for="tab-1" id="tabName"></label>
-            	<input type='hidden' class='name' value="${memMsg.value}"/>
-		        <input type='hidden' id='consultId' value="${memMsg.value}"/>
+        	<li th:each="memMsg : ${memberMessage}" class="tab">
+        	   <div th:if="${#strings.equals(memMsg.value[3], partner)}">
+		           <input type="radio" id="tab-1" name="tab-group-1" checked>
+		       </div>
+		       <div th:unless="${#strings.equals(memMsg.value[3], partner)}">
+		           <input type="radio" id="tab-1" name="tab-group-1">
+		       </div>
+	           <div th:if="${session.role == 0}">
+	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 학생'" for="tab-1" id="tabName"></label>
+	           </div>
+	           <div th:if="${session.role == 1}">
+	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 교수님'" for="tab-1" id="tabName"></label>
+	           </div>
+	           <input type='hidden' id='userId' th:value="${memMsg.value[3]}"/>
+			   <input type='hidden' id='consultId' th:value="${memMsg.value[2]}"/>
             </li>
         </ul>
       </div>
     </div>
-
+	
     <div id="testWrap">
       <div id="screenWrap">
-        <div id="receiverTit">컴퓨터학과 교수님</div>
+        <div id="receiverTit" th:text="${memMsgName}"></div>
+        
         <div id="screen">
-
-          <div id="recieveMsgWrap">
-            <div id="reciever">보낸 사람</div>
-            <div id="recieveMsg">
-              <div id="msgInner">
-                <div id="recieveMsgContent">
-                  <div id="missionCompleteMsg">안녕하세요</div>
-                </div>
-              </div>
-            </div>
-            <div id="receiveTime">오후 4:19</div>
-          </div>
-
-          <div id="sendWrap">
-            <div id="sendMsgWrap">
-              <div id="sendMsgInner">
-                <div id="sendMsg">
-                  <div id="missionCompleteMsg">안녕하세요</div>
-                </div>
-              </div>
-            </div>
-            <div id="sendTime">오후 4:27</div>
-          </div>
+	        <div th:each="msg : ${messages}">
+	          <div id="recieveMsgWrap" th:if="${session.id == msg.recvId}">
+		        <div th:text="${memMsgName}" id="reciever"></div>
+	            <div id="recieveMsg">
+	              <div id="msgInner">
+	                <div id="recieveMsgContent">
+	                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+	                </div>
+	              </div>
+	            </div>
+	            <div th:if="${msg.isRead == '0'}">
+	            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="receiveTime"></div>
+	            </div>
+	            <div th:if="${msg.isRead == '1'}">
+	            	<div th:text="${msg.sentDate} + ', 읽음'" id="receiveTime"></div>
+	            </div>
+		      </div>
+	          
+	          <div id="sendWrap" th:unless="${session.id == msg.recvId}">
+	            <div id="sendMsgWrap">
+	              <div id="sendMsgInner">
+	                <div id="sendMsg">
+	                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+	                </div>
+	              </div>
+	            </div>
+	            <div th:if="${msg.isRead == '0'}">
+	            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="sendTime"></div>
+	            </div>
+	            <div th:if="${msg.isRead == '1'}">
+	            	<div th:text="${msg.sentDate} + ', 읽음'" id="sendTime"></div>
+	            </div>
+	          </div>
+	        </div>
         </div>
-
+        
         <div id="chatWrap">
           <input type="text" placeholder="글을 입력하세요." id="chat" />
           <img src="/images/sendImg.svg" id="sendImg" />
@@ -78,6 +103,7 @@
 
   <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
   
+  <script src="/javascript/message.js"></script>
   <script src="/javascript/alert.js"></script>
 </body>
 

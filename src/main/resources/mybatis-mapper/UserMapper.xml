@@ -285,11 +285,4 @@
     FROM member
     WHERE member_no = #{memberNo}
   </select>
-  
-  <!-- 회원 ID에 해당하는 member 조회 -->
-  <select id="selectServiceUserByUserId" parameterType="String" resultMap="userResultMap">
-   SELECT user_id, password, phone, member_no, role, name, email, dept_no
-      FROM service_user JOIN member USING(member_no)
-      WHERE user_id = #{userId}
-  </select>
 </mapper>

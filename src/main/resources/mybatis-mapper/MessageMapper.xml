@@ -3,4 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.meetu.model.dao.mapper.MessageMapper">
 
+	<select id="selectMessages" parameterType="String" resultType="Message">
+		SELECT msg_id, sent_date, content, is_read, send_id, recv_id
+		FROM message
+		WHERE (send_id = #{id} AND recv_id = #{memMsgId}) or (send_id = #{memMsgId} AND recv_id = #{id})
+  	</select>
+  	
+  	<update id="updateMessagesRead" parameterType="String">
+	  	UPDATE message
+			SET is_read = 1
+			WHERE send_id = #{memMsgId} AND recv_id = #{id}
+  	</update>
+
 </mapper>

@@ -45,6 +45,10 @@ public class UserManager {
 
 		return findUser;
 	}
+	
+	public ServiceUser getUserByUserId(String userId) {
+		return userDao.findUser(userId);
+	}
 
 	/* 전체 단대 조회 */
 	public List<College> getColleges() {
@@ -178,12 +182,6 @@ public class UserManager {
 	public Member getMemberByMemberNo(String memberNo) {
 		Member member = userDao.findMemberByMemberNo(memberNo);
 		return member;
-	}
-	
-	/* userId에 해당하는 service_user 조회 */
-	public ServiceUser getUserByUserId(String userId) {
-		ServiceUser serviceUser = userDao.findUserByUserId(userId);
-		return serviceUser;
 	}
 	
 	/* 회원가입 확인 */

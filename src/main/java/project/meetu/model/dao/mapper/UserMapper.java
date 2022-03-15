@@ -58,6 +58,4 @@ public interface UserMapper {
 	public int deleteServiceUser(@Param("oldPwd") String oldPwd, @Param("userId") String userId);
 
 	public Member selectMemberByMemberNo(String memberNo);
-
-	public ServiceUser selectServiceUserByUserId(String userId);
 }
