@@ -6,7 +6,7 @@ $(document).ready(function() { // html이 로드되면 실행됨
 
 function getMessages() {
 	memMsgName = $(this).text();
-	memMsgId = $('#userId').val();
+	memMsgId = $('#memMsgId').val();
 	$('#screen').children().remove();
 	
 	location.href = "/message/searchMessages?memMsgId=" + memMsgId + "&memMsgName=" + memMsgName;
@@ -171,26 +171,7 @@ function sendMessage() {
 	
 	if(msg == "") {
 		alert("전송할 메시지 내용이 없습니다.");
-	}
-	else {
-		var data = {"mem_usr_name":mem_usr_name, "msg":msg};
-		
-		$.ajax({
-	 		type: "POST",
-			url: "addMessage.do",
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			data: data,
-			dataType: "text",
-			success: updateMessages,
-			error: function(jqXHR, textStatus, errorThrown) {
-				var message = jqXHR.getResponseHeader("Status");
-				if ((message == null) || (message.length <= 0)) {
-					alert("Error! Request status is " + jqXHR.status);
-				} else {
-					alert(message);	
-				}
-			}
-		});
+		return false;
 	}
 }
 

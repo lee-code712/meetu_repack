@@ -14,4 +14,6 @@ public interface MessageMapper {
 
 	public int updateMessagesRead(@Param("id") String id, @Param("memMsgId") String memMsgId);
 
+	public int insertMessage(Message message);
+
 }

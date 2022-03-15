@@ -139,7 +139,68 @@ public class MessageController {
 			}
 			mav.addObject("memberMessage", memberMap);
 		}
-		mav.addObject("partner", memMsgId);
+		mav.addObject("memMsgId", memMsgId);
+		mav.addObject("memMsgName", memMsgName);
+		mav.setViewName("message/messageView");
+		return mav;
+	}
+	
+	@PostMapping(value = "/message/sendMessage")
+	public ModelAndView SendMessage(HttpServletRequest req, ModelAndView mav) {
+		HttpSession session = req.getSession();
+		
+		String id = (String) session.getAttribute("id");
+		int role = (Integer) session.getAttribute("role");
+		String memMsgId = (String) req.getParameter("memMsgId");
+		String memMsgName = (String) req.getParameter("memMsgName");
+		String content = (String) req.getParameter("content");
+
+		Message message = new Message();
+		message.setContent(content);
+		message.setRecvId(memMsgId);
+		message.setSendId(id);
+		
+		messageService.addMessage(message);
+		
+		ArrayList<Message> messages = messageService.getMessages(id, memMsgId);
+		
+		if (messages != null) {
+			mav.addObject("messages", messages);
+		}
+		
+		ArrayList<Consult> consults = (ArrayList<Consult>) consultService.getUserConsults(id);
+		
+		if(consults != null) {
+			HashMap<String, ArrayList<String>> memberMap = new HashMap<String, ArrayList<String>>(); 
+			Iterator<Consult> iterator = consults.iterator();
+			
+			while(iterator.hasNext()) {
+				Consult consult = iterator.next();
+				if(consult.getStatus() == 1) { // 예약이 승인된 경우에만
+					String userId;
+					
+					if(role == 0) {
+						userId = consult.getStuUser().getUserId();
+					}
+					else {
+						userId = consult.getProfUser().getUserId();;
+					}
+					
+					ServiceUser su = userService.getUserByUserId(userId);
+					Department department = su.getMemberInfo().getDeptInfo();
+					ArrayList<String> memberList = new ArrayList<>();
+					memberList.add(department.getDeptName());
+					memberList.add(su.getMemberInfo().getName());
+					Integer consultId = consult.getId();
+					memberList.add(consultId.toString());
+					memberList.add(userId);
+					
+					memberMap.put(userId, memberList); // key-상대방의 id, value-상대방의 학과 및 이름 및 예약 id
+				}
+			}
+			mav.addObject("memberMessage", memberMap);
+		}
+		mav.addObject("memMsgId", memMsgId);
 		mav.addObject("memMsgName", memMsgName);
 		mav.setViewName("message/messageView");
 		return mav;

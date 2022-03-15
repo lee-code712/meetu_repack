@@ -18,7 +18,7 @@
   
   <script th:inline="javascript">
       var memberMessage = [[${memberMessage}]];
-      var partner = [[${partner}]];
+      var memMsgId = [[${memMsgId}]];
       var memMsgName = [[${memMsgName}]];
       var messages = [[${messages}]];
    </script>
@@ -33,10 +33,10 @@
       <div id="userInfo">
         <ul class="tabs">
         	<li th:each="memMsg : ${memberMessage}" class="tab">
-        	   <div th:if="${#strings.equals(memMsg.value[3], partner)}">
+        	   <div th:if="${#strings.equals(memMsg.value[3], memMsgId)}">
 		           <input type="radio" id="tab-1" name="tab-group-1" checked>
 		       </div>
-		       <div th:unless="${#strings.equals(memMsg.value[3], partner)}">
+		       <div th:unless="${#strings.equals(memMsg.value[3], memMsgId)}">
 		           <input type="radio" id="tab-1" name="tab-group-1">
 		       </div>
 	           <div th:if="${session.role == 0}">
@@ -45,60 +45,65 @@
 	           <div th:if="${session.role == 1}">
 	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 교수님'" for="tab-1" id="tabName"></label>
 	           </div>
-	           <input type='hidden' id='userId' th:value="${memMsg.value[3]}"/>
-			   <input type='hidden' id='consultId' th:value="${memMsg.value[2]}"/>
+	           <input type='hidden' id='memMsgId' name='memMsgId' th:value="${memMsg.value[3]}"/>
+			   <input type='hidden' id='consultId' name='consultId' th:value="${memMsg.value[2]}"/>
             </li>
         </ul>
       </div>
     </div>
 	
-    <div id="testWrap">
-      <div id="screenWrap">
-        <div id="receiverTit" th:text="${memMsgName}"></div>
-        
-        <div id="screen">
-	        <div th:each="msg : ${messages}">
-	          <div id="recieveMsgWrap" th:if="${session.id == msg.recvId}">
-		        <div th:text="${memMsgName}" id="reciever"></div>
-	            <div id="recieveMsg">
-	              <div id="msgInner">
-	                <div id="recieveMsgContent">
-	                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
-	                </div>
-	              </div>
-	            </div>
-	            <div th:if="${msg.isRead == '0'}">
-	            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="receiveTime"></div>
-	            </div>
-	            <div th:if="${msg.isRead == '1'}">
-	            	<div th:text="${msg.sentDate} + ', 읽음'" id="receiveTime"></div>
-	            </div>
-		      </div>
-	          
-	          <div id="sendWrap" th:unless="${session.id == msg.recvId}">
-	            <div id="sendMsgWrap">
-	              <div id="sendMsgInner">
-	                <div id="sendMsg">
-	                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
-	                </div>
-	              </div>
-	            </div>
-	            <div th:if="${msg.isRead == '0'}">
-	            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="sendTime"></div>
-	            </div>
-	            <div th:if="${msg.isRead == '1'}">
-	            	<div th:text="${msg.sentDate} + ', 읽음'" id="sendTime"></div>
-	            </div>
-	          </div>
+	
+	    <div id="testWrap">
+	      <div id="screenWrap">
+	        <div id="receiverTit" th:text="${memMsgName}"></div>
+	        
+	        <div id="screen">
+		        <div th:each="msg : ${messages}">
+		          <div id="recieveMsgWrap" th:if="${session.id == msg.recvId}">
+			        <div th:text="${memMsgName}" id="reciever"></div>
+		            <div id="recieveMsg">
+		              <div id="msgInner">
+		                <div id="recieveMsgContent">
+		                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+		                </div>
+		              </div>
+		            </div>
+		            <div th:if="${msg.isRead == '0'}">
+		            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="receiveTime"></div>
+		            </div>
+		            <div th:if="${msg.isRead == '1'}">
+		            	<div th:text="${msg.sentDate} + ', 읽음'" id="receiveTime"></div>
+		            </div>
+			      </div>
+		          
+		          <div id="sendWrap" th:unless="${session.id == msg.recvId}">
+		            <div id="sendMsgWrap">
+		              <div id="sendMsgInner">
+		                <div id="sendMsg">
+		                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+		                </div>
+		              </div>
+		            </div>
+		            <div th:if="${msg.isRead == '0'}">
+		            	<div th:text="${msg.sentDate} + ', 읽지 않음'" id="sendTime"></div>
+		            </div>
+		            <div th:if="${msg.isRead == '1'}">
+		            	<div th:text="${msg.sentDate} + ', 읽음'" id="sendTime"></div>
+		            </div>
+		          </div>
+		        </div>
 	        </div>
-        </div>
-        
-        <div id="chatWrap">
-          <input type="text" placeholder="글을 입력하세요." id="chat" />
-          <img src="/images/sendImg.svg" id="sendImg" />
-        </div>
-      </div>
-    </div>
+	        
+	        <form action="/message/sendMessage" method="post" name="sendForm" onsubmit="return sendMessage()">
+		        <div id="chatWrap">
+			   	  <input type='hidden' id='memMsgId' name='memMsgId' th:value="${memMsgId}"/>
+			   	  <input type='hidden' id='memMsgName' name='memMsgName' th:value="${memMsgName}"/>
+		          <input type="text" placeholder="글을 입력하세요." id="chat" name="content"/>
+		          <input type="image" src="/images/sendImg.svg" id="sendImg" name="Submit" value="Submit"/>
+		        </div>
+    		</form>
+	      </div>
+	    </div>
   </section>
 
   <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>

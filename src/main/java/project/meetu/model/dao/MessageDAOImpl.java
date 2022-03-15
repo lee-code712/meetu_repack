@@ -23,4 +23,9 @@ public class MessageDAOImpl implements MessageDAO {
 		return messageMapper.updateMessagesRead(id, memMsgId);
 	}
 
+	@Override
+	public int addMessage(Message message) {
+		return messageMapper.insertMessage(message);
+	}
+
 }

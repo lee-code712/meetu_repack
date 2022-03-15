@@ -39,4 +39,8 @@ public class MessageManager {
 	public int changeRead(String id, String memMsgId) {
 		return messageDao.changeRead(id, memMsgId);
 	}
+
+	public int addMessage(Message message) {
+		return messageDao.addMessage(message);
+	}
 }

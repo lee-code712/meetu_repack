@@ -14,5 +14,11 @@
 			SET is_read = 1
 			WHERE send_id = #{memMsgId} AND recv_id = #{id}
   	</update>
+  	
+  	<insert id="insertMessage" parameterType="Message">
+  		<selectKey keyProperty="id" resultType="int" order="BEFORE"> SELECT MESSAGE_SEQ.nextval FROM DUAL </selectKey>
+		INSERT INTO message (msg_id, sent_date, content, is_read, send_id, recv_id)
+		VALUES (#{id}, sysdate, #{content}, 0, #{sendId}, #{recvId})
+  	</insert>
 
 </mapper>

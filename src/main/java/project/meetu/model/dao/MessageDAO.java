@@ -10,4 +10,6 @@ public interface MessageDAO {
 
 	public int changeRead(String id, String memMsgId);
 
+	public int addMessage(Message message);
+
 }
