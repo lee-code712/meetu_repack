@@ -15,6 +15,10 @@
   <link th:href="@{/css/header.css}" rel="stylesheet" />
   <link th:href="@{/css/message.css}" rel="stylesheet" />
   <link th:href="@{/css/footer.css}" rel="stylesheet" />
+  
+  <script th:inline="javascript">
+      var memberMessage = [[${memberMessage}]];
+   </script>
 </head>
 
 <body>
@@ -25,20 +29,12 @@
       <div id="tit">쪽지함</div>
       <div id="userInfo">
         <ul class="tabs">
-          <li class="tab">
-            <input type="radio" id="tab-1" name="tab-group-1" checked>
-            <label for="tab-1" id="tabName">컴퓨터학과 교수님</label>
-          </li>
-
-          <li class="tab">
-            <input type="radio" id="tab-2" name="tab-group-1">
-            <label for="tab-2" id="tabName">컴퓨터학과 교수님</label>
-          </li>
-
-          <li class="tab">
-            <input type="radio" id="tab-3" name="tab-group-1">
-            <label for="tab-3" id="tabName">컴퓨터학과 교수님</label>
-          </li>
+        	<li th:each="memMsg : memberMessage" class="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked>
+            	<label th:text="${memMsg.value} ${memMsg.value}" for="tab-1" id="tabName"></label>
+            	<input type='hidden' class='name' value="${memMsg.value}"/>
+		        <input type='hidden' id='consultId' value="${memMsg.value}"/>
+            </li>
         </ul>
       </div>
     </div>

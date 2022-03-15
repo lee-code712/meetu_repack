@@ -26,6 +26,11 @@
 </th:block>
 
 <body>
+	<script th:inline="javascript">
+	    if ([[${ emptyReservation }]]) {
+	    	alert("승인된 상담이 존재하지 않습니다.");
+	    }
+    </script>
   <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
   <div layout:fragment="content" class="content">
     <div id="banner">

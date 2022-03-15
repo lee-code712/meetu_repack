@@ -11,5 +11,6 @@
 		<mapper resource="mybatis-mapper/UserMapper.xml" />
 		<mapper resource="mybatis-mapper/ConsultMapper.xml" />
 		<mapper resource="mybatis-mapper/AlertMapper.xml" />
+		<mapper resource="mybatis-mapper/MessageMapper.xml" />
 	</mappers>
 </configuration>
