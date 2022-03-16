@@ -55,6 +55,13 @@ public class AlertManager {
 		return alertDao.changeRead(userId);
 	}
 	
+	/* 쪽지에 대한 새로운 알림 생성 */
+	public boolean addAlertByaddMessage(String name, String userId) {
+		String alertMsg = name + "님이 쪽지를 전송했습니다.";
+		Alert alert = new Alert(alertMsg, userId, 5);
+		return alertDao.createAlert(alert);
+	}
+	
 	/* 예약에 대한 새로운 알림 생성 */
 	public boolean addAlertByMakeReservation(String name, String userId) {
 		String alertMsg = name + "님이 상담을 예약했습니다.";

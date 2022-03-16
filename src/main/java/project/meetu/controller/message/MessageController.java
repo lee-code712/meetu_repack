@@ -199,6 +199,10 @@ public class MessageController {
 				}
 			}
 			mav.addObject("memberMessage", memberMap);
+			
+			// 알림 추가
+			ServiceUser su = userService.getUserByUserId(id);
+			alertService.addAlertByaddMessage(su.getMemberInfo().getName(), memMsgId);
 		}
 		mav.addObject("memMsgId", memMsgId);
 		mav.addObject("memMsgName", memMsgName);
