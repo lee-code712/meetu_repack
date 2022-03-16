@@ -32,7 +32,7 @@
       <div id="tit">쪽지함</div>
       <div id="userInfo">
         <ul class="tabs">
-        	<li th:each="memMsg : ${memberMessage}" class="tab">
+        	<li th:each="memMsg : ${memberMessage}" class="tab" th:id="${memMsg.value[3]}">
         	   <div th:if="${#strings.equals(memMsg.value[3], memMsgId)}">
 		           <input type="radio" id="tab-1" name="tab-group-1" checked>
 		       </div>
@@ -40,13 +40,12 @@
 		           <input type="radio" id="tab-1" name="tab-group-1">
 		       </div>
 	           <div th:if="${session.role == 0}">
-	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 학생'" for="tab-1" id="tabName"></label>
+	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 학생'" for="tab-1" th:id="${memMsg.value[3]}"></label>
 	           </div>
 	           <div th:if="${session.role == 1}">
-	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 교수님'" for="tab-1" id="tabName"></label>
+	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 교수님'" for="tab-1" th:id="${memMsg.value[3]}"></label>
 	           </div>
-	           <input type='hidden' id='memMsgId' name='memMsgId' th:value="${memMsg.value[3]}"/>
-			   <input type='hidden' id='consultId' name='consultId' th:value="${memMsg.value[2]}"/>
+	           <input type='hidden' th:id='${memMsg.value[3]}' name='memMsgId' th:value="${memMsg.value[3]}"/>
             </li>
         </ul>
       </div>

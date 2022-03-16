@@ -6,7 +6,7 @@ $(document).ready(function() { // html이 로드되면 실행됨
 
 function getMessages() {
 	memMsgName = $(this).text();
-	memMsgId = $('#memMsgId').val();
+	memMsgId = $(this).attr("id");
 	$('#screen').children().remove();
 	
 	location.href = "/message/searchMessages?memMsgId=" + memMsgId + "&memMsgName=" + memMsgName;
