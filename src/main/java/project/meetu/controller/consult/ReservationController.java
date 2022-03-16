@@ -214,9 +214,25 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/consult/updateReservationForm")
-	public String goUpdateReservationForm(String consultId, RedirectAttributes rttr) {
-		
+	public String goUpdateReservationForm(String consultId, String time, String date, RedirectAttributes rttr) {
 		Consult reservation = consultService.getReservationInfo(consultId);
+		
+		System.out.println("시간: " + time);
+		System.out.println("날짜: " + date);
+		
+		// 2022-03-18 13:00:00
+		if (time != null) {
+			String oldStartDate = reservation.getStartDate();
+			reservation.setStartDate(oldStartDate.substring(0, 11) + time + oldStartDate.substring(13));
+		}
+		
+		if (date != null) {
+			String oldStartDate = reservation.getStartDate();
+			reservation.setStartDate(oldStartDate.substring(0, 8) + date + oldStartDate.substring(10));
+			String oldEndDate = reservation.getEndDate();
+			reservation.setEndDate(oldEndDate.substring(0, 8) + date + oldEndDate.substring(10));
+		}
+		
 		rttr.addFlashAttribute("reservation", reservation);
 		// 예약폼에서 교수번호를 매개변수로 다 사용해서 임의로 교수번호 만듦(학교번호 수가 달라지면 에러남)
 		String profNo = reservation.getProfUser().getUserId().substring(2);

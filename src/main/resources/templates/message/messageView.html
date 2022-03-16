@@ -21,6 +21,8 @@
       var memMsgId = [[${memMsgId}]];
       var memMsgName = [[${memMsgName}]];
       var messages = [[${messages}]];
+      var consultId = [[${consultId}]];
+      var role = [[${session.role}]];
    </script>
 </head>
 
@@ -45,6 +47,7 @@
 	           <div th:if="${session.role == 1}">
 	           	<label th:text="${memMsg.value[0]} + ' ' + ${memMsg.value[1]} + ' 교수님'" for="tab-1" th:id="${memMsg.value[3]}"></label>
 	           </div>
+	           <input type='hidden' th:id='${memMsg.value[2]}' name='consultId' th:value="${memMsg.value[2]}"/>
 	           <input type='hidden' th:id='${memMsg.value[3]}' name='memMsgId' th:value="${memMsg.value[3]}"/>
             </li>
         </ul>
@@ -63,7 +66,7 @@
 		            <div id="recieveMsg">
 		              <div id="msgInner">
 		                <div id="recieveMsgContent">
-		                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+		                  <div th:text="${msg.content}" id="missionCompleteMsg" class="content"></div>
 		                </div>
 		              </div>
 		            </div>
@@ -79,7 +82,7 @@
 		            <div id="sendMsgWrap">
 		              <div id="sendMsgInner">
 		                <div id="sendMsg">
-		                  <div th:text="${msg.content}" id="missionCompleteMsg"></div>
+		                  <div th:text="${msg.content}" id="missionCompleteMsg" class="content"></div>
 		                </div>
 		              </div>
 		            </div>

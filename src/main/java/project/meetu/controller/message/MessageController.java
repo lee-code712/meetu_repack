@@ -99,6 +99,7 @@ public class MessageController {
 		int role = (Integer) session.getAttribute("role");
 		String memMsgId = (String) req.getParameter("memMsgId");
 		String memMsgName = (String) req.getParameter("memMsgName");
+		String consultId = (String) req.getParameter("consultId");
 		
 		messageService.changeRead(id, memMsgId);
 		ArrayList<Message> messages = messageService.getMessages(id, memMsgId);
@@ -130,8 +131,8 @@ public class MessageController {
 					ArrayList<String> memberList = new ArrayList<>();
 					memberList.add(department.getDeptName());
 					memberList.add(su.getMemberInfo().getName());
-					Integer consultId = consult.getId();
-					memberList.add(consultId.toString());
+					Integer consultIdInt = consult.getId();
+					memberList.add(consultIdInt.toString());
 					memberList.add(userId);
 					
 					memberMap.put(userId, memberList); // key-상대방의 id, value-상대방의 학과 및 이름 및 예약 id
@@ -139,8 +140,10 @@ public class MessageController {
 			}
 			mav.addObject("memberMessage", memberMap);
 		}
+		
 		mav.addObject("memMsgId", memMsgId);
 		mav.addObject("memMsgName", memMsgName);
+		mav.addObject("consultId", consultId);
 		mav.setViewName("message/messageView");
 		return mav;
 	}
