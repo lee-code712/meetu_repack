@@ -138,7 +138,7 @@ $(document).ready(function() { // html이 로드되면 실행됨
 function getMessages() {
 	memMsgName = $(this).text();
 	memMsgId = $(this).attr("id");
-	var consultId = $(this).children("input:eq(0)").attr("id");
+	var consultId = $(this).children("input:eq(2)").attr("id");
 	$('#screen').children().remove();
 	
 	location.href = "/message/searchMessages?memMsgId=" + memMsgId + "&consultId=" + consultId + "&memMsgName=" + memMsgName;
@@ -182,7 +182,7 @@ function sendMessage() {
 		return false;
 	}
 	
-	var consultHidden = $("li[id=" + memMsgId +"]").children("input:eq(0)").clone();
+	var consultHidden = $("li[id=" + memMsgId +"]").children("input:eq(2)").clone();
 	$("#chatWrap").append(consultHidden);
 }
 
