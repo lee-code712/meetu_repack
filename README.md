@@ -16,9 +16,9 @@ MeetU 프로젝트의 구조적인 개선을 위해 프레임워크를 활용한
 ### 개발 환경
 - IDE : Eclipse(Java EE IDE)
 - Programming Language : Java 8, JavaScript
-- Backend Framework : Spring Framework
-- Template engine : Thymeleaf
-- Database Access Technology : Mybatis
+- Backend Framework : `Spring Boot 2.6.2`
+- Template engine : `Thymeleaf`
+- Database Access Technology : `Mybatis`
 - Database : Oracle Database 11g
 - WAS : Apache Tomcat 8.5
 - Version Control: Git
