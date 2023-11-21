@@ -20,7 +20,6 @@ MeetU 프로젝트의 구조적인 개선을 위해 스프링 프레임워크를
 - Template engine : `Thymeleaf`
 - Database Access Technology : `Mybatis`
 - Database : Oracle Database 11g
-- WAS : Apache Tomcat 8.5
 - Version Control: Git
   </br></br>
 
