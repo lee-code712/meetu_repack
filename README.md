@@ -2,6 +2,10 @@
 학생-교수 미팅 예약 사이트_리팩토링
 </br></br>
 
+## ✔ 프로젝트 데모
+https://www.youtube.com/watch?v=1sNkhS5zBTk&list=LL&index=2&t=4s
+</br></br>
+
 ## ✔ 프로젝트 소개
 MeetU 프로젝트의 구조적인 개선을 위해 스프링 프레임워크를 활용한 리팩토링을 진행했습니다.
 
