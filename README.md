@@ -2,7 +2,7 @@
 학생-교수 미팅 예약 사이트_리팩토링
 </br></br>
 
-## ✔ 프로젝트 데모
+## ✔ 프로젝트 시연 영상
 https://www.youtube.com/watch?v=1sNkhS5zBTk&list=LL&index=2&t=4s
 </br></br>
 
